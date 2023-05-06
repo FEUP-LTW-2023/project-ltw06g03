@@ -1,5 +1,9 @@
 <?php function drawHomeBody(){?>
 <div class="homePageHeader">
+    <div class="loginRegister">
+        <button>Register</button>
+        <button>Login</button>
+    </div>
     <header>
         <h1>Feup Trouble Ticket's</h1>
         <h2>Create tickets for your problems</h2>

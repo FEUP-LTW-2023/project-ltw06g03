@@ -35,6 +35,34 @@
 .homePageHeader header h2{
     font-size: 2rem;
 }
+.homePageHeader .loginRegister {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+}
+.homePageHeader .loginRegister button {
+    margin-right: 2rem ;
+    padding: 0.4rem 1rem;
+    position: relative;
+   font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: #FF4F47;
+    border: none;
+    cursor:pointer;
+    border-radius: 0.5rem;
+
+}
+.homePageHeader .loginRegister button:first-child {
+    background: none;
+}
+.homePageHeader .loginRegister button:hover {
+    background: gray;
+}
+
 .FAQ {
     max-width: 70rem;
     margin: auto;
