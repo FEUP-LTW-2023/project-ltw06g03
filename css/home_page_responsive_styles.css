@@ -25,6 +25,12 @@
     .FAQ{
         margin-left: 5rem;
     }
+    .FAQ h1{
+        padding: 1rem;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        font-size: 2.5rem;
+    }
     .homePageHeader{
         padding: 1rem;
         width: 100%;
@@ -43,6 +49,11 @@
         margin-left: 0rem;
 
     }
+    .FAQ h1{
+        font-size: 2.2rem;
+
+        padding: 0;
+    }
     .FAQ article img{
         position: relative;
         width: 100%;
@@ -53,13 +64,22 @@
         width: 100%;
         word-wrap:break-word;
     }
+    .homePageHeader header{
+        word-break: break-word;
+        width: auto;
+        word-wrap:break-word;
+    }
     .homePageHeader header h1{
-        font-size: 2rem;
-        width: 100%;
+        font-size: 2.5rem;
+        width: auto;
+        max-width: none;
         word-wrap: break-word;
     }
     .homePageHeader header h2{
-        font-size: 1rem;
+        font-size: 1.5rem;
+        word-wrap: break-word;
+        word-break: break-word;
+
     }
 
 
