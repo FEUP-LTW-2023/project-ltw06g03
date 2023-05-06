@@ -5,12 +5,11 @@ require_once(__DIR__ . '/../templates/home_body.php');
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session("Admin");
 require_once(__DIR__ . '/../templates/common.php');
-// drawHeader($session);
+
 drawHomePageHeader();
 drawNavBar($session);
 drawHomeBody();
-
-  drawFooter();
+drawFooter();
 ?>
 
 

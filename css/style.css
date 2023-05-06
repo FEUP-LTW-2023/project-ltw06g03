@@ -20,7 +20,7 @@ footer{
 .navbar {
   position: fixed;
   top:0;
-
+  z-index: 2;
 }
 .navbar #hamburger{
   display:none;
@@ -28,6 +28,7 @@ footer{
 .navbar .hamburger{
   display: none;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .navbar .items{
@@ -63,8 +64,6 @@ footer{
   list-style-type: none;
   padding: 0;
 }
-
-
 
 .navbar-bottom{
   position: absolute;
