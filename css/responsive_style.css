@@ -40,8 +40,25 @@
         color: #3d3737;
         transition: 0.5s;
     }
+}
+@media (min-width: 40rem) {
+    .navbar ul li a:hover span{
+        position: absolute;
+        display: flex;
+        background: #3d3737;
+        padding: 1rem;
+        left: 3rem;
+       font-weight: bold;
+        border-radius: 0.5rem;
+    }
+    .navbar ul li a:hover span:before{
+        content:"\A";
+        border-style: solid;
+        border-width: 0.6rem 0.9rem 0.6rem 0;
+        border-color: transparent #3d3737 transparent transparent;
+        position: absolute;
+        left: -0.7rem;
 
-
-
+    }
 
 }

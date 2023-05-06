@@ -47,7 +47,7 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="profile.php"><img src="../docs/usr.png" alt="Profile"><span>Profile<span></a>
+                    <a href="profile.php"><img src="../docs/usr.png" alt="Profile"><span>Profile</span></a>
                 <?php } else { ?>
                     <a href="login.php"><img src="../docs/usr.png" alt="Login"><span>Login</span></a>
                 <?php } ?>
