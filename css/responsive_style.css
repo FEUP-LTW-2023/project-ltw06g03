@@ -1,7 +1,6 @@
 @media (max-width: 40rem) {
     .navbar .items{
         width: 0;
-
     }
     .navbar .hamburger{
         display: flex;

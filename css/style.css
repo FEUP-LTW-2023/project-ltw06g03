@@ -60,14 +60,10 @@ footer{
   padding: 0;
 }
 
-.navbar-top {
-  grid-row-start: 1;
-  grid-row-end: 4;
-}
+
 
 .navbar-bottom{
   position: absolute;
   bottom:0;
-  grid-row-start: 6;
-  grid-row-end: 7;
+
 }

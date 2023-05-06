@@ -8,7 +8,7 @@ class Session {
     }
 
     public function isLoggedIn() {
-        //return isset($_SESSION['email']);
+        return isset($_SESSION['email']);
         return true;
     }
 
