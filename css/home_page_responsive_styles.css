@@ -1,4 +1,4 @@
-@media (max-width: 80rem) {
+@media (max-width: 85rem) {
     .FAQ{
 
         max-width: 60rem;
@@ -15,13 +15,13 @@
         position: relative;
         margin: 1rem auto auto;
     }
-    .FAQ :nth-child(even) img{
+    .FAQ :nth-child(odd) img{
         order: 5;
         margin: auto;
     }
 }
 
-@media (max-width: 70rem) {
+@media (max-width: 75rem) {
     .FAQ{
         margin-left: 5rem;
     }

@@ -64,7 +64,7 @@
 }
 
 .FAQ {
-    max-width: 70rem;
+    max-width: 75rem;
     margin: auto;
 
     padding: 1rem;
@@ -82,15 +82,18 @@
     margin-bottom: 5rem;
 }
 .FAQ article .Text{
-    max-width: 40rem;
+    max-width: 45rem;
+    font-size: 1rem;
 }
 .FAQ article img{
     max-width: 30rem;
-    margin-top: 3rem;
+
     margin-left: 3rem;
+    max-height: 30rem;
+    align-self: center;
 }
 .FAQ article .Text header{
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 
 }
@@ -106,7 +109,7 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
-.FAQ :nth-child(even) img{
+.FAQ :nth-child(odd) img{
     order: -1;
     margin: 3rem 3rem 0rem 0;
 }
