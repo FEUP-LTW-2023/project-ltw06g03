@@ -1,4 +1,4 @@
-<?php function drawHeader(){?>
+<?php function drawHomePageHeader(){?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/home_page_styles.css">
     <link rel="stylesheet" href="../css/home_page_responsive_styles.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../css/responsive_style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="../javascript/script.js" defer></script>
 </head>
+<body>
 <?php } ?>

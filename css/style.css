@@ -1,5 +1,74 @@
+
 html,body{
     padding: 0;
     margin: 0;
     height: 100%;
+  max-width: 100%;
 }
+
+a:link,a:visited,a:hover,a:active{
+  text-decoration: none;
+}
+
+main{
+  margin-left: 4em;
+}
+
+footer{
+  margin-left: 4em;
+}
+.navbar {
+  position: fixed;
+  top:0;
+
+}
+.navbar #hamburger{
+  display:none;
+}
+.navbar .hamburger{
+  display: none;
+  cursor: pointer;
+}
+
+.navbar .items{
+  height: 100vh;
+  width: 4em;
+  background-color: #3d3737;
+  display: flex;
+  flex-direction: column;
+
+}
+.navbar ul li {
+  padding: 1rem;
+}
+.navbar ul li a{
+  display: flex;
+}
+.navbar ul li a img  {
+  max-width: 2rem;
+  max-height: 2rem;
+
+
+}
+.navbar ul li a span{
+  display: none;
+  align-self: center;
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+  text-underline: none;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+.navbar-bottom{
+  position: absolute;
+  bottom:0;
+
+}
+

@@ -1,0 +1,42 @@
+@media (max-width: 40rem) {
+    .navbar .items{
+        width: 0;
+        padding: 0;
+    }
+   
+    .navbar .hamburger{
+        display: flex;
+        background: inherit;
+        width: 10rem;
+    }
+    .navbar .hamburger::before{
+        transition: 0.5s;
+        content: '\2630';
+        display: flex;
+        width: 2.5rem;
+        height: 2.5rem;
+       justify-content: center;
+        align-items: center;
+        -moz-border-radius: 2rem;
+        -webkit-border-radius: 2rem;
+        border-radius: 4rem;
+        color: white;
+        background-color: #3d3737;
+    }
+    .navbar input:checked ~.items{
+        width: 20rem;
+    }
+    .navbar input:checked ~.items span{
+        display: block;
+    }
+    .navbar input:checked ~ .items .hamburger::before{
+        content: '\2715 ';
+        background: white;
+        color: #3d3737;
+        transition: 0.5s;
+    }
+
+
+
+
+}
