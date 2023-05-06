@@ -3,22 +3,7 @@
   require_once(__DIR__ . '/../utils/session.php');
 ?>
 
-<?php function drawHeader(Session $session) { ?>
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <title>FEUP TROUBLE TICKETS</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-      <link rel="stylesheet" href="../css/responsive_style.css">
 
-    <script src="../javascript/script.js" defer></script>
-  </head>
-  <body>
-
-    
-<?php } ?>
 
 <?php function drawFooter() { ?>
     </main>
@@ -37,8 +22,9 @@
         <input type="checkbox" id="hamburger" >
 
         <div class="items">
+
         <ul class="navbar-top">
-            <li><label class="hamburger" for="hamburger" content="\2630"></label></li>
+            <label class="hamburger" for="hamburger" content="\2630"></label>
             <li><a href="home.php"><img src="../docs/home.png" alt="Home"><span>Home<span</a></li>
 
             <?php if($session->isLoggedIn()) {?>
@@ -70,7 +56,6 @@
         </ul>
         </div>
     </div>
-    
-    <main>
+
 
 <?php } ?>

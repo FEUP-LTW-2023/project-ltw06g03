@@ -1,0 +1,118 @@
+.homePageHeader{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-image:url("../docs/images/feup.png");
+    background-repeat: no-repeat;
+    background-size: cover ;
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.homePageHeader  i{
+    position: absolute;
+    font-size: 2rem;
+    bottom: 1rem;
+    color: white;
+
+}
+.homePageHeader header{
+    display: block;
+}
+.homePageHeader header h1,h2{
+    max-width: 60rem;
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+    position: relative;
+    margin: auto;
+
+}
+.homePageHeader header h2{
+    font-size: 2rem;
+}
+.homePageHeader .loginRegister {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+}
+.homePageHeader .loginRegister button {
+    margin-right: 2rem ;
+    padding: 0.4rem 1rem;
+    position: relative;
+   font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: #FF4F47;
+    border: none;
+    cursor:pointer;
+    border-radius: 0.5rem;
+
+}
+.homePageHeader .loginRegister button:first-child {
+    background: none;
+}
+.homePageHeader .loginRegister button:hover {
+    background: gray;
+}
+
+.FAQ {
+    max-width: 75rem;
+    margin: auto;
+
+    padding: 1rem;
+}
+.FAQ h1{
+    width: 100%;
+    position: relative;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 5rem;
+}
+.FAQ article{
+    display: flex;
+    margin-bottom: 5rem;
+}
+.FAQ article .Text{
+    max-width: 45rem;
+    font-size: 1rem;
+}
+.FAQ article img{
+    max-width: 30rem;
+
+    margin-left: 3rem;
+    max-height: 30rem;
+    align-self: center;
+}
+.FAQ article .Text header{
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+.FAQ article .Text header::before{
+    content: '';
+    width: 4rem;
+    height: 0.2rem;
+    background: black;
+    position: absolute;
+
+}
+.FAQ article .Text p::first-letter{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.FAQ :nth-child(odd) img{
+    order: -1;
+    margin: 3rem 3rem 0rem 0;
+}
+
+
+
