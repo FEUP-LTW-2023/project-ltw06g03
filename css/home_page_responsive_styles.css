@@ -1,0 +1,67 @@
+@media (max-width: 80rem) {
+    .FAQ{
+
+        max-width: 60rem;
+    }
+    .FAQ article{
+        display: flex;
+        flex-direction: column;
+    }
+    .FAQ article .Text{
+        max-width: 100%;
+
+    }
+    .FAQ article img{
+        position: relative;
+        margin: 1rem auto auto;
+    }
+    .FAQ :nth-child(even) img{
+        order: 5;
+        margin: auto;
+    }
+}
+
+@media (max-width: 70rem) {
+    .FAQ{
+        margin-left: 5rem;
+    }
+    .homePageHeader{
+        padding: 1rem;
+        width: 100%;
+    }
+    .homePageHeader header h1{
+        font-size: 3rem;
+    }
+    .homePageHeader header h2{
+        font-size: 1.5rem;
+    }
+
+
+}
+@media (max-width: 40rem) {
+    .FAQ{
+        margin-left: 0rem;
+
+    }
+    .FAQ article img{
+        position: relative;
+        width: 100%;
+
+    }
+    .homePageHeader{
+        padding: 1rem;
+        width: 100%;
+        word-wrap:break-word;
+    }
+    .homePageHeader header h1{
+        font-size: 2rem;
+        width: 100%;
+        word-wrap: break-word;
+    }
+    .homePageHeader header h2{
+        font-size: 1rem;
+    }
+
+
+}
+
