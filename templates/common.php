@@ -11,6 +11,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+      <link rel="stylesheet" href="../css/responsive_style.css">
+
     <script src="../javascript/script.js" defer></script>
   </head>
   <body>
@@ -31,17 +33,22 @@
 <?php function drawNavBar(Session $session) { ?>
 
     <div class="navbar">
+
+        <input type="checkbox" id="hamburger" >
+
+        <div class="items">
         <ul class="navbar-top">
-            <li><a href="home.php"><img src="../docs/home.png" alt="Home"></a></li>
+            <li><label class="hamburger" for="hamburger" content="\2630"></label></li>
+            <li><a href="home.php"><img src="../docs/home.png" alt="Home"><span>Home<span</a></li>
 
             <?php if($session->isLoggedIn()) {?>
-                <li><a href="tickets.php"><img src="../docs/inbox.png" alt="Tickets"></a></li>
+                <li><a href="tickets.php"><img src="../docs/inbox.png" alt="Tickets"><span>Tickets</span></a></li>
 
                 <?php if($session->isStaff()) {?>
-                    <li><a href="staff.php"><img src="../docs/people.png" alt="Staff"></a></li>
+                    <li><a href="staff.php"><img src="../docs/people.png" alt="Staff"><span>Staff</span></a></li>
                     
                     <?php if($session->isAdmin()) { ?>
-                        <li><a href="statistics.php"><img src="../docs/analytics.png" alt="Admin"></a></li>
+                        <li><a href="statistics.php"><img src="../docs/analytics.png" alt="Admin"><span>Statics</span></a></li>
                     <?php } ?>
 
                 <?php } ?>
@@ -54,13 +61,14 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="profile.php"><img src="../docs/usr.png" alt="Profile"></a>
+                    <a href="profile.php"><img src="../docs/usr.png" alt="Profile"><span>Login<span></a>
                 <?php } else { ?>
-                    <a href="login.php"><img src="../docs/usr.png" alt="Login"></a>
+                    <a href="login.php"><img src="../docs/usr.png" alt="Login"><span>Profile</span></a>
                 <?php } ?>
             </li>
             
         </ul>
+        </div>
     </div>
     
     <main>
