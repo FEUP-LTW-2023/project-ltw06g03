@@ -1,8 +1,16 @@
 @media (max-width: 85rem) {
     .FAQ{
 
-        max-width: 60rem;
+        margin-left: 5rem;
+        margin-right: 0;
     }
+    .FAQ h1{
+        padding: 0rem;
+    }
+
+}
+
+@media (max-width: 75rem) {
     .FAQ article{
         display: flex;
         flex-direction: column;
@@ -19,27 +27,26 @@
         order: 5;
         margin: auto;
     }
-}
-
-@media (max-width: 75rem) {
     .FAQ{
         margin-left: 5rem;
     }
     .FAQ h1{
-        padding: 1rem;
+
         margin-top: 4rem;
         margin-bottom: 4rem;
         font-size: 2.5rem;
     }
     .homePageHeader{
-        padding: 1rem;
+        padding: 0rem;
         width: 100%;
     }
     .homePageHeader header h1{
         font-size: 3rem;
+        margin-left: 5rem;
     }
     .homePageHeader header h2{
         font-size: 1.5rem;
+        margin-left: 5rem;
     }
 
 
@@ -60,7 +67,6 @@
 
     }
     .homePageHeader{
-        padding: 1rem;
         width: 100%;
         word-wrap:break-word;
     }
@@ -70,12 +76,14 @@
         word-wrap:break-word;
     }
     .homePageHeader header h1{
+        margin: auto;
         font-size: 2.5rem;
         width: auto;
         max-width: none;
         word-wrap: break-word;
     }
     .homePageHeader header h2{
+        margin:auto;
         font-size: 1.5rem;
         word-wrap: break-word;
         word-break: break-word;

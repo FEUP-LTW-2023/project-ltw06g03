@@ -1,16 +1,43 @@
+@media (max-width: 75rem) {
+
+    footer .row {
+        width: 100%;
+        padding: 3rem;
+    }
+    footer .row .col{
+        flex-basis: 45%;
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+
+    footer .row{
+        padding: 0;
+    }
+    footer .row .col:nth-child(4){
+        flex-basis: 70%;
+
+    }
+}
+
 @media (max-width: 40rem) {
+
+
     .navbar .items {
         width: 0;
     }
     .navbar .items ul li{
         display: none;
     }
+    .navbar ul li:hover a span{
+        color: #3d3737FD;
+    }
 
     .navbar .hamburger{
         display: flex;
         background: inherit;
-        width: 10rem;
+        width: 2.5rem;
     }
+
     .navbar .hamburger::before{
         transition: 0.5s;
         content: '\2630';
@@ -23,13 +50,19 @@
         -webkit-border-radius: 2rem;
         border-radius: 4rem;
         color: white;
-        background-color: #3d3737;
+        background-color: #3d3737FA;
+    }
+    .navbar .hamburger:hover::before{
+        transition: 0.5s;
+        background: white;
+        color: #3d3737FA;
     }
     .navbar input:checked ~.items{
         width: 20rem;
     }
     .navbar input:checked ~ .items ul li{
         display: block;
+        width: 20rem;
     }
     .navbar input:checked ~.items span{
         display: block;
@@ -37,28 +70,57 @@
     .navbar input:checked ~ .items .hamburger::before{
         content: '\2715 ';
         background: white;
-        color: #3d3737;
+        color: #3d3737FD;
         transition: 0.5s;
+    }
+    .navbar input:checked ~ .items .hamburger:hover::before{
+        color: white;
+        background: #3d3737FD;
+        transition: 0.5s;
+    }
+    footer{
+        padding: 3rem;
+    }
+    footer .row{
+
+        padding: 0;
+    }
+    footer .row .col form{
+        width: 100%;
+    }
+    footer .row .col{
+        flex-basis: 100%;
+
+    }
+    footer .row .col:nth-child(4){
+        flex-basis: 100%;
+
+    }
+    footer .row .col:nth-child(2), footer .row .col:nth-child(3){
+        flex-basis: 40%;
+    }
+    footer .row .col h3{
+        font-size: 1.1rem;
     }
 }
 @media (min-width: 40rem) {
     .navbar ul li a:hover span{
         position: absolute;
         display: flex;
-        background: #3d3737;
+        background: #3d3737FD;
         padding: 1rem;
         left: 3rem;
        font-weight: bold;
         border-radius: 0.5rem;
     }
+
     .navbar ul li a:hover span:before{
         content:"\A";
         border-style: solid;
         border-width: 0.6rem 0.9rem 0.6rem 0;
-        border-color: transparent #3d3737 transparent transparent;
+        border-color: transparent #3d3737FD transparent transparent;
         position: absolute;
         left: -0.7rem;
-
     }
 
 }
