@@ -42,7 +42,7 @@ main{
 
 }
 .navbar ul li {
-  padding: 1rem;
+
 }
 .navbar ul li a{
   display: flex;
@@ -55,10 +55,18 @@ main{
 
 
 }
+.navbar ul li a i  {
+
+  font-size: 1.5rem;
+  padding: 1rem;
+  color: white;
+
+
+}
 .navbar ul li a span{
   display: none;
   align-self: center;
-  margin-left: 1rem;
+  margin-left: 2rem;
   color: white;
   text-decoration: none;
   text-underline: none;

@@ -11,6 +11,19 @@
 }
 
 @media (max-width: 40rem) {
+    .navbar ul li:hover {
+        background: white;
+        transition: 0.5s;
+
+    }
+    .navbar ul li:hover a i,.navbar ul li:hover a span{
+        color: #3d3737FD;
+    }
+
+    .navbar ul li:hover {
+        background: white;
+    }
+
     .navbar .items {
         width: 0;
     }
@@ -23,6 +36,7 @@
         background: inherit;
         width: 10rem;
     }
+
     .navbar .hamburger::before{
         transition: 0.5s;
         content: '\2630';
@@ -37,11 +51,17 @@
         color: white;
         background-color: #3d3737FA;
     }
+    .navbar .hamburger:hover::before{
+        transition: 0.5s;
+        background: white;
+        color: #3d3737FA;
+    }
     .navbar input:checked ~.items{
         width: 20rem;
     }
     .navbar input:checked ~ .items ul li{
         display: block;
+        width: 20rem;
     }
     .navbar input:checked ~.items span{
         display: block;
@@ -50,6 +70,11 @@
         content: '\2715 ';
         background: white;
         color: #3d3737FD;
+        transition: 0.5s;
+    }
+    .navbar input:checked ~ .items .hamburger:hover::before{
+        color: white;
+        background: #3d3737FD;
         transition: 0.5s;
     }
     footer{
@@ -78,6 +103,7 @@
        font-weight: bold;
         border-radius: 0.5rem;
     }
+
     .navbar ul li a:hover span:before{
         content:"\A";
         border-style: solid;
@@ -85,7 +111,6 @@
         border-color: transparent #3d3737FD transparent transparent;
         position: absolute;
         left: -0.7rem;
-
     }
 
 }

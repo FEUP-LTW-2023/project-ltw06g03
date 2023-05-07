@@ -57,16 +57,16 @@
 
         <ul class="navbar-top">
             <label class="hamburger" for="hamburger" content="\2630"></label>
-            <li><a href="home.php"><img src="../docs/icons/home.png" alt="Home"><span>Home<span</a></li>
+            <li><a href="home.php"><i class="fa fa-home"></i><span>Home<span</a></li>
 
             <?php if($session->isLoggedIn()) {?>
-                <li><a href="tickets.php"><img src="../docs/icons/inbox.png" alt="Tickets"><span>Tickets</span></a></li>
+                <li><a href="tickets.php"><i class="fa fa-ticket" ></i><span>Tickets</span></a></li>
 
                 <?php if($session->isStaff()) {?>
-                    <li><a href="staff.php"><img src="../docs/icons/people.png" alt="Staff"><span>Staff</span></a></li>
+                    <li><a href="staff.php"><i class="fas fa-users"></i><span>Staff</span></a></li>
                     
                     <?php if($session->isAdmin()) { ?>
-                        <li><a href="statistics.php"><img src="../docs/icons/analytics.png" alt="Admin"><span>Statics</span></a></li>
+                        <li><a href="statistics.php"><i class="fas fa-chart-line"></i><span>Statics</span></a></li>
                     <?php } ?>
 
                 <?php } ?>
@@ -79,9 +79,9 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="profile.php"><img src="../docs/icons/usr.png" alt="Profile"><span>Profile</span></a>
+                    <a href="profile.php"><i class="fas fa-user"></i><span>Profile</span></a>
                 <?php } else { ?>
-                    <a href="login.php"><img src="../docs/icons/usr.png" alt="Login"><span>Login</span></a>
+                    <a href="login.php"><i class="fas fa-user"></i><span>Login</span></a>
                 <?php } ?>
             </li>
             
