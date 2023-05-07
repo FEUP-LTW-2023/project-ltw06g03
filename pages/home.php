@@ -8,6 +8,7 @@ require_once(__DIR__ . '/../templates/common.php');
 require_once(__DIR__ . '/../templates/login_register.php');
 
 drawHomePageHeader();
+drawLogin();
 drawRegister();
 drawNavBar($session);
 drawHomeBody();
