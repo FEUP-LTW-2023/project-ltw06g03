@@ -9,8 +9,8 @@
     <footer>
         <div class="row">
             <div class="col">
-                <img src="../docs/images/logo_feup.png">
-                <p>Website created by two FEUP students with the purpose of helping other students. </p>
+                <img src="../docs/images/logo-feup.png">
+                <p>Feup is an engineering faculty from the University of Porto located in Portugal</p>
             </div>
             <div class="col">
                 <h3>FEUP<div class="underline"><span></span></div></h3>
@@ -31,7 +31,7 @@
             <div class="col">
                 <h3>Send us Feedback<div class="underline"><span></span></div></h3>
                 <form>
-                    <i class='fas fa-envelope'></i>
+                    <i class='fas fa-envelope' alt="d"></i>
                     <textarea type="email" placeholder="email" required></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
                 </form>
