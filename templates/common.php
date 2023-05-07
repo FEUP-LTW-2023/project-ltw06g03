@@ -37,6 +37,9 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <p class="copyRight">All CopyRights rights reserved by &#169; Feup </p>
+        </div>
 
 
     </footer>

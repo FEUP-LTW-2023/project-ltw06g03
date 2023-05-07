@@ -116,6 +116,15 @@ footer .row .col h3{
   position: relative;
 
 }
+footer .row .copyRight{
+  margin-top: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid white;
+  padding-top:  1rem;
+
+}
 footer .row .col ul {
  margin: 0;
   padding: 0;
@@ -128,6 +137,10 @@ footer .row .col ul li{
 }
 footer .row .col ul li a{
   text-decoration: none;
+  cursor: pointer;
+}
+footer .row .col ul li a:hover{
+  text-decoration: underline;
 }
 footer .row .col form{
   padding-bottom:1rem ;
