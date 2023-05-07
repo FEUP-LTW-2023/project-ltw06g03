@@ -122,3 +122,13 @@
 .loginRegisterForm .registerForm :nth-child(8) {
     grid-area: 7 / 3/8/4;
 }
+@media (max-width: 40rem) {
+    .loginForm{
+        width: 100%;
+        height: 100%;
+    }
+    .loginForm form{
+        width: 100%;
+        height: 100%;
+    }
+}

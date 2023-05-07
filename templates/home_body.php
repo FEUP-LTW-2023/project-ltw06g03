@@ -9,7 +9,11 @@
         <h2>Create tickets for your problems</h2>
 
     </header>
-    <a href="#FAQ"><i class='fas fa-angle-double-down'></i></a>
+    <div class="indicator">
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+    </div>
 
 </div>
     <section class="FAQ" id="FAQ">

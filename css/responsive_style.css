@@ -79,7 +79,7 @@
         transition: 0.5s;
     }
     footer{
-        padding: 3rem;
+        padding: 1rem;
     }
     footer .row{
 
@@ -102,6 +102,17 @@
     footer .row .col h3{
         font-size: 1.1rem;
     }
+    footer .row .col {
+        padding: 0;
+        margin: 0;
+    }
+
+    footer .row .col img {
+        padding: 0;
+        margin: 0;
+        max-width: none;
+        width: 70%;
+    }
 }
 @media (min-width: 40rem) {
     .navbar ul li a:hover span{
@@ -122,5 +133,6 @@
         position: absolute;
         left: -0.7rem;
     }
+
 
 }
