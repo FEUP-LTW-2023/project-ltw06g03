@@ -65,6 +65,8 @@
             <img src="../docs/images/feup.png">
 
         </article>
+    </section>
+
 
 <?php }?>
 

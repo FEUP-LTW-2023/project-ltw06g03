@@ -3,7 +3,11 @@ html,body{
     padding: 0;
     margin: 0;
     height: 100%;
-  max-width: 100%;
+
+}
+p{
+  padding: 0;
+  margin: 0;
 }
 
 a:link,a:visited,a:hover,a:active{
@@ -14,9 +18,7 @@ main{
   margin-left: 4em;
 }
 
-footer{
-  margin-left: 4em;
-}
+
 .navbar {
   position: fixed;
   top:0;
@@ -34,7 +36,7 @@ footer{
 .navbar .items{
   height: 100vh;
   width: 4em;
-  background-color: #3d3737;
+  background-color: #3d3737FA;
   display: flex;
   flex-direction: column;
 
@@ -71,6 +73,92 @@ footer{
 .navbar-bottom{
   position: absolute;
   bottom:0;
+}
+
+footer{
+  width: auto;
+  margin: 0;
+  bottom: 0;
+  background: #3d3737;
+  color: white;
+  padding: 6rem 5rem 2rem;
+  border-top-left-radius: 8rem;
+  line-height: 1.3rem;
+}
+footer .row{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
 
 }
+footer .row .col{
+  flex-basis: 25%;
+  padding: 1rem;
+}
+footer .row .col:nth-child(2), footer .row .col:nth-child(3){
+  flex-basis: 15%;
+
+}
+
+
+footer .row .col img{
+  max-width: 17rem;
+  margin-bottom: 1rem;
+  margin-left: -1rem;
+}
+footer .row .col h3{
+  font-size: 1.4rem;
+  width: fit-content;
+  margin-bottom: 2.5rem;
+  position: relative;
+
+}
+footer .row .col ul {
+ margin: 0;
+  padding: 0;
+}
+footer .row .col ul li{
+  list-style: none;
+  margin-bottom: 0.8rem;
+  padding: 0;
+
+}
+footer .row .col ul li a{
+  text-decoration: none;
+}
+footer .row .col form{
+  padding-bottom:1rem ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+footer .row .col form i{
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+footer .row .col form button i{
+  font-size: 1.3rem;
+  margin-right: 0rem;
+}
+footer .row .col form button{
+  margin-left: 1rem;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+footer .row .col form input{
+  width: 100%;
+  background: transparent;
+  color: white;
+  border: 0;
+  outline: none;
+}
+
 

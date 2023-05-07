@@ -23,7 +23,7 @@
         -webkit-border-radius: 2rem;
         border-radius: 4rem;
         color: white;
-        background-color: #3d3737;
+        background-color: #3d3737FA;
     }
     .navbar input:checked ~.items{
         width: 20rem;
@@ -37,7 +37,7 @@
     .navbar input:checked ~ .items .hamburger::before{
         content: '\2715 ';
         background: white;
-        color: #3d3737;
+        color: #3d3737FA;
         transition: 0.5s;
     }
 }
@@ -45,7 +45,7 @@
     .navbar ul li a:hover span{
         position: absolute;
         display: flex;
-        background: #3d3737;
+        background: #3d3737FA;
         padding: 1rem;
         left: 3rem;
        font-weight: bold;
@@ -55,7 +55,7 @@
         content:"\A";
         border-style: solid;
         border-width: 0.6rem 0.9rem 0.6rem 0;
-        border-color: transparent #3d3737 transparent transparent;
+        border-color: transparent #3d3737FA transparent transparent;
         position: absolute;
         left: -0.7rem;
 
