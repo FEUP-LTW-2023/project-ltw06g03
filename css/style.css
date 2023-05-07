@@ -181,12 +181,14 @@ footer .row .col form button{
   color: white;
   cursor: pointer;
 }
-footer .row .col form input{
+footer .row .col form textarea{
   width: 100%;
   background: transparent;
   color: white;
   border: 0;
+  font-size: 0.9rem;
   outline: none;
+  min-height: 3rem;
 }
 footer .row .col h3 .underline{
   width: 100%;

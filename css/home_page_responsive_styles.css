@@ -26,13 +26,13 @@
         margin-left: 5rem;
     }
     .FAQ h1{
-        padding: 1rem;
+        padding: 0rem;
         margin-top: 4rem;
         margin-bottom: 4rem;
         font-size: 2.5rem;
     }
     .homePageHeader{
-        padding: 1rem;
+        padding: 0rem;
         width: 100%;
     }
     .homePageHeader header h1{
@@ -60,7 +60,6 @@
 
     }
     .homePageHeader{
-        padding: 0rem;
         width: 100%;
         word-wrap:break-word;
     }

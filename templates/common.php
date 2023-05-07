@@ -32,7 +32,7 @@
                 <h3>Send us Feedback<div class="underline"><span></span></div></h3>
                 <form>
                     <i class='fas fa-envelope'></i>
-                    <input type="email" placeholder="email" required>
+                    <textarea type="email" placeholder="email" required></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
                 </form>
             </div>
