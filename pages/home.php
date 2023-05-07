@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../utils/session.php');
 $session = new Session("Admin");
 require_once(__DIR__ . '/../templates/common.php');
 
+
 drawHomePageHeader();
 drawNavBar($session);
 drawHomeBody();

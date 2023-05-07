@@ -1,15 +1,24 @@
-<?php function drawHomeBody(){?>
+<?php
+require_once(__DIR__ . '/../templates/login_register.php');
+drawLogin();
+drawRegister();
+function drawHomeBody(){?>
+
 <div class="homePageHeader">
     <div class="loginRegister">
-        <button>Register</button>
-        <button>Login</button>
+        <button  name="RegisterButton">Register</button>
+        <button name="LoginButton" ">Login</button>
     </div>
     <header>
         <h1>Feup Trouble Ticket's</h1>
         <h2>Create tickets for your problems</h2>
 
     </header>
-    <a href="#FAQ"><i class='fas fa-angle-double-down'></i></a>
+    <div class="indicator">
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+    </div>
 
 </div>
     <section class="FAQ" id="FAQ">

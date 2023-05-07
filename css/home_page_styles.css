@@ -13,13 +13,44 @@
     justify-content: center;
 
 }
-.homePageHeader  i{
+.homePageHeader .indicator{
     position: absolute;
-    font-size: 2rem;
+    display: block;
     bottom: 1rem;
+}
+.homePageHeader .indicator i{
+    position: absolute;
+    font-size: 2.5rem;
     color: white;
+    bottom: 0;
+    transition: none;
+}
+
+.homePageHeader .indicator a:nth-of-type(1) i{
+    animation: indicate 1.5s linear infinite;
+    bottom: 1.6rem;
+}
+
+.homePageHeader .indicator a:nth-of-type(2) i{
+
+    animation: indicate 1.5s linear infinite;
+    bottom: 0.8rem;
+    animation-delay: 0.5s;
 
 }
+.homePageHeader .indicator a:nth-of-type(3) i{
+    animation: indicate 1.5s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes indicate {
+   50%{
+       color: transparent;
+   }
+
+}
+
+
 .homePageHeader header{
     display: block;
 }
@@ -37,10 +68,10 @@
 }
 .homePageHeader .loginRegister {
     display: flex;
-    justify-content: space-between;
     position: absolute;
     top: 2rem;
     right: 2rem;
+    justify-content: end;
 
 }
 .homePageHeader .loginRegister button {
@@ -95,6 +126,7 @@
 .FAQ article .Text header{
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 1rem;
 
 }
 .FAQ article .Text header::before{
