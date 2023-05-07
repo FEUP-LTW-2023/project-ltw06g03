@@ -1,3 +1,15 @@
+@media (max-width: 60rem) {
+
+    footer .row {
+        width: 100%;
+    }
+    footer .row .col{
+        flex-basis: 45%;
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+}
+
 @media (max-width: 40rem) {
     .navbar .items {
         width: 0;
@@ -39,6 +51,21 @@
         background: white;
         color: #3d3737FA;
         transition: 0.5s;
+    }
+    footer{
+        padding: 3rem;
+    }
+    footer .row{
+
+        padding: 0;
+    }
+    footer .row .col{
+        flex-basis: 90%;
+
+    }
+    footer .row .col:nth-child(2), footer .row .col:nth-child(3){
+        flex-basis: 40%;
+
     }
 }
 @media (min-width: 40rem) {
