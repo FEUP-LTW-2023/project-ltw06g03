@@ -1,13 +1,11 @@
 @media (max-width: 85rem) {
     .FAQ{
-
         margin-left: 5rem;
         margin-right: 0;
     }
     .FAQ h1{
         padding: 0rem;
     }
-
 }
 
 @media (max-width: 75rem) {
@@ -20,8 +18,7 @@
 
     }
     .FAQ article img{
-        position: relative;
-        margin: 1rem auto auto;
+        margin: 3rem auto auto;
     }
     .FAQ :nth-child(odd) img{
         order: 5;
@@ -54,17 +51,14 @@
 @media (max-width: 40rem) {
     .FAQ{
         margin-left: 0rem;
-
     }
     .FAQ h1{
         font-size: 2.2rem;
-
         padding: 0;
     }
     .FAQ article img{
         position: relative;
         width: 100%;
-
     }
     .homePageHeader{
         width: 100%;
@@ -87,9 +81,13 @@
         font-size: 1.5rem;
         word-wrap: break-word;
         word-break: break-word;
-
     }
-
-
+    .homePageHeader .loginRegister {
+        top: 1rem;
+        right: 1rem;
+    }
+    .homePageHeader .loginRegister button {
+        margin-right: 1rem ;
+    }
 }
 
