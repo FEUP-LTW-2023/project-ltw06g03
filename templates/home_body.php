@@ -1,4 +1,9 @@
-<?php function drawHomeBody(){?>
+<?php
+require_once(__DIR__ . '/../templates/login_register.php');
+drawLogin();
+drawRegister();
+function drawHomeBody(){?>
+
 <div class="homePageHeader">
     <div class="loginRegister">
         <button  name="RegisterButton">Register</button>

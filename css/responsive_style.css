@@ -1,5 +1,4 @@
 @media (max-width: 75rem) {
-
     footer .row {
         width: 100%;
         padding: 3rem;
@@ -9,19 +8,19 @@
         padding-left: 0rem;
         padding-right: 0rem;
     }
-
     footer .row{
         padding: 0;
     }
     footer .row .col:nth-child(4){
         flex-basis: 70%;
-
     }
 }
 
 @media (max-width: 40rem) {
 
-
+body{
+    display: block;
+}
     .navbar .items {
         width: 0;
     }
@@ -123,6 +122,7 @@
         left: 3rem;
        font-weight: bold;
         border-radius: 0.5rem;
+        z-index: 30;
     }
 
     .navbar ul li a:hover span:before{
@@ -132,6 +132,7 @@
         border-color: transparent #3d3737FD transparent transparent;
         position: absolute;
         left: -0.7rem;
+        z-index: 30;
     }
 
 

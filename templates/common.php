@@ -43,6 +43,7 @@
 
 
     </footer>
+    </main>
   </body>
 </html>
 <?php } ?>
@@ -88,6 +89,7 @@
         </ul>
         </div>
     </div>
+    <main>
 
 
 <?php } ?>
