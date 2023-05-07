@@ -1,7 +1,7 @@
 <?php function drawLogin() {?>
 
     <div id="loginRegister">
-        <form>
+        <form class="loginForm">
             <h3>Login</h3>
             <input  type="text" placeholder="Up" required>
             <input type="password" placeholder="Password" required>
@@ -14,7 +14,7 @@
 <?php function drawRegister() {?>
     <script></script>
     <div id="loginRegister">
-        <form>
+        <form class="registerForm">
             <h3>Register</h3>
             <input  type="text" placeholder="Up" required>
             <input  type="text" placeholder="Name" required>

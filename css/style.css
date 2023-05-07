@@ -31,7 +31,8 @@ main{
 .navbar .hamburger{
   display: none;
   cursor: pointer;
-  padding: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .navbar .items{

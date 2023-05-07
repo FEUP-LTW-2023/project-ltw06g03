@@ -1,31 +1,125 @@
+
 #loginRegister{
-    position: absolute;
+    position: fixed;
     z-index: 13;
     width: 100%;
     height: 100%;
-    background: #232327AA;
+    background: #232327DD;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 #loginRegister form{
     display: grid;
     background: white;
-    padding: 1rem;
-    grid-row: 4;
-    grid-column: 2;
+    padding: 2rem;
+
+    max-width: 30rem;
+    height: auto;
 }
+
+#loginRegister form h3{
+    grid-area: 1 / 1/2/4;
+    font-size: 1.5rem;
+}
+
 #loginRegister form input{
     border: none;
     outline: none;
     background: transparent;
     border-bottom: 1px solid black ;
+    position: relative;
+    font-size: 1.2rem;
+    max-height: 3rem;
 }
+#loginRegister form input:required::before {
+
+    content: "*";
+    color: red;
+    margin-right: 5px;
+}
+
 #loginRegister form button{
-    padding: 1rem 0;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    max-height: 3rem;
     background: transparent;
     border: none;
     outline: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-top:2rem;
+    margin-left: 1rem;
+}
+#loginRegister form button:last-child {
+    background: #FF4F47;
+    color: white;
 }
 
+#loginRegister form button:hover{
+    background: #cccccc;
+    color: white;
+}
+
+
+/*Login form structure*/
+
+#loginRegister .loginForm{
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows:repeat(4,1fr) ;
+}
+
+#loginRegister .loginForm :nth-child(2) {
+    grid-area: 2/ 1/3/4;
+}
+
+#loginRegister .loginForm :nth-child(3) {
+    grid-area: 3 / 1/4/4;
+}
+
+#loginRegister .loginForm :nth-child(4) {
+    grid-area: 4 / 2/5/3;
+}
+
+#loginRegister .loginForm :nth-child(5) {
+    grid-area: 4 / 3/5/4;
+}
+
+
+/*Register form structure*/
+#loginRegister .registerForm input{
+    margin: 1rem 0rem;
+}
+#loginRegister .registerForm{
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows:repeat(7,1fr) ;
+}
+
+
+
+#loginRegister .registerForm :nth-child(2) {
+    grid-area: 2/ 1/3/4;
+}
+
+#loginRegister .registerForm :nth-child(3) {
+    grid-area: 3 / 1/4/4;
+}
+#loginRegister .registerForm :nth-child(4) {
+    grid-area: 4 / 1/5/4;
+}
+#loginRegister .registerForm :nth-child(5) {
+    grid-area: 5 / 1/6/4;
+}
+
+#loginRegister .registerForm :nth-child(6) {
+    grid-area: 6 / 1/7/4;
+}
+
+#loginRegister .registerForm :nth-child(7) {
+    grid-area: 7 / 2/8/3;
+}
+#loginRegister .registerForm :nth-child(8) {
+    grid-area: 7 / 3/8/4;
+}

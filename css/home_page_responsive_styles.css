@@ -22,7 +22,7 @@
     }
     .FAQ :nth-child(odd) img{
         order: 5;
-        margin: auto;
+        margin: 3rem auto auto;
     }
     .FAQ{
         margin-left: 5rem;
