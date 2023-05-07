@@ -1,34 +1,35 @@
-@media (max-width: 60rem) {
+@media (max-width: 75rem) {
 
     footer .row {
         width: 100%;
+        padding: 3rem;
     }
     footer .row .col{
         flex-basis: 45%;
         padding-left: 0rem;
         padding-right: 0rem;
     }
+
+    footer .row{
+        padding: 0;
+    }
+    footer .row .col:nth-child(4){
+        flex-basis: 70%;
+
+    }
 }
 
 @media (max-width: 40rem) {
-    .navbar ul li:hover {
-        background: white;
-        transition: 0.5s;
 
-    }
-    .navbar ul li:hover a i,.navbar ul li:hover a span{
-        color: #3d3737FD;
-    }
-
-    .navbar ul li:hover {
-        background: white;
-    }
 
     .navbar .items {
         width: 0;
     }
     .navbar .items ul li{
         display: none;
+    }
+    .navbar ul li:hover a span{
+        color: #3d3737FD;
     }
 
     .navbar .hamburger{
@@ -84,13 +85,22 @@
 
         padding: 0;
     }
+    footer .row .col form{
+        width: 100%;
+    }
     footer .row .col{
-        flex-basis: 90%;
+        flex-basis: 100%;
+
+    }
+    footer .row .col:nth-child(4){
+        flex-basis: 100%;
 
     }
     footer .row .col:nth-child(2), footer .row .col:nth-child(3){
         flex-basis: 40%;
-
+    }
+    footer .row .col h3{
+        font-size: 1.1rem;
     }
 }
 @media (min-width: 40rem) {

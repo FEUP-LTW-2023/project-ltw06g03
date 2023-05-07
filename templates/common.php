@@ -13,14 +13,14 @@
                 <p>Website created by two FEUP students with the purpose of helping other students. </p>
             </div>
             <div class="col">
-                <h3>FEUP</h3>
+                <h3>FEUP<div class="underline"><span></span></div></h3>
                 <p>R. Dr. Roberto Frias</p>
                 <p>4200-465 Porto</p>
                 <h4>feuptt@gmail.com</h4>
                 <h4>22 508 1977 / 1405</h4>
             </div>
             <div class="col">
-                <h3>Links</h3>
+                <h3>Links<div class="underline"><span></span></div></h3>
                 <ul>
                     <li><a>Home</a></li>
                     <li><a>Feup Official</a></li>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
             <div class="col">
-                <h3>Send us Feedback</h3>
+                <h3>Send us Feedback<div class="underline"><span></span></div></h3>
                 <form>
                     <i class='fas fa-envelope'></i>
                     <input type="email" placeholder="email" required>

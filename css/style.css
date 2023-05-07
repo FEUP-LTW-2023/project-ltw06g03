@@ -42,7 +42,7 @@ main{
 
 }
 .navbar ul li {
-
+width: 100%;
 }
 .navbar ul li a{
   display: flex;
@@ -60,8 +60,7 @@ main{
   font-size: 1.5rem;
   padding: 1rem;
   color: white;
-
-
+  width: 2rem;
 }
 .navbar ul li a span{
   display: none;
@@ -81,6 +80,14 @@ main{
 .navbar-bottom{
   position: absolute;
   bottom:0;
+}
+.navbar ul li:hover {
+  background: white;
+  transition: 0.5s;
+
+}
+.navbar ul li:hover a i{
+  color: #3d3737FD;
 }
 
 footer{
@@ -180,6 +187,35 @@ footer .row .col form input{
   color: white;
   border: 0;
   outline: none;
+}
+footer .row .col h3 .underline{
+  width: 100%;
+  height: 0.2rem;
+  background: #767676;
+  border-radius: 0.1rem;
+  position: absolute;
+  top:2rem;
+  left: 0;
+}
+
+footer .row .col h3 .underline span{
+  width: 1rem;
+  height: 100%;
+  background: white;
+  border-radius: 0.1rem;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: moving 1.5s linear infinite;
+}
+@keyframes moving {
+  0%{
+    left: -1rem;
+  }
+  100%{
+    left: 100%;
+  }
+
 }
 
 
