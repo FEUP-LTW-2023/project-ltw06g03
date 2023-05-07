@@ -36,7 +36,7 @@ main{
 .navbar .items{
   height: 100vh;
   width: 4em;
-  background-color: #3d3737FA;
+  background-color: #3d3737FD;
   display: flex;
   flex-direction: column;
 
@@ -79,7 +79,7 @@ footer{
   width: auto;
   margin: 0;
   bottom: 0;
-  background: #3d3737;
+  background: #232327;
   color: white;
   padding: 6rem 5rem 2rem;
   border-top-left-radius: 8rem;
