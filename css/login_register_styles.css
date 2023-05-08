@@ -18,7 +18,13 @@
     max-width: 30rem;
     height: auto;
 }
-
+.errorMessage{
+    color: #FF4F47;
+    font-weight: bold;
+    align-items: center;
+    justify-content: end;
+    display: flex;
+}
 .loginRegisterForm form h3{
     grid-area: 1 / 1/2/4;
     font-size: 1.5rem;
@@ -93,7 +99,7 @@
 }
 .loginRegisterForm .registerForm{
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows:repeat(7,1fr) ;
+    grid-template-rows:repeat(8,1fr) ;
 }
 
 
@@ -115,12 +121,15 @@
 .loginRegisterForm .registerForm :nth-child(6) {
     grid-area: 6 / 1/7/4;
 }
-
-.loginRegisterForm .registerForm :nth-child(7) {
-    grid-area: 7 / 2/8/3;
+.loginRegisterForm .registerForm :nth-child(7){
+    grid-area: 7/ 1/8/4 ;
 }
+
 .loginRegisterForm .registerForm :nth-child(8) {
-    grid-area: 7 / 3/8/4;
+    grid-area: 8 / 2/9/3;
+}
+.loginRegisterForm .registerForm :nth-child(9) {
+    grid-area: 8 / 3/9/4;
 }
 @media (max-width: 40rem) {
     .loginForm{

@@ -20,7 +20,8 @@
             <input  type="text" placeholder="Name" required name="name">
             <input  type="email" placeholder="Alternative Email" name="email">
             <input type="password" placeholder="Password" required name="pass">
-            <input type="password" placeholder="Confirm Password" required>
+            <input type="password" placeholder="Confirm Password" required name="pass">
+            <p class="errorMessage">Error!</p>
             <button name="CancelRegister" >Cancel</button>
             <button name="Register" type="submit">Register</button>
         </form>
