@@ -14,15 +14,15 @@
 <?php function drawRegister() {?>
 
     <div class="loginRegisterForm" name="RegisterForm" >
-        <form class="registerForm">
+        <form class="registerForm" method="post" action="../database/register.php">
             <h3>Register</h3>
-            <input  type="text" placeholder="Up" required>
-            <input  type="text" placeholder="Name" required>
-            <input  type="email" placeholder="Alternative Email">
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required >
+            <input  type="text" placeholder="Up" required name="up">
+            <input  type="text" placeholder="Name" required name="name">
+            <input  type="email" placeholder="Alternative Email" name="email">
+            <input type="password" placeholder="Password" required name="pass">
+            <input type="password" placeholder="Confirm Password" required>
             <button name="CancelRegister" >Cancel</button>
-            <button name="Register">Register</button>
+            <button name="Register" type="submit">Register</button>
         </form>
     </div>
 
