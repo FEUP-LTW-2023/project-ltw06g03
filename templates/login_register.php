@@ -22,7 +22,7 @@
         <form class="registerForm" method="post" action="../database/register.php">
             <h3>Register</h3>
             <label >
-                <input  type="text" placeholder="Up" required name="up">
+                <h4>Up</h4><input  type="number" placeholder="xxxxxxxxx" required name="up">
             </label>
             <label>
                 <input  type="text" placeholder="Name" required name="name">
