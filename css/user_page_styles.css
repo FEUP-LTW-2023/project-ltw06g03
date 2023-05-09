@@ -1,0 +1,112 @@
+.user {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 40% 60%;
+    padding: 1em;
+}
+
+.links a{
+    color: black;
+    border: 1px solid;
+    border-radius: 1em;
+    padding: 1em;
+    margin-right: 1em;
+}
+
+.links {
+    grid-row: 3;
+    align-self: center;
+    justify-self: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
+}
+
+.user-icon-info i,img {
+    object-fit: cover;
+    font-size: 4rem;
+    padding: 0.5em;
+    height:auto;
+    border: 1px solid;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.user-icon-info {
+    grid-column: 1;
+    grid-row:1;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+
+}
+
+.user-icon-info :nth-child(2) {
+    margin: 0.5em 0 0 0;
+}
+
+.user-icon-info h3 {
+    margin: 0.5em 0;
+}
+
+.user-icon-info :last-child {
+    margin: 0 0 1em 0;
+}
+
+
+.user-info ul {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info ul li{
+    position: relative;
+    list-style-type: none;
+    margin: 0.05em; 
+    padding: 0 0.5em;
+    border: 1px solid;
+    border-radius: 1em;
+}
+
+.user-info{
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+h4 {
+    margin: 0 0 1em 0; 
+}
+
+.user-info h4:last-of-type {
+    margin:0;
+}
+
+.user-info ul li h4{
+    margin: 0;
+}
+
+.links #edit-info {
+    position:absolute;
+    top: 1em;
+    right:1em;
+}
+
+#edit-info:hover {
+    color: brown;
+
+}
+
+
+#my-tickets:hover{
+    color:blueviolet;
+}
+
+#signout:hover{
+    color:red;
+}
