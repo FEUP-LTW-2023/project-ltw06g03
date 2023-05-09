@@ -16,12 +16,22 @@
     <div class="loginRegisterForm" name="RegisterForm" >
         <form class="registerForm" method="post" action="../database/register.php">
             <h3>Register</h3>
-            <input  type="text" placeholder="Up" required name="up">
-            <input  type="text" placeholder="Name" required name="name">
-            <input  type="email" placeholder="Alternative Email" name="email">
-            <input type="password" placeholder="Password" required name="pass">
+            <label>
+                <input  type="text" placeholder="Up" required name="up">
+            </label>
+            <label>
+                <input  type="text" placeholder="Name" required name="name">
+            </label>
+            <label>
+                <input  type="email" placeholder="Alternative Email" name="email">
+            </label>
+            <label>
+                <input type="password" placeholder="Password" required name="pass">
+            </label>
+            <label>
             <input type="password" placeholder="Confirm Password" required name="pass">
-            <p class="errorMessage">Error!</p>
+            </label>
+            <p class="errorMessage"></p>
             <button name="CancelRegister" >Cancel</button>
             <button name="Register" type="submit">Register</button>
         </form>

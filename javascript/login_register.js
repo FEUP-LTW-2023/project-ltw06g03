@@ -1,4 +1,3 @@
-
 const registerButton= document.getElementsByName("RegisterButton")[0];
 registerButton.addEventListener('click',OpenRegisterForm);
 const loginButton= document.getElementsByName("LoginButton")[0];
@@ -13,8 +12,6 @@ registerForm.addEventListener("submit",async (event) => {
     await checkRegisterInputs(event)
 });
 let message="";
-
-
 
 function cancel(x){
 
@@ -59,7 +56,6 @@ async function checkRegisterInputs(event) {
         registerForm.submit();
     }
     catch (e){
-
         let err=document.querySelector(".registerForm .errorMessage");
         err.innerText=e;
         return false

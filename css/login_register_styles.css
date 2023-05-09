@@ -1,22 +1,26 @@
 
 .loginRegisterForm{
-    position: fixed;
-    z-index: 13;
+    position:absolute;
+    z-index: 3;
     width: 100%;
     height: 100%;
-    background: #232327DD;
+    background: #232327AD;
     display: none;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 .loginRegisterForm form{
     display: grid;
     background: white;
     padding: 2rem;
-    max-width: 30rem;
+    max-width: 40rem;
     height: auto;
+    border-radius: 1rem;
+    margin: 0;
 }
 .errorMessage{
     color: #FF4F47;
@@ -30,7 +34,7 @@
     font-size: 1.5rem;
 }
 
-.loginRegisterForm form input{
+.loginRegisterForm form label input{
     border: none;
     outline: none;
     background: transparent;
@@ -38,6 +42,12 @@
     position: relative;
     font-size: 1.2rem;
     max-height: 3rem;
+    width: 90%;
+}
+.loginRegisterForm form label{
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 .loginRegisterForm form input:required::before {
 
@@ -99,39 +109,44 @@
 }
 .loginRegisterForm .registerForm{
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows:repeat(8,1fr) ;
+    grid-template-rows:repeat(6,1fr) ;
 }
 
 
 
 .loginRegisterForm .registerForm :nth-child(2) {
-    grid-area: 2/ 1/3/4;
+    grid-area: 2/ 1/3/2;
 }
 
 .loginRegisterForm .registerForm :nth-child(3) {
-    grid-area: 3 / 1/4/4;
+    grid-area: 2/ 2/3/4;
 }
 .loginRegisterForm .registerForm :nth-child(4) {
-    grid-area: 4 / 1/5/4;
+    grid-area: 3 / 1/4/4;
 }
 .loginRegisterForm .registerForm :nth-child(5) {
-    grid-area: 5 / 1/6/4;
+    grid-area: 4 / 1/5/2;
 }
 
 .loginRegisterForm .registerForm :nth-child(6) {
-    grid-area: 6 / 1/7/4;
+    grid-area: 4 / 2/5/4;
 }
 .loginRegisterForm .registerForm :nth-child(7){
-    grid-area: 7/ 1/8/4 ;
+    grid-area: 5/ 1/6/4 ;
 }
 
 .loginRegisterForm .registerForm :nth-child(8) {
-    grid-area: 8 / 2/9/3;
+    grid-area: 6 / 2/7/3;
 }
 .loginRegisterForm .registerForm :nth-child(9) {
-    grid-area: 8 / 3/9/4;
+    grid-area: 6 / 3/7/4;
 }
-@media (max-width: 40rem) {
+@media (max-width: 60rem) {
+    loginRegisterForm{
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
     .loginForm{
         width: 100%;
         height: 100%;
@@ -139,5 +154,37 @@
     .loginForm form{
         width: 100%;
         height: 100%;
+    }
+    .loginRegisterForm .registerForm{
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows:repeat(8,1fr) ;
+    }
+
+    .loginRegisterForm .registerForm :nth-child(2) {
+        grid-area: 2/ 1/3/4;
+    }
+
+    .loginRegisterForm .registerForm :nth-child(3) {
+        grid-area: 3 / 1/4/4;
+    }
+    .loginRegisterForm .registerForm :nth-child(4) {
+        grid-area: 4 / 1/5/4;
+    }
+    .loginRegisterForm .registerForm :nth-child(5) {
+        grid-area: 5 / 1/6/4;
+    }
+
+    .loginRegisterForm .registerForm :nth-child(6) {
+        grid-area: 6 / 1/7/4;
+    }
+    .loginRegisterForm .registerForm :nth-child(7){
+        grid-area: 7/ 1/8/4 ;
+    }
+
+    .loginRegisterForm .registerForm :nth-child(8) {
+        grid-area: 8 / 2/9/3;
+    }
+    .loginRegisterForm .registerForm :nth-child(9) {
+        grid-area: 8 / 3/9/4;
     }
 }
