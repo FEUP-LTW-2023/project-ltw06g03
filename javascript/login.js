@@ -3,7 +3,8 @@ const loginForm= document.getElementsByName("LoginForm")[0];
 loginForm.addEventListener("submit",async (event) => {
     await validateLoginInputs(event);
 });
-
+const eyes= document.querySelector('.loginForm label i');
+eyes.addEventListener('click',(e)=>toggleVisibility(e));
 async function validateLoginInputs(event){
     console.log("hello");
     event.preventDefault();
@@ -24,18 +25,16 @@ async function validateLoginInputs(event){
 
 function toggleVisibility(e){
     e.preventDefault();
-    let pass = document.querySelectorAll(".registerForm input[name='pass']");
-    if(pass[0].type==='password'){
-        pass[0].type='text';
-        pass[1].type='text';
-        eyes[0].className=' fas fa-eye-slash';
-        eyes[1].className=' fas fa-eye-slash';
+    let pass = document.querySelector(".loginForm input[name='pass']");
+    if(pass.type==='password'){
+        pass.type='text';
+        eyes.className=' fas fa-eye-slash';
+
     }
     else{
-        pass[0].type='password';
-        pass[1].type='password';
-        eyes[0].className=' fas fa-eye';
-        eyes[1].className=' fas fa-eye';
+        pass.type='password';
+        eyes.className=' fas fa-eye';
+
     }
 
 }
