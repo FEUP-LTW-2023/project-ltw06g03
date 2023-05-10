@@ -1,0 +1,4 @@
+PRAGMA foreign_keys = on;
+
+INSERT INTO PERSON (UP, EMAIL, NAME, PASSWORD,ROLE) VALUES (202108793, 'up202108793@fe.up.pt', 'Francisco', 'SouLindo','Admin');
+INSERT INTO PERSON (UP, EMAIL, NAME, PASSWORD) VALUES (202108794, 'up202108794@fe.up.pt', 'Jose', 'SouLindo');

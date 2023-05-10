@@ -19,9 +19,9 @@ body{
 main{
   grid-column-start: 2;
   grid-column-end: 3;
-  margin-left: 0;
-  position: relative;
-  display: block;
+  margin: 0;
+  padding: 0;
+position: relative;
   max-height: 100vh;
 }
 p{

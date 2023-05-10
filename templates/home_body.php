@@ -1,8 +1,11 @@
 <?php
 require_once(__DIR__ . '/../templates/login_register.php');
-drawLogin();
-drawRegister();
-function drawHomeBody(){?>
+function drawHomeBody(){
+
+    drawLogin();
+    drawRegister();
+
+    ?>
 
 <div class="homePageHeader">
     <div class="loginRegister">
