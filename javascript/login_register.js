@@ -9,7 +9,11 @@ cancelLoginButton.addEventListener('click',function() { cancel(0); } );
 
 const registerForm= document.getElementsByName("RegisterForm")[0];
 registerForm.addEventListener("submit",async (event) => {
-    await checkRegisterInputs(event)
+    await validateRegisterInputs(event);
+});
+const loginForm= document.getElementsByName("LoginForm")[0];
+loginForm.addEventListener("submit",async (event) => {
+    await validateLoginInputs(event);
 });
 
 const eyes= document.querySelectorAll('.registerForm label i');
@@ -47,7 +51,7 @@ function enableScroll(){
     let body= document.body;
     body.style.overflow='scroll';
 }
-async function checkRegisterInputs(event) {
+async function validateRegisterInputs(event) {
     try {
         event.preventDefault();
         let registerForm = document.getElementsByClassName('registerForm')[0];
@@ -66,6 +70,21 @@ async function checkRegisterInputs(event) {
         let err=document.querySelector(".registerForm .errorMessage");
         err.innerText=e;
         return false
+    }
+}
+async function validateLoginInputs(event){
+    event.preventDefault();
+    let pass = document.querySelector(".loginForm input[name='pass']");
+    let up = document.querySelector(".loginForm input[name='up']");
+    const response = await fetch('../actions/login.php?up=' + up.value+'&pass='+pass.value);
+
+    let res = await response.json();
+    if(res==''){
+        window.location.href = 'http://localhost:9000/pages/home.php';
+    }
+    else{
+        let err=document.querySelector(".loginForm .errorMessage");
+        err.innerText=res[0];
     }
 }
 

@@ -1,17 +1,17 @@
 <?php function drawLogin() {?>
 
-    <div class="loginRegisterForm" name="LoginForm">
-        <form class="loginForm">
+    <div class="loginRegisterForm" name="LoginForm" >
+        <form class="loginForm" method="get" action="../index.php">
             <h3>Login</h3>
             <label>
-            <input  type="text" placeholder="Up" required>
+                <h4>Up</h4><input  type="number" placeholder="xxxxxxxxx" required name="up">
             </label>
             <label>
-            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" required name="pass">
             </label>
             <p class="errorMessage"></p>
             <button name="CancelLogin" >Cancel</button>
-            <button name="Login">Login</button>
+            <button   type="submit">Login</button>
         </form>
     </div>
 <?php } ?>
