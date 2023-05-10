@@ -1,7 +1,7 @@
 <?php function drawLogin() {?>
 
     <div class="loginRegisterForm" name="LoginForm" >
-        <form class="loginForm" method="get" action="../index.php">
+        <form class="loginForm"  >
             <h3>Login</h3>
             <label>
                 <h4>Up</h4><input  type="number" placeholder="xxxxxxxxx" required name="up">
@@ -10,8 +10,8 @@
             <input type="password" placeholder="Password" required name="pass">
             </label>
             <p class="errorMessage"></p>
-            <button name="CancelLogin" >Cancel</button>
-            <button   type="submit">Login</button>
+            <a href="../pages/home.php">Cancel</a>
+            <button   >Login</button>
         </form>
     </div>
 <?php } ?>
@@ -39,7 +39,7 @@
                 <i class="fas fa-eye"></i>
             </label>
             <p class="errorMessage"></p>
-            <button name="CancelRegister" >Cancel</button>
+            <a href="../pages/home.php">Cancel</a>
             <button name="Register" type="submit">Register</button>
         </form>
     </div>
