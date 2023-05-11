@@ -4,11 +4,14 @@
   grid-template-columns: 40% 60%;
   padding: 3em;
   gap: 1em;
+
+  color: #3d3737FD;
+
+}
+main{
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/images/feup.png');
   background-repeat: no-repeat;
   background-size: cover ;
-  color: #3d3737FD;
-
 }
   
 .user-icon-info {

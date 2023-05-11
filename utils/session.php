@@ -2,14 +2,12 @@
 
 class Session {
 
-    public function __construct($userType) {
+    public function __construct() {
         session_start();
-        $_SESSION['userType'] = $userType;
     }
 
     public function isLoggedIn() {
-        // return isset($_SESSION['UserType']);
-        return true;
+        return isset($_SESSION['email']);
     }
 
     public function loggout() {
@@ -18,6 +16,9 @@ class Session {
 
     public function getUsername() {
         return isset($_SESSION['username']) ? $_SESSION['username'] : null;
+    }
+    public function getUserUp() {
+        return isset($_SESSION['up']) ? $_SESSION['up'] : null;
     }
 
     public function getEmail() {
@@ -54,6 +55,9 @@ class Session {
 
     public function setUserType($userType) {
         $_SESSION['userType'] = $userType;
+    }
+    public function setUserUp($up) {
+        $_SESSION['up'] = $up;
     }
 
     public function setDepartments($departments) {
