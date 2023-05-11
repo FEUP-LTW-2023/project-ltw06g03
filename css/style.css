@@ -22,7 +22,10 @@ main{
   margin: 0;
   padding: 0;
 position: relative;
-  max-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
 }
 p{
   padding: 0;
@@ -108,12 +111,11 @@ width: 100%;
 
 footer{
   width: auto;
-  margin: 0;
   bottom: 0;
   background: #232327;
   color: white;
   padding: 6rem 5rem 2rem;
-
+  margin: auto 0 0;
   line-height: 1.3rem;
 }
 footer .row{
