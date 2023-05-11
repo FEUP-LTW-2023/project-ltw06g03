@@ -2,6 +2,7 @@
 
     .user {
         grid-template-columns: 100%;
+        padding: 1rem;
       }
     
     .user-info,
@@ -14,16 +15,10 @@
         padding-right: 1em;
     }
 
-    
-
     .links {
         grid-row: 3;
         grid-column: 1;
       }
-
-    .links {
-        flex-direction: column;
-    }
 
     .links a {
         margin-bottom: 1em;;
