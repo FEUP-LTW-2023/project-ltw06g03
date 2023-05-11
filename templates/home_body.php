@@ -1,12 +1,20 @@
 <?php
+
+
 function drawHomeBody(){
+
+    require_once(__DIR__ . '/../utils/session.php');
+    $session = new Session();
+
     ?>
 
 <div class="homePageHeader">
+    <?php if(!$session->isLoggedIn()){?>
     <div class="loginRegister">
         <a  href="../pages/register.php">Register</a>
         <a href="../pages/login.php">Login</a>
     </div>
+    <?php }?>
     <header>
         <h1>Feup Trouble Ticket's</h1>
         <h2>Create tickets for your problems</h2>

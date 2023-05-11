@@ -45,7 +45,7 @@ function drawUserBody($session) {
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
-            <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+            <a href ="../actions/logout.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
             <a href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
     </div> 
