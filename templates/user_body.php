@@ -16,7 +16,7 @@ function drawUserBody($session) {
         <div class="user-icon-info">
             <?php 
             if ($userImg != null) {
-                echo '<img src="' . $_SERVER['PHP_SELF'] . '" alt="user-img">' ;
+                echo '<img src="' . $userImg . '" alt="user-img">' ;
             }
             else { ?>
                 <i class="fas fa-user"></i>
@@ -43,10 +43,10 @@ function drawUserBody($session) {
 
         <div class="links">
             <?php
-                echo '<a id="my-tickets" href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
+                echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
-            <a id="signout" href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
-            <a id="edit-info" href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
+            <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+            <a href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
     </div> 
     

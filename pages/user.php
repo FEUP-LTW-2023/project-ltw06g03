@@ -10,7 +10,8 @@
     $session->setUsername("Capitulino");
     $session->setEmail("capitulino@andreioleta.com");
     $session->setUp(123456789);
-    $session->setUserImg(null);
+    $session->setUserImg("../docs/images/feup.png");
+    //$session->setUserImg(null);
     $session->setDepartments(array("DEI", "DCC"));
     $session->setDateOfRegister("2020-20-02");
 
