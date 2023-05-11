@@ -58,7 +58,7 @@
 
         <ul class="navbar-top">
             <label class="hamburger" for="hamburger" content="\2630"></label>
-            <li><a href="home.php"><i class="fa fa-home"></i><span>Home<span</a></li>
+            <li><a href="../pages/home.php"><i class="fa fa-home"></i><span>Home<span</a></li>
 
             <?php if($session->isLoggedIn()) {?>
                 <li><a href="tickets.php"><i class="fa fa-ticket" ></i><span>Tickets</span></a></li>
@@ -80,7 +80,7 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="profile.php"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a href="../pages/user.php"><i class="fas fa-user"></i><span>Profile</span></a>
                 <?php } else { ?>
                     <a href="login.php"><i class="fas fa-user"></i><span>Login</span></a>
                 <?php } ?>

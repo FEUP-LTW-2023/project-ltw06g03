@@ -1,0 +1,27 @@
+@media (max-width: 60rem) {
+
+    .user {
+        grid-template-columns: 100%;
+        padding: 1rem;
+      }
+    
+    .user-info,
+    .user-icon-info {
+        grid-column: 1;
+        width: 100%;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .links {
+        grid-row: 3;
+        grid-column: 1;
+      }
+
+    .links a {
+        margin-bottom: 1em;;
+    }
+
+}
