@@ -6,14 +6,11 @@ loginForm.addEventListener("submit",async (event) => {
 const eyes= document.querySelector('.loginForm label i');
 eyes.addEventListener('click',(e)=>toggleVisibility(e));
 async function validateLoginInputs(event){
-    console.log("hello");
     event.preventDefault();
     let pass = document.querySelector(".loginForm input[name='pass']");
     let up = document.querySelector(".loginForm input[name='up']");
     const response = await fetch('../actions/login.php?up=' + up.value+'&pass='+pass.value);
-
     let res = await response.json();
-    console.log(res);
     if(res==''){
           window.location.href = 'http://localhost:9000/pages/home.php';
     }

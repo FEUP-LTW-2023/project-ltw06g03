@@ -16,7 +16,6 @@ async function validateRegisterInputs(event) {
         let up = document.querySelector(".registerForm input[name='up']");
         if (pass[0].value !== pass[1].value) throw "Passwords don't match";
         if(up.value<0) throw "Up must be positive";
-        if(up.value.length!=9)throw "Up must be a 9 digit number";
         const response = await fetch('../api/api_user.php?up=' + up.value);
         let user = await response.json();
         user=user[0];
