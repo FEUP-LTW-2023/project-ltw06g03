@@ -8,7 +8,7 @@ class Session {
     }
 
     public function isLoggedIn() {
-        // return isset($_SESSION['email']);
+        // return isset($_SESSION['UserType']);
         return true;
     }
 
@@ -28,6 +28,22 @@ class Session {
         return isset($_SESSION['userType']) ? $_SESSION['userType'] : null;
     }
 
+    public function getDepartments() {
+        return isset($_SESSION['departments']) ? $_SESSION['departments'] : null;
+    }
+
+    public function getDateOfRegister() {
+        return isset($_SESSION['dateOfRegister']) ? $_SESSION['dateOfRegister'] : null;
+    }
+
+    public function getUserImg() {
+        return isset($_SESSION['userImg']) ? $_SESSION['userImg'] : null;
+    }
+
+    public function getUp() {
+        return isset($_SESSION['up']) ? $_SESSION['up'] : null;
+    }
+
     public function setEmail($email) {
         $_SESSION['email'] = $email;
     }
@@ -38,6 +54,26 @@ class Session {
 
     public function setUserType($userType) {
         $_SESSION['userType'] = $userType;
+    }
+
+    public function setDepartments($departments) {
+        $_SESSION['departments'] = $departments;
+    }
+
+    public function setDateOfRegister($dateOfRegister) {
+        $_SESSION['dateOfRegister'] = $dateOfRegister;
+    }
+
+    public function setUserImg($userImg) {
+        $_SESSION['userImg'] = $userImg;
+    }
+
+    public function setUp($up) {
+        $_SESSION['up'] = $up;
+    }
+
+    public function isStudent() {
+        return ($_SESSION['userType'] == "Student") ? true : false;
     }
 
     public function isStaff() {

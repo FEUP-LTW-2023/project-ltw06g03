@@ -1,0 +1,124 @@
+.user {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 40% 60%;
+  padding: 3em;
+  gap: 1em;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/images/feup.png');
+  background-repeat: no-repeat;
+  background-size: cover ;
+  color: #3d3737FD;
+
+}
+  
+.user-icon-info {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FFFFFFF0;
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.user-icon-info img {
+  object-fit: cover;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  border: 2px solid #555;
+}
+
+.user-icon-info i {
+  font-size: 4rem;
+  padding: 0.5em;
+  border-radius: 100%;
+  border: 2px solid #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  height: 4rem;
+  width: 4rem;
+}
+
+.user-icon-info > * {
+  margin: 0.5em 0;
+}
+
+.user-icon-info h2 {
+  margin: 0.25em 0;
+  font-size: 2.5rem;
+}
+
+.user-icon-info h3,
+.user-icon-info h4 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.user-info {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: #FFFFFFF0;
+  border-radius: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  margin-bottom: 0.5em;
+}
+
+.user-info ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.user-info ul li {
+  list-style-type: none;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  border-radius: 1em;
+  border: 1px solid #ccc;
+}
+
+.links {
+  grid-row: 3;
+  grid-column: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.links a {
+
+  border-radius: 1em;
+  padding: 1em;
+  margin-right: 1em;
+  margin-top: 1rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  background: #FF4F47;
+  color: white;
+}
+
+.links a:hover {
+
+  background: #81150c ;
+
+}
+  
