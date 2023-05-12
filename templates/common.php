@@ -30,7 +30,7 @@
             </div>
             <div class="col">
                 <h3>Send us Feedback<div class="underline"><span></span></div></h3>
-                <form>
+                <form >
                     <i class='fas fa-envelope' alt="d"></i>
                     <textarea type="email" placeholder="email" required></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>

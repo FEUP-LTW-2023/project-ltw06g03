@@ -7,9 +7,7 @@
 
     //set Session
     $session = new Session("Admin");
-    $session->setUsername("Capitulino");
-    $session->setEmail("capitulino@andreioleta.com");
-    $session->setUp(123456789);
+
     $session->setUserImg("../docs/images/feup.png");
     //$session->setUserImg(null);
     $session->setDepartments(array("DEI", "DCC"));
