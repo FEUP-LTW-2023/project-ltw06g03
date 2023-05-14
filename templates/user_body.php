@@ -18,14 +18,16 @@ function drawUserBody($session) {
             'Can not enter sigarra for some unkownddjsgdfsgdfgsjdhafs',
             new User(202108793,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd'),
             'open',
-            'cica'
+            'cica',
+            'problem'
         ),
         new Ticket(
             202108793,
             'ola',
             new User(202108793,'Fr','gr','st','asd'),
             'das',
-            'asd'
+            'asd',
+            'problem'
         ),
     );
     
@@ -71,7 +73,9 @@ function drawUserBody($session) {
     </div> 
     
 
-<?php drawTicketSection($tickets,"My Tickets");?>
+<?php drawTicketSection($tickets,"My Tickets");
+drawExpandedTicket($tickets[0]);
+?>
     </div>
 <?php } ?>
 

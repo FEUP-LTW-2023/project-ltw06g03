@@ -33,7 +33,27 @@ function drawTicketSection(array $tickets,string $title){
     </div>
     <?php
 }
-
+function drawExpandedTicket(Ticket $ticket){
 
 ?>
+<div class="expandedTicket">
+    <header >
+        <h2><?= $ticket->title?></h2>
+        <button>X</button>
+    </header>
+    <div class="about">
+        <div class="user-info">
+            <img src="../docs/images/feup.png">
+            <h3 > <?= $ticket->client->name?></h3>
+            <p>Up<?= $ticket->client->up?></p>
+        </div>
+        <p> <?= $ticket->problem?></p>
+    </div>
+    <div class="messages">
+    </div>
+    <div class="status">
+        <p><?= $ticket->department?></p>
+    </div>
+</div>
 
+<?php } ?>

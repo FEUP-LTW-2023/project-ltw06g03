@@ -61,9 +61,90 @@
     display: none;
     grid-template-columns: 1fr 1fr 5rem 5rem;
     margin:  auto auto;
-    border-bottom: 1px solid #232327;
+    border-bottom: 1px solid #3d3737FD;
     cursor: pointer;
 }
+ .expandedTicket{
+     position: fixed;
+     display: grid;
+     width: 60rem;
+     background: white;
+     grid-template-columns: 2fr 1fr;
+     grid-template-rows: 10rem auto auto;
+     height: 100vh;
+     overflow: scroll;
+     right: 0;
+     padding: 1rem;
+ }
+.expandedTicket header{
+    grid-area: 1/1/2/3;
+
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid #3d3737FD;
+    max-width: 60rem;
+
+}
+.expandedTicket header h2{
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 90%;
+}
+.expandedTicket header button{
+    position: absolute;
+    top:1rem;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10rem;
+    background: #3d3737FD;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+.expandedTicket .about{
+    padding: 1rem 0;
+    grid-area: 2/1/3/2;
+    min-height: 10rem;
+}
+.expandedTicket .about .user-info{
+    justify-content: start;
+    align-items: start;
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr;
+}
+.expandedTicket .about .user-info img{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    grid-area: 1/1/3/2;
+}
+.expandedTicket .about .user-info *{
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.expandedTicket .about p{
+    padding: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    color:#3d3737FD ;
+}
+.expandedTicket .messages{
+    grid-area: 3/1/4/2;
+    background: #cccccc;
+
+}
+.expandedTicket .status{
+    grid-area: 2/2/4/3;
+    padding: 1rem;
+    border-left: 1px solid #3d3737FD ;
+}
+
 @media (max-width: 65rem) {
 
     .ticketContainer{
