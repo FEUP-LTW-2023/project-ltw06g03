@@ -5,8 +5,11 @@
     require_once('../templates/common.php');
     require_once('../templates/user_body.php');
 
+
     //set Session
     $session = new Session("Admin");
+    $session->setEmail('ashgdds');
+
 
     $session->setUserImg("../docs/images/feup.png");
     //$session->setUserImg(null);

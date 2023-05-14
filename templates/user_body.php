@@ -9,8 +9,28 @@ function drawUserBody($session) {
     $userDepartments = $session->getDepartments();
     $date = $session->getDateOfRegister();
     $userImg = $session->getUserImg();
+
+    require_once('../templates/tickets.php');
+    require_once ("../database/user.class.php");
+    $tickets = array(
+        new Ticket(
+            202108793,
+            'Can not enter sigarra for some unkownddjsgdfsgdfgsjdhafs',
+            new User(202108793,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd'),
+            'open',
+            'cica'
+        ),
+        new Ticket(
+            202108793,
+            'ola',
+            new User(202108793,'Fr','gr','st','asd'),
+            'das',
+            'asd'
+        ),
+    );
     
     ?>
+    <div class="user-page">
 
     <div class="user">
         <div class="user-icon-info">
@@ -51,4 +71,8 @@ function drawUserBody($session) {
     </div> 
     
 
+<?php drawTicketSection($tickets,"My Tickets");?>
+    </div>
 <?php } ?>
+
+
