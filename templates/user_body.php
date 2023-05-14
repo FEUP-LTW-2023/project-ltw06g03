@@ -1,6 +1,8 @@
 <?php 
 
 function drawUserBody($session) {
+    $_up= $_GET['up'];
+    if($_up==null) $_up=8;
     
     $up = $session->getUp();
     $username = $session->getUsername();
@@ -14,12 +16,12 @@ function drawUserBody($session) {
     require_once ("../database/user.class.php");
     $tickets = array(
         new Ticket(
-            202108793,
+            $_up,
             'Can not enter sigarra for some unkownddjsgdfsgdfgsjdhafs',
-            new User(202108793,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd'),
+            new User($_up,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd'),
             'open',
             'cica',
-            'problem'
+            "Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless."
         ),
         new Ticket(
             202108793,

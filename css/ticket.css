@@ -7,7 +7,7 @@
     display: grid;
    grid-template-columns: 1fr 1fr 5rem 5rem;
     margin:  auto auto;
-    border-bottom: 1px solid #3d3737FD;
+    border-bottom: 1px solid #77777777;
     cursor: pointer;
 
 
@@ -26,7 +26,7 @@
     text-align: center;
     padding: 0;
 }
-.ticketContainer .user-info{
+.user-info{
 
     justify-content: start;
     align-items: start;
@@ -35,12 +35,12 @@
     gap: 1rem;
     grid-template-rows: 1fr 1fr;
 }
-.ticketContainer .user-info *{
+ .user-info *{
     text-align: left;
     padding: 0;
     margin: 0;
 }
-.ticketContainer .user-info img{
+.user-info img{
     width: 4rem;
     height: 4rem;
     object-fit: cover;
@@ -61,27 +61,31 @@
     display: none;
     grid-template-columns: 1fr 1fr 5rem 5rem;
     margin:  auto auto;
-    border-bottom: 1px solid #3d3737FD;
+    border-bottom: 1px solid #77777777;
     cursor: pointer;
 }
  .expandedTicket{
      position: fixed;
      display: grid;
      width: 60rem;
-     background: white;
+     box-shadow: -2px 0 rgba(0, 0, 0, 0.1);
+     background: rgb(250, 250, 250);
      grid-template-columns: 2fr 1fr;
-     grid-template-rows: 10rem auto auto;
+     grid-template-rows: auto auto auto;
      height: 100vh;
      overflow: scroll;
      right: 0;
+     top: 0;
      padding: 1rem;
+     z-index: 3;
+
  }
 .expandedTicket header{
     grid-area: 1/1/2/3;
 
+    height: fit-content;
     position: relative;
-    display: flex;
-    border-bottom: 1px solid #3d3737FD;
+    border-bottom: 1px solid #77777777;
     max-width: 60rem;
 
 }
@@ -89,6 +93,7 @@
     position: relative;
     top: 0;
     left: 0;
+    font-size: 1.5rem;
     max-width: 90%;
 }
 .expandedTicket header button{
@@ -98,15 +103,29 @@
     width: 3rem;
     height: 3rem;
     border-radius: 10rem;
-    background: #3d3737FD;
+    background: #3d3737FF;
     color: white;
     cursor: pointer;
     border: none;
 }
+.expandedTicket header .status{
+    position: relative;
+
+    padding: 1rem;
+
+}
+.expandedTicket header .status p{
+    background: #FF4F47;
+    color: white;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    text-align: center;
+}
 .expandedTicket .about{
-    padding: 1rem 0;
+    padding: 1.5rem ;
     grid-area: 2/1/3/2;
-    min-height: 10rem;
+    height: fit-content;
 }
 .expandedTicket .about .user-info{
     justify-content: start;
@@ -135,14 +154,48 @@
     color:#3d3737FD ;
 }
 .expandedTicket .messages{
+    border-top: 1px solid #77777777 ;
     grid-area: 3/1/4/2;
-    background: #cccccc;
+    background: rgb(245, 245, 245);
+    padding: 1rem;
+    min-height: 20rem;
+    overflow: scroll;
+
 
 }
-.expandedTicket .status{
+.expandedTicket .extra-inf{
     grid-area: 2/2/4/3;
     padding: 1rem;
-    border-left: 1px solid #3d3737FD ;
+    border-left: 1px solid #77777777 ;
+}
+
+.expandedTicket .messages .message{
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+.expandedTicket .messages .message .text{
+    padding: 1rem 0rem;
+}
+.expandedTicket .department{
+    display: flex;
+    align-items: center;
+}
+.expandedTicket .extra-inf h5{
+    color: #3d3737FD;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+.expandedTicket .department p{
+    padding: 0.5rem 1rem;
+    background: #FF4F47;
+    color: white;
+    max-height: 2rem;
+    border-radius: 10rem;
+
+    text-align: center;
 }
 
 @media (max-width: 65rem) {
@@ -156,10 +209,35 @@
     }
     .ticketContainer .subject{
         grid-area: 2/1/3/4;
+    }
+    .expandedTicket{
+        width: auto;
+        left: 4rem;
 
     }
 }
+@media (max-width: 55rem) {
+    .expandedTicket{
+        width: auto;
+        left: 4rem;
+        display: flex;
+        flex-direction:column ;
+
+    }
+    .expandedTicket .extra-inf{
+        border-left: none;
+        border-bottom: 1px solid #77777777;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+}
 @media (max-width: 40rem) {
+    .expandedTicket{
+       left: 0;
+
+
+    }
     .ticketContainer{
 
         grid-template-rows: 1fr 1fr 1fr;
