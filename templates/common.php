@@ -9,7 +9,7 @@
     <footer>
         <div class="row">
             <div class="col">
-                <img src="../docs/images/logo-feup.png">
+                <img src="../docs/logo-feup.png">
                 <p>Feup is an engineering faculty from the University of Porto located in Portugal</p>
             </div>
             <div class="col">
