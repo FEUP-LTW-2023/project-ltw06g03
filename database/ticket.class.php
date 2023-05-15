@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 require_once(__DIR__ . '/../database/user.class.php');
+require_once(__DIR__ . '/../database/message.class.php');
 
 
 class Ticket {
@@ -11,31 +12,33 @@ class Ticket {
     public string $status;
     public  string  $department;
     public string $problem;
+    public array $messages;
 
-    public function __construct(int $id, string $title,User $client,string $status,string $department,string $problem)
+    public function __construct(int $id, string $title,User $client,string $status,string $problem, array  $messages)
     {
         $this->id = $id;
         $this->title = $title;
         $this->client = $client;
         $this->status=$status;
-        $this->department=$department;
         $this->problem=$problem;
+        $this->messages=$messages;
     }
 
     static function getTickets(PDO $db, int $up) : array {
-        $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBELM FROM TICKET WHERE CLIENT_ID = ?');
+        $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ?');
         $stmt->execute(array($up));
 
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $up);
+            $messages= Message::getTicketMessages($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
                 $ticket['TITLE'],
                 $user,
                 $ticket['STATUS'],
-                $ticket['DEPARTMENT'],
-                $ticket['PROBLEM']
+                $ticket['PROBLEM'],
+                $messages
             );
         }
 

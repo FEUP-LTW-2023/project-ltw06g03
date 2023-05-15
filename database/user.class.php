@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
 
+
+
 class User {
     public int $up;
     public string $name;
@@ -8,8 +10,9 @@ class User {
     public string $role;
     public  string  $pass;
     public string $img;
+    public array $departments;
 
-    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img)
+    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img,array $departments)
     {
         $this->up = $up;
         $this->name = $name;
@@ -17,10 +20,7 @@ class User {
         $this->role=$role;
         $this->pass=$pass;
         $this->img=$img;
-    }
-    public function getUp() : int
-    {
-        return $this->up;
+        $this->departments=$departments;
     }
     static function getUser(PDO $db, int $id) : USER {
         $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON WHERE UP = ?');
@@ -33,18 +33,19 @@ class User {
             '',
             '',
             '',
-            ''
+            '',
+            []
         );
         $img='../docs/images/feup.png';
         if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
-
         return new User(
             $user['UP'],
             $user['NAME'],
             $user['EMAIL'],
             $user['ROLE'],
             $user['PASSWORD'],
-            $img
+            $img,
+            []
         );
     }
 

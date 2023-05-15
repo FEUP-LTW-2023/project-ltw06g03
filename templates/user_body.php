@@ -1,38 +1,20 @@
 <?php 
 
 function drawUserBody($session) {
-
-
-    
     $up = $session->getUp();
     $username = $session->getUsername();
     $userType = $session->getUserType();
     $userEmail = $session->getEmail();
     $userDepartments = $session->getDepartments();
+
     $date = $session->getDateOfRegister();
     $userImg = $session->getUserImg();
 
     require_once('../templates/tickets.php');
     require_once ("../database/user.class.php");
-    $tickets = array(
-        new Ticket(
-            2021,
-            'Can not enter sigarra for some unkownddjsgdfsgdfgsjdhafs',
-            new User(202108,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd','../docs/images/feup.png'),
-            'open',
-            'cica',
-            "Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless."
-        ),
-        new Ticket(
-            202108793,
-            'ola',
-            new User(202108793,'Fr','gr','st','asd','../docs/images/feup.png'),
-            'das',
-            'asd',
-            'problem'
-        ),
-    );
-    
+    require_once ("../database/connection.php");
+    $tickets= Ticket::getTickets(getDatabaseConnection(),$up);
+
     ?>
     <div class="user-page">
 
@@ -58,7 +40,7 @@ function drawUserBody($session) {
             <ul>
             <?php if ($userType != 'Student') {
                 for ($i = 0; $i < count($userDepartments); $i++) { ?>
-                    <li><h4> <?php echo $userDepartments[$i] ?> </h4></li>
+                    <li><h4> <?php echo $userDepartments[$i]?> </h4></li>
             <?php }
             } ?>
             </ul>
@@ -75,9 +57,14 @@ function drawUserBody($session) {
     </div> 
     
 
-<?php drawTicketSection($tickets,"My Tickets");
-foreach ($tickets as $ticket)
-    drawExpandedTicket($ticket);
+<?php
+if(count($tickets)>0) {
+    drawTicketSection($tickets, "My Tickets");
+    foreach ($tickets as $ticket) {
+
+        drawExpandedTicket($ticket);
+    }
+}
 ?>
     </div>
 <?php } ?>

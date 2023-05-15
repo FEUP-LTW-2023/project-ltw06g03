@@ -20,7 +20,8 @@ try {
         $session->setEmail($user->email);
         $session->setUserType($user->role);
         $session->setUserImg($user->img);
-        echo json_encode(['']);
+        $session->setDepartments(array('yay'));
+        echo json_encode('');
 
     } else  {
         echo json_encode(['Password is invalid']);

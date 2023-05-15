@@ -8,7 +8,7 @@
 
     //set Session
     $session = new Session();
-    $session->setDepartments(array("DEI", "DCC"));
+
     $session->setDateOfRegister("2020-20-02");
 
     if (!$session->isLoggedIn()) {

@@ -10,34 +10,28 @@ class Message {
     public User $client;
 
 
-    public function __construct(int $id, string $title,User $client,string $status,string $department,string $problem)
+    public function __construct(int $id,string $text, User $client)
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->client = $client;
-        $this->status=$status;
-        $this->department=$department;
-        $this->problem=$problem;
+        $this->ticketId=$id;
+        $this->text=$text;
+        $this->client=$client;
     }
 
-    static function getTickets(PDO $db, int $up) : array {
-        $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBELM FROM TICKET WHERE CLIENT_ID = ?');
-        $stmt->execute(array($up));
+    static function getTicketMessages(PDO $db, int $id) : array {
+        $stmt = $db->prepare('SELECT TICKET_ID, TEXT,PERSON_ID FROM TICKET_MESSAGE WHERE TICKET_ID = ?');
+        $stmt->execute(array($id));
 
-        $tickets = array();
-        while ($ticket = $stmt->fetch()) {
-            $user = User::getUser($db, $up);
-            $tickets[] = new Ticket(
-                $ticket['ID'],
-                $ticket['TITLE'],
-                $user,
-                $ticket['STATUS'],
-                $ticket['DEPARTMENT'],
-                $ticket['PROBLEM']
+        $messages = array();
+        while ($message = $stmt->fetch()) {
+            $user = User::getUser($db, $message['PERSON_ID']);
+            $messages[] = new Message(
+                $message['TICKET_ID'],
+                $message['TEXT'],
+                $user
             );
         }
 
-        return $tickets;
+        return $messages;
     }
 
 }
