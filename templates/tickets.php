@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../database/ticket.class.php');
 function drawTicket(Ticket $ticket){
     ?>
-    <div class="ticketContainer">
+    <div class="ticketContainer" id="<?=$ticket->id?>">
         <div class="user-info">
             <img src="../docs/images/feup.png">
             <h3><?= $ticket->client->name?></h3>
