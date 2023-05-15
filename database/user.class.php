@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-
+require_once(__DIR__ . '/../database/department.class.php');
 
 
 class User {
@@ -38,6 +38,8 @@ class User {
         );
         $img='../docs/images/feup.png';
         if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
+        $departments=Department::getUsersDepartments($db, $user['UP']);
+
         return new User(
             $user['UP'],
             $user['NAME'],
@@ -45,7 +47,7 @@ class User {
             $user['ROLE'],
             $user['PASSWORD'],
             $img,
-            []
+            $departments
         );
     }
 

@@ -20,7 +20,7 @@ try {
         $session->setEmail($user->email);
         $session->setUserType($user->role);
         $session->setUserImg($user->img);
-        $session->setDepartments(array('yay'));
+        $session->setDepartments($user->departments);
         echo json_encode('');
 
     } else  {
