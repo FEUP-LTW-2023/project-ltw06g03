@@ -7,21 +7,23 @@ class User {
     public string $email;
     public string $role;
     public  string  $pass;
+    public string $img;
 
-    public function __construct(int $up, string $name,string $email,string $role,string $pass)
+    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img)
     {
         $this->up = $up;
         $this->name = $name;
         $this->email = $email;
         $this->role=$role;
         $this->pass=$pass;
+        $this->img=$img;
     }
     public function getUp() : int
     {
         return $this->up;
     }
     static function getUser(PDO $db, int $id) : USER {
-        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD FROM PERSON WHERE UP = ?');
+        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON WHERE UP = ?');
         $stmt->execute(array($id));
 
         $user = $stmt->fetch();
@@ -31,14 +33,18 @@ class User {
             '',
             '',
             '',
+            ''
         );
+        $img='../docs/images/feup.png';
+        if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
 
         return new User(
             $user['UP'],
             $user['NAME'],
             $user['EMAIL'],
             $user['ROLE'],
-            $user['PASSWORD']
+            $user['PASSWORD'],
+            $img
         );
     }
 

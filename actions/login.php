@@ -19,7 +19,7 @@ try {
         $session->setUsername($user->name);
         $session->setEmail($user->email);
         $session->setUserType($user->role);
-
+        $session->setUserImg($user->img);
         echo json_encode(['']);
 
     } else  {

@@ -18,7 +18,7 @@ function drawUserBody($session) {
         new Ticket(
             2021,
             'Can not enter sigarra for some unkownddjsgdfsgdfgsjdhafs',
-            new User(202108,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd'),
+            new User(202108,'Francisco Cardoso','franciscocardsdfsdfoso.3003@gmail.com','st','asd','../docs/images/feup.png'),
             'open',
             'cica',
             "Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless.Here is some random text for you to read, it's really useless."
@@ -26,7 +26,7 @@ function drawUserBody($session) {
         new Ticket(
             202108793,
             'ola',
-            new User(202108793,'Fr','gr','st','asd'),
+            new User(202108793,'Fr','gr','st','asd','../docs/images/feup.png'),
             'das',
             'asd',
             'problem'

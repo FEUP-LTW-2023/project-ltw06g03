@@ -7,12 +7,7 @@
 
 
     //set Session
-    $session = new Session("Admin");
-    $session->setEmail('ashgdds');
-
-
-    $session->setUserImg("../docs/images/feup.png");
-    //$session->setUserImg(null);
+    $session = new Session();
     $session->setDepartments(array("DEI", "DCC"));
     $session->setDateOfRegister("2020-20-02");
 
