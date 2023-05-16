@@ -64,7 +64,7 @@
                 <li><a href="tickets.php"><i class="fa fa-ticket" ></i><span>Tickets</span></a></li>
 
                 <?php if($session->isStaff()) {?>
-                    <li><a href="staff.php"><i class="fas fa-users"></i><span>Staff</span></a></li>
+                    <li><a href="users.php"><i class="fas fa-users"></i><span>Users</span></a></li>
                     
                     <?php if($session->isAdmin()) { ?>
                         <li><a href="statistics.php"><i class="fas fa-chart-line"></i><span>Statics</span></a></li>
@@ -80,7 +80,7 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="../pages/user.php"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a href="../pages/profile.php"><i class="fas fa-user"></i><span>Profile</span></a>
                 <?php } else { ?>
                     <a href="login.php"><i class="fas fa-user"></i><span>Login</span></a>
                 <?php } ?>

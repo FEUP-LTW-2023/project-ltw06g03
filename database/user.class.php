@@ -16,10 +16,12 @@ class User {
         $this->role=$role;
         $this->pass=$pass;
     }
+
     public function getUp() : int
     {
         return $this->up;
     }
+    
     static function getUser(PDO $db, int $id) : USER {
         $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD FROM PERSON WHERE UP = ?');
         $stmt->execute(array($id));
@@ -40,6 +42,25 @@ class User {
             $user['ROLE'],
             $user['PASSWORD']
         );
+    }
+
+    static function getUsers(PDO $db) : array {
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD FROM PERSON');
+        $stmt->execute();
+
+        $ret = array();
+
+        while($user = $stmt->fetch()) {
+            $ret[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD']
+            );
+        }
+
+        return $ret;
     }
 
 }

@@ -93,7 +93,7 @@ function drawLogin() {?>
         <p class="errorMessage"></p>
         <a href="../pages/register.php">Don't have an account?</a>
 
-        <button   >Login</button>
+        <button>Login</button>
     </form>
 </div>
 <?php } 
@@ -132,7 +132,7 @@ function drawRegister() {?>
 
 
 
-function drawUserBody($session) {
+function drawProfileBody($session) {
     
     $up = $session->getUp();
     $username = $session->getUsername();
@@ -186,7 +186,51 @@ function drawUserBody($session) {
 <?php } 
 
 
-function drawStaffBody(){ ?>
+function drawUsersBody($users){ ?>
+
+    <div class="users-body">
+        
+        <table>
+
+            <thead>
+
+                <th> User </th>
+                <th> Up </th>
+                <th> Email </th>
+
+            </thead>
+
+            <tbody class="table-box">
+                <?php foreach($users as $user){ ?>
+
+                    <tr>
+
+                        <td>
+                            <h2><?php echo $user->name ?></h2>
+                            <h3><?php echo $user->role ?></h3>
+                        </td> 
+
+                        <td> <h3><?php echo $user->up?> </h3></td>
+
+                        <td> <h3><?php echo $user->email?>  </h3></td>
+
+
+                        <td>
+
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash-alt"></i>
+
+                        </td>
+                    </tr>
+
+                <?php } ?>
+            </tbody>
+
+        </table>
+
+    </div>
+        
 
 <?php } ?>
 

@@ -54,7 +54,7 @@
 <body>
 <?php } ?>
 
-<?php function drawUserHeader(Session $session){?>
+<?php function drawProfileHeader(Session $session){?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -62,8 +62,8 @@
         <meta charset="utf-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/user_page_styles.css">
-        <link rel="stylesheet" href="../css/user_page_responsive_styles.css">
+        <link rel="stylesheet" href="../css/profile_page_styles.css">
+        <link rel="stylesheet" href="../css/profile_page_responsive_styles.css">
         <link rel="stylesheet" href="../css/responsive_style.css">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,7 +71,7 @@
     <body>
 <?php } ?>
 
-<?php function drawStaffHeader(){?>
+<?php function drawUsersHeader(){?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -79,8 +79,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/staff_page_styles.css">
-    <link rel="stylesheet" href="../css/staff_page_responsive_styles.css">
+    <link rel="stylesheet" href="../css/users_page_styles.css">
+    <link rel="stylesheet" href="../css/users_page_responsive_styles.css">
     <link rel="stylesheet" href="../css/responsive_style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
