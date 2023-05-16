@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../database/message.class.php');
 require_once(__DIR__ . '/../database/connection.php');
 function drawTicket(Ticket $ticket){
     ?>
-    <div class="ticketContainer" id="<?=$ticket->id?>">
+    <div class="ticketContainer" >
         <div class="user-info">
             <img src="../docs/images/feup.png">
             <h3><?= $ticket->client->name?></h3>

@@ -6,10 +6,8 @@ function drawUserBody($session) {
     $userType = $session->getUserType();
     $userEmail = $session->getEmail();
     $userDepartments = $session->getDepartments();
-
     $date = $session->getDateOfRegister();
     $userImg = $session->getUserImg();
-
     require_once('../templates/tickets.php');
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
@@ -44,9 +42,7 @@ function drawUserBody($session) {
             <?php }
             } ?>
             </ul>
-
         </div>
-
         <div class="links">
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
@@ -54,18 +50,7 @@ function drawUserBody($session) {
             <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
             <a href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
-    </div> 
-    
-
-<?php
-if(count($tickets)>0) {
-    drawTicketSection($tickets, "My Tickets");
-    foreach ($tickets as $ticket) {
-
-        drawExpandedTicket($ticket);
-    }
-}
-?>
+    </div>
     </div>
 <?php } ?>
 
