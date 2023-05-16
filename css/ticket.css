@@ -163,8 +163,9 @@
     grid-area: 3/1/4/2;
     background: rgb(245, 245, 245);
     padding: 1rem;
-    min-height: 20rem;
+    min-height: 25rem;
     overflow: scroll;
+
 
 
 }

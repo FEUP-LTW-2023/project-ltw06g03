@@ -78,6 +78,7 @@ function userInfo(user){
 }
 
 function expand(ticket){
+    body.style.overflow='hidden';
     if(expanded!==null) closeSection();
     const expand=document.createElement('div');
     expand.className="expandedTicket";
@@ -178,6 +179,7 @@ function closeSection(){
     body.removeChild(expanded);
     expanded=null;
     expandedTicket=null;
+    body.style.overflow='scroll';
 }
 async function sendMessage(text) {
 
