@@ -15,6 +15,7 @@ if(res.length>0) {
     const page=document.querySelector('.user-page');
     page.appendChild(ticketSection);
     drawTickets(res,ticketSection);
+
 }
 
 

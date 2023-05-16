@@ -57,9 +57,11 @@ function expand(ticket_){
     expand.appendChild(drawExpandedExtraInf(ticket));
     expand.appendChild(drawExpandedAbout(ticket));
     expand.appendChild(drawMessages(ticket['messages']));
+
     expanded=expand;
     body.appendChild(expand);
-    console.log(body);
+    const mess= document.querySelector(".messages");
+    mess.scrollTop=mess.scrollHeight;
 
 }
 function drawExpandedHeader(ticket){
@@ -110,6 +112,8 @@ function drawMessages(messages){
     const messagesSection=document.createElement('div');
     messagesSection.className='messages';
     for(let index=0; index<messages.length;index++) messagesSection.appendChild(drawMessage(messages[index]));
+    messagesSection.appendChild(form());
+
     return messagesSection;
 }
 
@@ -123,9 +127,26 @@ function drawMessage(message){
     messageContainer.appendChild(p);
     return messageContainer;
 }
+function form(){
+    const form=document.createElement('form');
+
+    const text=document.createElement('textarea');
+    const submit= document.createElement('button');
+    submit.type="submit";
+    submit.addEventListener('submit',(e)=>sendMessage(e));
+    text.name="text";
+    form.appendChild(text);
+    form.appendChild(submit);
+    return form;
+    
+}
 function closeSection(){
     body.removeChild(expanded);
     expanded=null;
+}
+function sendMessage(e){
+    e.preventDefault();
+    
 }
 
 
