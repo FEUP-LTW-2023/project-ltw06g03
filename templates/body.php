@@ -154,19 +154,19 @@ function drawProfileBody($session) {
                 <i class="fas fa-user"></i>
             <?php } ?>
 
-            <h2> <?php echo $username ?> </h2>
-            <h3> up<?php echo $up ?> </h3>
-            <h4> <?php echo $userType ?> </h4>
+            <h2> <?= $username ?> </h2>
+            <h3> up<?= $up ?> </h3>
+            <h4> <?= $userType ?> </h4>
         </div>
 
         <div class="user-info">
-            <h4> User Email: <?php echo $userEmail ?> </h4>
-            <h4> This user joined at: <?php echo $date ?> </h4> 
+            <h4> User Email: <?= $userEmail ?> </h4>
+            <h4> This user joined at: <?= $date ?> </h4> 
             <h4> Departments: </h4>
             <ul>
             <?php if ($userType != 'Student') {
                 for ($i = 0; $i < count($userDepartments); $i++) { ?>
-                    <li><h4> <?php echo $userDepartments[$i] ?> </h4></li>
+                    <li><h4> <?= $userDepartments[$i] ?> </h4></li>
             <?php }
             } ?>
             </ul>
@@ -178,7 +178,7 @@ function drawProfileBody($session) {
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
             <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
-            <a href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
+            <a href="../pages/edit_user.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
     </div> 
     
@@ -188,47 +188,53 @@ function drawProfileBody($session) {
 
 function drawUsersBody($users){ ?>
 
-    <div class="users-body">
-        
-        <table>
+    <div class="staff-page">
+        <div class="users-body">
+            <input id="searchuser" type="text" placeholder="Search for an user">
 
-            <thead>
+            <div class="table">
+                <table>
 
-                <th> User </th>
-                <th> Up </th>
-                <th> Email </th>
+                    <thead>
 
-            </thead>
+                        <th><h2> User </h2></th>
+                        <th><h2> Up </h2></th>
+                        <th><h2> Email </h2></th>
 
-            <tbody class="table-box">
-                <?php foreach($users as $user){ ?>
+                    </thead>
 
-                    <tr>
+                    <tbody id="table-box">
+                        
+                        <?php foreach($users as $user){ ?>
 
-                        <td>
-                            <h2><?php echo $user->name ?></h2>
-                            <h3><?php echo $user->role ?></h3>
-                        </td> 
+                            <tr>
 
-                        <td> <h3><?php echo $user->up?> </h3></td>
+                                <td>
+                                    <h2><?= $user->name ?></h2>
+                                    <h3><?= $user->role ?></h3>
+                                </td> 
 
-                        <td> <h3><?php echo $user->email?>  </h3></td>
+                                <td> <h3><?= $user->up?> </h3></td>
+
+                                <td> <h3><?= $user->email?>  </h3></td>
 
 
-                        <td>
+                                <td>
 
-                            <i class="fas fa-search"></i>
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash-alt"></i>
+                                    <i class="fas fa-search"></i> 
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-alt"></i>
 
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
 
-                <?php } ?>
-            </tbody>
+                        <?php } ?>
+                    </tbody>
 
-        </table>
+            </table>
+            </div>
 
+        </div>
     </div>
         
 

@@ -63,5 +63,31 @@ class User {
         return $ret;
     }
 
+
+    static function searchUser(PDO $db, string $nameOrUP) : array {
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
+
+        try {
+            $stmt->execute(array($nameOrUP . '%',  intval($nameOrUP) . '%'));
+        }
+        catch(Exception $e) {
+            $stmt->execute(array($nameOrUP . '%',  -1 . '%'));
+        }
+
+        $ret = array();
+
+        while($user = $stmt->fetch()) {
+            $ret[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD']
+            );
+        }
+
+        return $ret;
+    }
+
 }
 ?>
