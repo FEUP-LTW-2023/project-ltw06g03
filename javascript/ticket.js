@@ -1,28 +1,55 @@
 let expanded=null;
+let expandedTicket=null;
 const body= document.querySelector("main");
-export function  drawTickets(tickets,section){
-    for(let index=0; index<tickets.length;index++){
-        let ticketContainer=drawTicket(tickets[index]);
-        console.log(ticketContainer);
-        section.appendChild(ticketContainer);
-        ticketContainer.addEventListener('click',()=>{expand(tickets[index])});
+export let ticketSection=document.createElement('div');
+ticketSection.className="ticketSection";
+
+let href_;
+export async function drawTickets(href) {
+
+    href_ = href;
+    const response = await fetch(href);
+    let tickets = await response.json();
+    const title = document.createElement('h2');
+    ticketSection.innerHTML='';
+    title.innerText = "My tickets";
+    ticketSection.appendChild(title);
+    if(tickets.length===0){
+        const notFound= document.createElement('div');
+        notFound.className="notFound";
+        const p= document.createElement('p');
+        p.innerText="No tickets found";
+        notFound.appendChild(p);
+        ticketSection.appendChild(notFound);
     }
+
+    for (let index = 0; index < tickets.length; index++) {
+        let ticketContainer = drawTicket(tickets[index]);
+        ticketSection.appendChild(ticketContainer);
+        ticketContainer.addEventListener('click', () => {
+            expand(tickets[index])
+        });
+        if(expandedTicket!==null &&  tickets[index]['id']===expandedTicket['id']) expand(tickets[index]);
+    }
+
 }
 function drawTicket(ticket){
-    const ticketContainer= document.createElement("div");
+
+    let ticketContainer= document.createElement("div");
     ticketContainer.className="ticketContainer";
     ticketContainer.appendChild(userInfo(ticket['client']));
-    const subject= document.createElement("div");
+    console.log();
+    let subject= document.createElement("div");
     subject.className="subject";
     let p=document.createElement('p');
     p.innerText=ticket['title'];
     subject.appendChild(p);
-    const dep= document.createElement("div");
+    let dep= document.createElement("div");
     dep.className="department";
     p=document.createElement('p');
     p.innerText='cica';
     dep.appendChild(p);
-    const status= document.createElement("div");
+    let status= document.createElement("div");
     status.className="status";
     p=document.createElement('p');
     p.innerText=ticket['status'];
@@ -30,6 +57,7 @@ function drawTicket(ticket){
     ticketContainer.appendChild(subject);
     ticketContainer.appendChild(dep);
     ticketContainer.appendChild(status);
+
     return ticketContainer;
 }
 
@@ -45,19 +73,19 @@ function userInfo(user){
     userInf.appendChild(profileImg);
     userInf.appendChild(name);
     userInf.appendChild(up);
+
     return userInf;
 }
 
-function expand(ticket_){
+function expand(ticket){
     if(expanded!==null) closeSection();
-    const ticket= ticket_;
     const expand=document.createElement('div');
     expand.className="expandedTicket";
     expand.appendChild(drawExpandedHeader(ticket));
     expand.appendChild(drawExpandedExtraInf(ticket));
     expand.appendChild(drawExpandedAbout(ticket));
-    expand.appendChild(drawMessages(ticket['messages']));
-
+    expand.appendChild(drawMessages(ticket['messages'],ticket));
+    expandedTicket=ticket;
     expanded=expand;
     body.appendChild(expand);
     const mess= document.querySelector(".messages");
@@ -122,6 +150,7 @@ function drawMessage(message){
     messageContainer.className='message';
     const userInf_=userInfo(message['client']);
     const p=document.createElement('p');
+    p.className="text";
     p.innerText=message['text'];
     messageContainer.appendChild(userInf_);
     messageContainer.appendChild(p);
@@ -132,8 +161,13 @@ function form(){
 
     const text=document.createElement('textarea');
     const submit= document.createElement('button');
-    submit.type="submit";
-    submit.addEventListener('submit',(e)=>sendMessage(e));
+    submit.innerText="Send";
+    submit.addEventListener('click',async (e) => {
+        e.preventDefault();
+        await sendMessage(text.value);
+        await drawTickets(href_);
+
+    });
     text.name="text";
     form.appendChild(text);
     form.appendChild(submit);
@@ -143,10 +177,16 @@ function form(){
 function closeSection(){
     body.removeChild(expanded);
     expanded=null;
+    expandedTicket=null;
 }
-function sendMessage(e){
-    e.preventDefault();
-    
+async function sendMessage(text) {
+
+    const response = await fetch('../actions/sendMessage.php?text='+text+'&id='+expandedTicket['id']);
+    let res = await response.json();
+    if(res!==''){
+
+    }
+
 }
 
 

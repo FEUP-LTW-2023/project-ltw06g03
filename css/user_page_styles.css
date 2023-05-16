@@ -18,12 +18,12 @@ gap: 2rem;
 }
 .ticketSection{
   position: relative;
-  height: 90vh;
+
   background: white;
   padding: 1rem;
   border-radius: 1rem;
-  max-width: 50rem;
-  max-height: 90%;
+  width: 50rem;
+  height: 90%;
   color:#3d3737FD ;
   overflow: scroll;
 }
@@ -34,14 +34,11 @@ gap: 2rem;
 
 
 .user {
-
   max-width: 40rem;
   display: grid;
   grid-template-rows: auto 1fr auto;
-
   gap: 1em;
   color: #3d3737FD;
-
 }
 
 
