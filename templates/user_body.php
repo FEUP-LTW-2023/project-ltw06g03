@@ -4,7 +4,11 @@ function drawUserBody($session) {
     require_once('../templates/tickets.php');
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
-    $up=intval($_GET['up']);
+
+    if(isset($_GET['up']))$up=intval($_GET['up']);
+    else $up=$session->getUp();
+
+
     $user= User::getUser(getDatabaseConnection(),$up);
     $user_up = $session->getUp();
     $username = $user->name;

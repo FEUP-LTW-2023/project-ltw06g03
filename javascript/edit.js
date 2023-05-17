@@ -16,17 +16,44 @@ imgInput.addEventListener('input',async (e) => {
 
     }
     reader.readAsDataURL(imgInput.files[0]);
-    var formData = new FormData(); // Create a new FormData object
-    formData.append('img', imgInput.files[0]); // Append the file to the form data
+
+
 
 });
 
 function validateInputs(e) {
+    let err= document.querySelector('form .errorMessage');
     e.preventDefault();
     let pass= document.querySelectorAll("form input[name='pass']");
-    if(pass[0].value===pass[1].value) form.submit();
+    if(pass[0].value===pass[1].value) {
+        const formData = new FormData(); // Create a new FormData object
+        formData.append('img', imgInput.files[0]);
+        formData.append('name',document.getElementsByName('name')[0].value)
+        formData.append('email',document.getElementsByName('email')[0].value)
+        formData.append('pass',document.getElementsByName('pass')[0].value)// Append the file to the form data
+        fetch('../actions/update_user.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(async function (response) {
+
+                if (response.ok) {
+                    let res= await response.json();
+                    if(res[0]===''){
+                        window.location.href = window.location.origin+'/pages/user.php';
+                    }
+                    else   throw res[0] ;
+                    // Handle the response from PHP if needed
+                } else {
+                    throw "Error while uploading the image!";
+                }
+            })
+            .catch(function(error) {
+                err.innerText=error;
+            });
+    }
     else {
-        let err= document.querySelector('form .errorMessage');
+
         err.innerText="Passwords do not match";
     }
 }
