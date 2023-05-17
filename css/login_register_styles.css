@@ -40,13 +40,7 @@
 .loginRegisterForm .loginForm{
     max-height: 20rem;
 }
-.errorMessage{
-    color: #FF4F47;
-    font-weight: bold;
-    align-items: center;
-    justify-content: end;
-    display: flex;
-}
+
 .loginRegisterForm form h3{
     font-size: 1.5rem;
     width: 100%;

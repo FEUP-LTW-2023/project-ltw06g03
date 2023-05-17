@@ -32,7 +32,14 @@ p{
   margin: 0;
   word-break: break-word;
 }
-
+.errorMessage{
+  color: #FF4F47;
+  font-weight: bold;
+  align-items: center;
+  justify-content: end;
+  display: flex;
+  font-size: 1.1rem;
+}
 a:link,a:visited,a:hover,a:active{
   text-decoration: none;
 }

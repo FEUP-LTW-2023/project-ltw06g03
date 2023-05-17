@@ -50,6 +50,23 @@ class User {
             $departments
         );
     }
+    function save(PDO $db) {
+        $stmt = $db->prepare('
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, PASSWORD= ?
+        WHERE UP = ?
+      ');
+
+        $stmt->execute(array($this->name, $this->email, $this->pass,$this->up));
+    }
+    function uploadImg(PDO $db,string $img){
+        $stmt = $db->prepare('
+        UPDATE PERSON SET  IMG= ?
+        WHERE UP = ?
+      ');
+
+        $stmt->execute(array($img,$this->up));
+    }
 
 }
+
 ?>
