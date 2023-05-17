@@ -106,9 +106,8 @@ gap: 2rem;
 }
 
 .user .user-info h4 {
-  margin: 0;
   font-size: 1.25rem;
-  margin-bottom: 0.5em;
+  margin: 0 0 0.5em;
 }
 
 .user .user-info ul {

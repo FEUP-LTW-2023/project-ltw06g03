@@ -172,8 +172,7 @@
 .expandedTicket .extra-inf{
     grid-area: 2/2/4/3;
     padding: 1rem;
-    border-left: 1px solid #77777777 ;
-
+    border-left: 1px solid #77777777;
 }
 
 .expandedTicket .messages .message{
