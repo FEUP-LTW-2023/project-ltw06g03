@@ -67,7 +67,7 @@ function userInfo(user){
     userInf.className="user-info";
     const profileImg=document.createElement("img");
     profileImg.src=user['img'];
-    const name= document.createElement("h3");
+    const name= document.createElement("h4");
     name.innerText=user['name'];
     const up= document.createElement("p");
     up.innerText=user['up'];
@@ -143,6 +143,7 @@ function drawExpandedAbout(ticket){
     about.className="about";
     const userInfo_=userInfo(ticket['client']);
     const problem=document.createElement('p');
+    problem.className="text";
     problem.innerText=ticket['problem'];
     about.appendChild(userInfo_);
     about.appendChild(problem);
