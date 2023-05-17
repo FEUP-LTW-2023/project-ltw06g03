@@ -26,7 +26,7 @@ try {
     $user->save($db);
     $session->setUsername($_POST['name']);
     $session->setEmail($_POST['email']);
-    header('Location: /pages/user.php');
+    header('Location: /pages/user.php?up='.$session->getUp());
 } catch (Exception $exception) {
     echo json_encode([$exception]);
 }

@@ -36,7 +36,7 @@ class User {
             '',
             []
         );
-        $img='../docs/images/feup.png';
+        $img='../docs/images/default_pfp.png';
         if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
         $departments=Department::getUsersDepartments($db, $user['UP']);
 

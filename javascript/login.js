@@ -12,7 +12,7 @@ async function validateLoginInputs(event){
     const response = await fetch('../actions/login.php?up=' + up.value+'&pass='+pass.value);
     let res = await response.json();
     if(res==''){
-          window.location.href = 'http://localhost:9000/pages/home.php';
+          window.location.href = window.location.origin+'/pages/home.php';
     }
     else{
         let err=document.querySelector(".loginForm .errorMessage");

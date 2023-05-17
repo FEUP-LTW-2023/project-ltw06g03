@@ -1,17 +1,18 @@
 <?php 
 
 function drawUserBody($session) {
-    $up = $session->getUp();
-    $username = $session->getUsername();
-    $userType = $session->getUserType();
-    $userEmail = $session->getEmail();
-    $userDepartments = $session->getDepartments();
-    $date = $session->getDateOfRegister();
-    $userImg = $session->getUserImg();
     require_once('../templates/tickets.php');
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
-    $tickets= Ticket::getTickets(getDatabaseConnection(),$up);
+    $up=intval($_GET['up']);
+    $user= User::getUser(getDatabaseConnection(),$up);
+    $user_up = $session->getUp();
+    $username = $user->name;
+    $userType = $user->role;
+    $userEmail = $user->email;
+    $userDepartments = $user->departments;
+    $date = $session->getDateOfRegister();
+    $userImg = $user->img;
 
     ?>
     <div class="user-page">
@@ -33,7 +34,8 @@ function drawUserBody($session) {
 
         <div class="user-info">
             <h4> User Email: <?php echo $userEmail ?> </h4>
-            <h4> This user joined at: <?php echo $date ?> </h4> 
+            <h4> This user joined at: <?php echo $date ?> </h4>
+            <?php if(count($userDepartments)>0){ ?>
             <h4> Departments: </h4>
             <ul>
             <?php if ($userType != 'Student') {
@@ -42,7 +44,9 @@ function drawUserBody($session) {
             <?php }
             } ?>
             </ul>
+            <?php } ?>
         </div>
+        <?php if($user_up===$up){ ?>
         <div class="links">
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
@@ -50,6 +54,7 @@ function drawUserBody($session) {
             <a href ="../actions/logout.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
             <a href="../pages/edit.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
+        <?php }?>
     </div>
     </div>
 <?php } ?>

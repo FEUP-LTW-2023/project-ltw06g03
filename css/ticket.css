@@ -1,6 +1,6 @@
 
 .ticketContainer{
-    position: relative;
+
     padding: 1rem;
     width: auto;
     background: white;
@@ -9,6 +9,7 @@
     margin:  auto auto;
     border-bottom: 1px solid #77777777;
     cursor: pointer;
+    max-width: 100%;
 
 
 }
@@ -78,8 +79,20 @@
      top: 0;
      padding: 1vh 1rem;
      z-index: 3;
+     animation: move 0.2s linear;
 
  }
+@keyframes move {
+    0%{
+        right: -60rem;
+       opacity: 0%;
+    }
+    100%{
+        right: 0;
+        opacity: 100%;
+    }
+
+}
 .expandedTicket header{
     grid-area: 1/1/2/3;
     padding: 0rem 1rem;
@@ -113,19 +126,23 @@
     background: white;
     color: #3d3737FF;
 }
-.expandedTicket header .status{
+.expandedTicket  .status{
     position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 
-    padding: 1rem;
 
 }
-.expandedTicket header .status p{
+.expandedTicket  .status p{
     background: #FF4F47;
     color: white;
     width: fit-content;
+    height: fit-content;
     padding: 0.5rem 1rem;
     border-radius: 10rem;
     text-align: center;
+    font-size: 0.9rem;
 }
 .expandedTicket .about{
     padding: 1.5rem ;
@@ -163,7 +180,7 @@
     grid-area: 3/1/4/2;
     background: rgb(245, 245, 245);
     padding: 1rem;
-    min-height: 25rem;
+    min-height: 35rem;
     overflow: scroll;
 
 
@@ -205,9 +222,9 @@
 }
 .expandedTicket .messages form{
     width: auto;
-    height: 15rem;
+    height: 10rem;
     background: white;
-    padding: 2rem 1rem;
+    padding: 1rem;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -295,8 +312,6 @@
 @media (max-width: 40rem) {
     .expandedTicket{
        left: 0;
-
-
     }
     .ticketContainer{
 

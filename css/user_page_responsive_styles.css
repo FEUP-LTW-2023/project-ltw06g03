@@ -2,17 +2,13 @@
     .user-page{
         display: flex;
         flex-direction: column;
-        height: auto;
         padding: 0rem;
         border: none;
         width: 100%;
     }
 
-    .user {
-        width: auto;
-        grid-template-columns: 100%;
-        padding: 0rem;
-      }
+
+
 
     .user .user-info,
     .user .user-icon-info {
@@ -31,6 +27,12 @@
 
     .user .links a {
         margin-bottom: 1em;;
+    }
+
+}
+@media (max-width: 60rem) {
+    .ticketSection{
+        padding: 0;
     }
 
 }

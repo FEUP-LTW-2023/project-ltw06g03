@@ -23,8 +23,7 @@ main{
   padding: 0;
 position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+
 
 }
 p{
@@ -140,6 +139,8 @@ footer{
   padding: 6rem 5rem 2rem;
   margin: auto 0 0;
   line-height: 1.3rem;
+  position: relative;
+
 }
 footer .row{
   width: 90%;
