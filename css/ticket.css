@@ -1,0 +1,323 @@
+
+.ticketContainer{
+    position: relative;
+    padding: 1rem;
+    width: auto;
+    background: white;
+    display: grid;
+   grid-template-columns: 1fr 1fr 5rem 5rem;
+    margin:  auto auto;
+    border-bottom: 1px solid #77777777;
+    cursor: pointer;
+
+
+}
+.ticketContainer *{
+    overflow: clip;
+   word-break: unset;
+}
+ .ticketContainer .user-info ~ * {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+.ticketContainer * *{
+    text-align: center;
+    padding: 0;
+}
+.user-info{
+
+    justify-content: start;
+    align-items: start;
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr;
+}
+ .user-info *{
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.user-info img{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    grid-area: 1/1/3/2;
+}
+.ticketContainer .status p, .ticketSection .ticketContainer .department p{
+    padding: 0.5rem 1rem;
+    background: #FF4F47;
+    color: white;
+    border-radius: 10rem;
+}
+ .labels{
+    position: relative;
+    padding: 1rem;
+    width: auto;
+    background: white;
+    display: none;
+    grid-template-columns: 1fr 1fr 5rem 5rem;
+    margin:  auto auto;
+    border-bottom: 1px solid #77777777;
+    cursor: pointer;
+}
+ .expandedTicket{
+     position: fixed;
+     display: grid;
+     width: 70rem;
+     box-shadow: -2px 0 rgba(0, 0, 0, 0.1);
+     background: rgb(250, 250, 250);
+     grid-template-columns: 1fr 20rem;
+     grid-template-rows: auto auto auto;
+     height: 98vh;
+     overflow: scroll;
+     right: 0;
+     top: 0;
+     padding: 1vh 1rem;
+     z-index: 3;
+
+ }
+.expandedTicket header{
+    grid-area: 1/1/2/3;
+    padding: 0rem 1rem;
+    height: fit-content;
+    position: relative;
+    border-bottom: 1px solid #77777777;
+
+
+}
+.expandedTicket header h2{
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    max-width: 90%;
+}
+.expandedTicket header button{
+    position: absolute;
+    top:1rem;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10rem;
+    background: #3d3737FF;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: 0.5s;
+}
+.expandedTicket header button:hover{
+    background: white;
+    color: #3d3737FF;
+}
+.expandedTicket header .status{
+    position: relative;
+
+    padding: 1rem;
+
+}
+.expandedTicket header .status p{
+    background: #FF4F47;
+    color: white;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    text-align: center;
+}
+.expandedTicket .about{
+    padding: 1.5rem ;
+    grid-area: 2/1/3/2;
+    height: fit-content;
+}
+.expandedTicket .about .user-info{
+    justify-content: start;
+    align-items: start;
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr;
+}
+.expandedTicket .about .user-info img{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    grid-area: 1/1/3/2;
+}
+.expandedTicket .about .user-info *{
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.expandedTicket .about p{
+    padding: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    color:#3d3737FD ;
+}
+.expandedTicket .messages{
+    border-top: 1px solid #77777777 ;
+    grid-area: 3/1/4/2;
+    background: rgb(245, 245, 245);
+    padding: 1rem;
+    min-height: 25rem;
+    overflow: scroll;
+
+
+
+}
+.expandedTicket .extra-inf{
+    grid-area: 2/2/4/3;
+    padding: 1rem;
+    border-left: 1px solid #77777777;
+}
+
+.expandedTicket .messages .message{
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+.expandedTicket .messages .message .text{
+    padding: 1rem 0rem;
+}
+.expandedTicket .department{
+    display: flex;
+    align-items: center;
+}
+.expandedTicket .extra-inf h5{
+    color: #3d3737FD;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+.expandedTicket .department p{
+    padding: 0.5rem 1rem;
+    background: #FF4F47;
+    color: white;
+    max-height: 2rem;
+    border-radius: 10rem;
+
+    text-align: center;
+}
+.expandedTicket .messages form{
+    width: auto;
+    height: 15rem;
+    background: white;
+    padding: 2rem 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    border: 1px solid #87878755;
+    border-radius:1rem ;
+}
+.expandedTicket .messages form textarea{
+    height: 100%;
+    width: 100%;
+
+    border: none;
+    font-size: 1rem;
+}
+.expandedTicket .messages form button{
+    padding: 0.5rem 1rem;
+    border-radius:0.3rem ;
+    outline: none;
+    border: none;
+    margin-top: 1rem;
+    background: #FF4F47;
+    color: white;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.expandedTicket .messages form button:hover{
+    background: #767676;
+}
+.notFound{
+    width: auto;
+    max-width: 40rem;
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+    background: #767676;
+}
+.notFound p{
+    color: white;
+    font-size: 1rem;
+}
+@media (max-width: 75rem) {
+
+    .ticketContainer{
+        grid-template-columns: 1fr 5rem 5rem;
+        grid-template-rows: 1fr 1fr;
+    }
+    .ticketContainer .user-info{
+        grid-area: 1/1/2/2 ;
+    }
+    .ticketContainer .subject{
+        grid-area: 2/1/3/4;
+    }
+    .expandedTicket{
+        width: auto;
+        left: 4rem;
+
+    }
+}
+@media (max-width: 55rem) {
+    .expandedTicket{
+        width: auto;
+        left: 4rem;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto auto auto;
+
+    }
+    .expandedTicket .extra-inf{
+        grid-area: 2/1/3/4;
+        border-left: none;
+        border-bottom: 1px solid #77777777;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .expandedTicket .about{
+        grid-area: 3/1/4/4;
+    }
+    .expandedTicket .messages{
+        grid-area: 4/1/5/4;
+    }
+}
+@media (max-width: 40rem) {
+    .expandedTicket{
+       left: 0;
+
+
+    }
+    .ticketContainer{
+
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .ticketContainer .user-info{
+        grid-area: 1/1/2/4 ;
+    }
+    .ticketContainer .subject{
+        grid-area: 2/1/3/4;
+
+    }
+    .ticketContainer .department{
+        grid-area: 3/2/4/3;
+
+    }
+    .ticketContainer .status{
+        grid-area: 3/3/4/4;
+
+    }
+}
+
+
+

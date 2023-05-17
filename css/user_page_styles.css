@@ -1,20 +1,50 @@
-.user {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 40% 60%;
-  padding: 3em;
-  gap: 1em;
+.user-page{
 
-  color: #3d3737FD;
-
-}
-main{
+  width: 100%;
+  display: flex;
+  margin: auto;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/images/feup.png');
   background-repeat: no-repeat;
   background-size: cover ;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  position: relative;
+  padding: 1rem 0;
+gap: 2rem;
+  flex-wrap: wrap;
+
+
 }
-  
-.user-icon-info {
+.ticketSection{
+  position: relative;
+
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 50rem;
+  height: 90%;
+  color:#3d3737FD ;
+  overflow: scroll;
+}
+.ticketSection h2{
+  padding: 0 1rem 1rem;
+  border-bottom:1px solid #77777777 ;
+}
+
+
+.user {
+  max-width: 40rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1em;
+  color: #3d3737FD;
+}
+
+
+
+.user .user-icon-info {
+
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -28,7 +58,7 @@ main{
   overflow: hidden;
 }
 
-.user-icon-info img {
+.user .user-icon-info img {
   object-fit: cover;
   width: 8rem;
   height: 8rem;
@@ -36,7 +66,7 @@ main{
   border: 2px solid #555;
 }
 
-.user-icon-info i {
+.user .user-icon-info i {
   font-size: 4rem;
   padding: 0.5em;
   border-radius: 100%;
@@ -49,22 +79,22 @@ main{
   width: 4rem;
 }
 
-.user-icon-info > * {
+.user .user-icon-info > * {
   margin: 0.5em 0;
 }
 
-.user-icon-info h2 {
+.user .user-icon-info h2 {
   margin: 0.25em 0;
   font-size: 2.5rem;
 }
 
-.user-icon-info h3,
-.user-icon-info h4 {
+.user .user-icon-info h3,
+.user .user-icon-info h4 {
   margin: 0;
   font-size: 1.25rem;
 }
 
-.user-info {
+.user .user-info {
   grid-column: 1;
   grid-row: 2;
   display: flex;
@@ -75,20 +105,19 @@ main{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-info h4 {
-  margin: 0;
+.user .user-info h4 {
   font-size: 1.25rem;
-  margin-bottom: 0.5em;
+  margin: 0 0 0.5em;
 }
 
-.user-info ul {
+.user .user-info ul {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
 }
 
-.user-info ul li {
+.user .user-info ul li {
   list-style-type: none;
   margin-right: 0.5em;
   margin-bottom: 0.5em;
@@ -97,7 +126,7 @@ main{
   border: 1px solid #ccc;
 }
 
-.links {
+.user .links {
   grid-row: 3;
   grid-column: 1;
   display: flex;
@@ -108,7 +137,7 @@ main{
   margin-top: 1em;
 }
 
-.links a {
+.user .links a {
 
   border-radius: 1em;
   padding: 1em;
@@ -119,7 +148,7 @@ main{
   color: white;
 }
 
-.links a:hover {
+.user .links a:hover {
 
   background: #81150c ;
 

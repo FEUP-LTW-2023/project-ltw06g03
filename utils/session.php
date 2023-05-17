@@ -24,6 +24,9 @@ class Session {
     public function getEmail() {
         return isset($_SESSION['email']) ? $_SESSION['email'] : null;
     }
+    public function get() {
+        return isset($_SESSION['email']) ? $_SESSION['email'] : null;
+    }
 
     public function getUserType() {
         return isset($_SESSION['userType']) ? $_SESSION['userType'] : null;

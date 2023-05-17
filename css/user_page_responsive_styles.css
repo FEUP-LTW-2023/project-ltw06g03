@@ -1,12 +1,21 @@
-@media (max-width: 60rem) {
+@media (max-width: 85rem) {
+    .user-page{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 0rem;
+        border: none;
+        width: 100%;
+    }
 
     .user {
+        width: auto;
         grid-template-columns: 100%;
-        padding: 1rem;
+        padding: 0rem;
       }
-    
-    .user-info,
-    .user-icon-info {
+
+    .user .user-info,
+    .user .user-icon-info {
         grid-column: 1;
         width: 100%;
         overflow-wrap: break-word;
@@ -15,12 +24,12 @@
         padding-right: 1em;
     }
 
-    .links {
+    .user .links {
         grid-row: 3;
         grid-column: 1;
       }
 
-    .links a {
+    .user .links a {
         margin-bottom: 1em;;
     }
 

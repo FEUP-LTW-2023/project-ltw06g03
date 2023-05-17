@@ -1,7 +1,6 @@
 <?php 
 
 function drawUserBody($session) {
-    
     $up = $session->getUp();
     $username = $session->getUsername();
     $userType = $session->getUserType();
@@ -9,8 +8,13 @@ function drawUserBody($session) {
     $userDepartments = $session->getDepartments();
     $date = $session->getDateOfRegister();
     $userImg = $session->getUserImg();
-    
+    require_once('../templates/tickets.php');
+    require_once ("../database/user.class.php");
+    require_once ("../database/connection.php");
+    $tickets= Ticket::getTickets(getDatabaseConnection(),$up);
+
     ?>
+    <div class="user-page">
 
     <div class="user">
         <div class="user-icon-info">
@@ -34,21 +38,20 @@ function drawUserBody($session) {
             <ul>
             <?php if ($userType != 'Student') {
                 for ($i = 0; $i < count($userDepartments); $i++) { ?>
-                    <li><h4> <?php echo $userDepartments[$i] ?> </h4></li>
+                    <li><h4> <?php echo $userDepartments[$i]?> </h4></li>
             <?php }
             } ?>
             </ul>
-
         </div>
-
         <div class="links">
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
-            <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
-            <a href="../pages/edit_user.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
+            <a href ="../actions/logout.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+            <a href="../pages/edit.php?up=<?php echo $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
-    </div> 
-    
-
+    </div>
+    </div>
 <?php } ?>
+
+
