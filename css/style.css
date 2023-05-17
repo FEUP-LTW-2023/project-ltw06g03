@@ -23,16 +23,28 @@ main{
   padding: 0;
 position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 
+
+}
+h1,h2,h3,h4,h5,h6{
+  padding: 0;
+}
+form i{
+  cursor: pointer;
 }
 p{
   padding: 0;
   margin: 0;
   word-break: break-word;
 }
-
+.errorMessage{
+  color: #FF4F47;
+  font-weight: bold;
+  align-items: center;
+  justify-content: end;
+  display: flex;
+  font-size: 1.1rem;
+}
 a:link,a:visited,a:hover,a:active{
   text-decoration: none;
 }
@@ -133,6 +145,8 @@ footer{
   padding: 6rem 5rem 2rem;
   margin: auto 0 0;
   line-height: 1.3rem;
+  position: relative;
+
 }
 footer .row{
   width: 90%;

@@ -8,30 +8,34 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 1rem 0;
-    gap: 2rem;
+
+   gap: 2rem;
     flex-wrap: wrap;
 
     min-height: 100%;
 }
+h5{
+    margin: 0;
+}
 .edit-page form{
+    position: relative;
     background: white;
     border-radius: 1rem;
     display: grid;
-    grid-template-rows:  2rem 8rem 1fr 1fr  5rem ;
-    grid-template-columns: 1fr 1fr 5rem;
+    grid-template-rows:  2rem 8rem 1.5rem 1fr 1.5rem 1fr 3rem 3rem ;
+    grid-template-columns: 1fr 2rem 1fr 2rem;
     padding: 2rem;
     min-width: 40rem;
     gap: 1rem;
     font-size: 1.3rem;
 
 }
-.edit-page form a{
+.edit-page form a,.edit-page form a i{
     color: #DD150c;
 }
 
 .edit-page form button{
-    margin-top:2rem ;
+
     font-size: 1.2rem;
 }
 
@@ -51,6 +55,10 @@
     position: absolute;
     cursor: pointer;
 }
+
+.edit-page form i{
+    color: #888888;
+}
 .edit-page form label:nth-of-type(1):hover::before{
     cursor: pointer;
     content: '+';
@@ -68,7 +76,7 @@
     z-index: 2;
     border-radius: 10rem;
 }
-.edit-page form label:nth-of-type(1) input{
+.edit-page form  input[type=file]{
     display: none;
 }
 .edit-page form input[type='text'],.edit-page form input[type='email'],.edit-page form input[type='password']{
@@ -78,28 +86,111 @@
     width: 100%;
     font-size: 1.2rem;
 }
+
 .edit-page form :nth-child(1){
-    grid-area: 1/1/2/4;
+    grid-area: 1/1/2/5;
 
 }
 .edit-page form :nth-child(2){
-    grid-area: 2/1/3/4;
-}
-.edit-page form :nth-child(3){
-    grid-area: 3/1/5/2;
+    grid-area: 2/1/3/5;
 }
 .edit-page form :nth-child(4){
-    grid-area: 3/2/4/4;
+    grid-area: 3/1/4/3;
 }
 .edit-page form :nth-child(5){
-    grid-area: 4/1/5/2;
-}
-.edit-page form :nth-child(6){
-    grid-area: 4/2/5/4;
-}
-.edit-page form :nth-child(7){
-    grid-area: 5/3/6/4;
+    grid-area: 4/1/5/3;
 }
 
+.edit-page form :nth-child(6){
+    grid-area: 3/3/4/5;
+}
+.edit-page form :nth-child(7){
+    grid-area: 4/3/5/5;
+}
+.edit-page form :nth-child(8){
+    grid-area: 5/1/6/3;
+}
+.edit-page form :nth-child(9){
+    grid-area: 6/1/7/2;
+}
+.edit-page form :nth-child(10){
+    grid-area: 6/2/7/3;
+}
+.edit-page form :nth-child(11){
+    grid-area: 5/3/6/5;
+}
+.edit-page form :nth-child(12){
+    grid-area: 6/3/7/4;
+}
+.edit-page form :nth-child(13){
+    grid-area: 6/4/7/5;
+}
+.edit-page form :nth-child(14){
+    grid-area: 7/1/8/5;
+}
+.edit-page form :nth-child(15){
+   position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+@media (max-width: 50rem) {
+
+    .edit-page form{
+        min-width: 0;
+        width: 100%;
+        grid-template-rows:   1fr 8rem repeat(10,1fr) ;
+        grid-template-columns: 1fr  2rem;
+        min-height: 100vh;
+        padding: 0.5rem 1rem;
+        border-radius: 0;
+
+    }
+
+    .edit-page form :nth-child(1){
+        grid-area: 1/1/5/3;
+
+    }
+    .edit-page form :nth-child(2){
+        grid-area: 2/1/3/5;
+    }
+    .edit-page form :nth-child(4){
+        grid-area: 3/1/4/3;
+    }
+    .edit-page form :nth-child(5){
+        grid-area: 4/1/5/3;
+    }
+
+    .edit-page form :nth-child(6){
+        grid-area: 5/1/6/3;
+    }
+    .edit-page form :nth-child(7){
+        grid-area: 6/1/7/3;
+    }
+    .edit-page form :nth-child(8){
+        grid-area: 7/1/8/3;
+    }
+    .edit-page form :nth-child(9){
+        grid-area: 8/1/9/2;
+    }
+    .edit-page form :nth-child(10){
+        grid-area: 8/2/9/3;
+    }
+    .edit-page form :nth-child(11){
+        grid-area: 9/1/10/3;
+    }
+    .edit-page form :nth-child(12){
+        grid-area: 10/1/11/2;
+    }
+    .edit-page form :nth-child(13){
+        grid-area: 10/2/11/3;
+    }
+    .edit-page form :nth-child(14){
+        grid-area: 11/1/12/3;
+    }
+    .edit-page form a{
+       text-align: center;
+    }
+
+}
 
 

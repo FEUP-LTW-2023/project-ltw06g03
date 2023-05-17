@@ -36,7 +36,7 @@ class User {
             '',
             []
         );
-        $img='../docs/images/feup.png';
+        $img='../docs/images/default_pfp.png';
         if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
         $departments=Department::getUsersDepartments($db, $user['UP']);
 
@@ -50,6 +50,23 @@ class User {
             $departments
         );
     }
+    function save(PDO $db) {
+        $stmt = $db->prepare('
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, PASSWORD= ?
+        WHERE UP = ?
+      ');
+
+        $stmt->execute(array($this->name, $this->email, $this->pass,$this->up));
+    }
+    function uploadImg(PDO $db,string $img){
+        $stmt = $db->prepare('
+        UPDATE PERSON SET  IMG= ?
+        WHERE UP = ?
+      ');
+
+        $stmt->execute(array($img,$this->up));
+    }
 
 }
+
 ?>

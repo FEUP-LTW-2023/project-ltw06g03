@@ -14,7 +14,7 @@
             <p class="errorMessage"></p>
             <a href="../pages/register.php">Don't have an account?</a>
 
-            <button   >Login</button>
+            <button >Login</button>
         </form>
     </div>
 <?php } ?>

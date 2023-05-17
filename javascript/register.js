@@ -1,13 +1,13 @@
+import {addPasswordToggle} from "./script.js";
 const registerForm= document.getElementsByName("RegisterForm")[0];
 registerForm.addEventListener("submit",async (event) => {
     await validateRegisterInputs(event);
 });
 
 
-const eyes= document.querySelectorAll('.registerForm label i');
-eyes[0].addEventListener('click',(e)=>toggleVisibility(e));
-eyes[1].addEventListener('click',(e)=>toggleVisibility(e));
+const eyes= document.querySelectorAll('.registerForm label i.fa-eye');
 
+addPasswordToggle(eyes);
 async function validateRegisterInputs(event) {
     try {
         event.preventDefault();
@@ -30,20 +30,3 @@ async function validateRegisterInputs(event) {
 }
 
 
-function toggleVisibility(e){
-    e.preventDefault();
-    let pass = document.querySelectorAll(".registerForm input[name='pass']");
-    if(pass[0].type==='password'){
-        pass[0].type='text';
-        pass[1].type='text';
-        eyes[0].className=' fas fa-eye-slash';
-        eyes[1].className=' fas fa-eye-slash';
-    }
-    else{
-        pass[0].type='password';
-        pass[1].type='password';
-        eyes[0].className=' fas fa-eye';
-        eyes[1].className=' fas fa-eye';
-    }
-
-}
