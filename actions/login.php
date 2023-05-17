@@ -24,7 +24,7 @@ try {
         echo json_encode('');
 
     } else  {
-        echo json_encode([$user->pass]);
+        echo json_encode(['Password is incorrect']);
     }
 
 }catch (Exception $exception){

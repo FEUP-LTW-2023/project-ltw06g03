@@ -78,6 +78,7 @@
     width: 100%;
     font-size: 1.2rem;
 }
+
 .edit-page form :nth-child(1){
     grid-area: 1/1/2/4;
 

@@ -11,7 +11,7 @@ $file_contents = file_get_contents('../docs/images/feup.png');
 $base64 = base64_encode($file_contents);
 $stmt->bindParam(':img', $base64);
 $stmt->execute();
-header("Location: http://localhost:9000/pages/home.php");
+header('Location: /pages/home.php');
 ?>
 
 
