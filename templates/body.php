@@ -1,11 +1,16 @@
 <?php
-function drawHomeBody(){ ?>
+function drawHomeBody(){
+    require_once(__DIR__ . '/../utils/session.php');
+    $session = new Session();
+    ?>
 
 <div class="homePageHeader">
-    <div class="loginRegister">
-        <a  href="../pages/register.php">Register</a>
-        <a href="../pages/login.php">Login</a>
-    </div>
+    <?php if(!$session->isLoggedIn()){?>
+        <div class="loginRegister">
+            <a  href="../pages/register.php">Register</a>
+            <a href="../pages/login.php">Login</a>
+        </div>
+    <?php }?>
     <header>
         <h1>Feup Trouble Ticket's</h1>
         <h2>Create tickets for your problems</h2>
@@ -141,8 +146,12 @@ function drawProfileBody($session) {
     $userDepartments = $session->getDepartments();
     $date = $session->getDateOfRegister();
     $userImg = $session->getUserImg();
-    
+    require_once('../templates/tickets.php');
+    require_once ("../database/user.class.php");
+    require_once ("../database/connection.php");
+    $tickets= Ticket::getTickets(getDatabaseConnection(),$up);
     ?>
+    <div class="user-page">
 
     <div class="user">
         <div class="user-icon-info">
@@ -181,6 +190,7 @@ function drawProfileBody($session) {
             <a href="../pages/edit_user.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
     </div> 
+    </div>
     
 
 <?php } 

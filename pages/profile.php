@@ -6,22 +6,13 @@
     require_once('../templates/body.php');
     $session = new Session();
 
+    $session->setDateOfRegister("2020-20-02");
 
     if (!$session->isLoggedIn()) {
         header('Location: home.php');
     }
 
     else {
-
-        //set Session
-        $session->setUsername("Capitulino");
-        $session->setEmail("capitulino@andreioleta.com");
-        $session->setUp(123456789);
-        $session->setUserImg("../docs/feup.png");
-        //$session->setUserImg(null);
-        $session->setDepartments(array("DEI", "DCC"));
-        $session->setDateOfRegister("2020-20-02");
-
         drawProfileHeader($session);
         drawNavBar($session);
         drawProfileBody($session);

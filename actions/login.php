@@ -19,8 +19,9 @@ try {
         $session->setUsername($user->name);
         $session->setEmail($user->email);
         $session->setUserType($user->role);
-
-        echo json_encode(['']);
+        $session->setUserImg($user->img);
+        $session->setDepartments($user->departments);
+        echo json_encode('');
 
     } else  {
         echo json_encode(['Password is invalid']);
