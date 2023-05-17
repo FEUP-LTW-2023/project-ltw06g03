@@ -1,4 +1,7 @@
+import {addPasswordToggle} from "./script.js";
 const form= document.querySelector('form');
+const eyes= document.querySelectorAll('form i.fa-eye');
+addPasswordToggle(eyes);
 form.addEventListener('submit',(e)=>{
     validateInputs(e);
 })
@@ -26,6 +29,4 @@ function validateInputs(e) {
         let err= document.querySelector('form .errorMessage');
         err.innerText="Passwords do not match";
     }
-
-
 }

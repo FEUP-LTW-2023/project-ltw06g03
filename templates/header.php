@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../css/login_register_styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/login.js" defer></script>
+    <script src="../javascript/login.js" defer type="module"></script>
 </head>
 <body>
 <?php } ?>
@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="../css/login_register_styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/register.js" defer></script>
+    <script src="../javascript/register.js" defer type="module"></script>
 </head>
 <body>
 <?php } ?>
@@ -91,7 +91,7 @@
     <link rel="stylesheet" href="../css/responsive_style.css">
     <link rel="stylesheet" href="../css/edit.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="../javascript/edit.js" defer></script>
+    <script src="../javascript/edit.js" defer type="module"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
