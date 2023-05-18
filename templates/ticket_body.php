@@ -24,8 +24,20 @@ function drawTicketBody($session){?>
         <section class="tickets">
                 <header class="topBar"><h3>My tickets</h3></header>
             <section class="ticketSection">
+                <?php
 
-                <div class="ticketContainer" >
+                draw();
+                ?>
+
+
+
+            </section>
+        </section>
+    </section>
+<?php }
+
+function draw(){?>
+    <div class="ticketContainer" >
                     <div class="user-info">
                         <img src="../docs/images/feup.png">
                         <h3>Francisco</h3>
@@ -41,10 +53,6 @@ function drawTicketBody($session){?>
                         <p>open</p>
                     </div>
                 </div>
-
-            </section>
-        </section>
-    </section>
 <?php }
 
 ?>

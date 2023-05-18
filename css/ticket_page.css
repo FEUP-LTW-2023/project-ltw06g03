@@ -55,15 +55,53 @@
 }
 .tickets{
     width: 75%;
-    background: #AAAAAA44;
+
     display: flex;
     flex-direction: column;
     justify-content: start;
+    padding: 0 1rem;
 }
 .tickets .topBar{
     background: white;
     height: fit-content;
     padding: 0 1rem;
+}
+.tickets .ticketSection{
+    overflow: scroll;
+    height: 100vh;
+
+}
+@media (max-width: 55rem) {
+    .ticket-page{
+        flex-direction: column;
+
+    }
+    .ticket-page .menu, .ticket-page .tickets{
+        width: auto;
+
+        border: none;
+    }
+    .ticket-page .menu{
+        height: auto;
+    }
+    .ticket-page .menu aside{
+        width: 100%;
+        overflow-x:scroll ;
+        display: flex;
+        margin-top: 1rem;
+    }
+    .ticket-page .menu aside ul{
+        border: none;
+        border-right: 1px solid #AAAAAA ;
+        display: flex;
+        padding: 0;
+
+    }
+    .ticket-page .menu aside ul li{
+        width: fit-content;
+    }
+
+
 }
 
 
