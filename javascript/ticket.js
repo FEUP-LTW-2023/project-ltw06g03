@@ -12,7 +12,8 @@ export async function drawTickets(href) {
     let tickets = await response.json();
     const title = document.createElement('h2');
     ticketSection.innerHTML='';
-    title.innerText = "My tickets";
+    ticketSection.className='ticketSection';
+    title.innerText = "User tickets";
     ticketSection.appendChild(title);
     if(tickets.length===0){
         const notFound= document.createElement('div');
@@ -97,17 +98,17 @@ function drawExpandedHeader(ticket){
     const header= document.createElement('header');
     const h2= document.createElement('h2');
     const button=document.createElement('button');
-    const status= document.createElement('div');
-    const p=document.createElement('p');
-    status.className='status';
+    //const status= document.createElement('div');
+    //const p=document.createElement('p');
+   // status.className='status';
     h2.innerText=ticket['title'];
     button.innerText='X';
-    p.innerText=ticket['status'];
+    //p.innerText=ticket['status'];
     button.addEventListener('click',closeSection);
-    status.appendChild(p);
+    //status.appendChild(p);
     header.appendChild(h2);
     header.appendChild(button);
-    header.appendChild(status);
+    //header.appendChild(status);
     return header;
 }
 function drawExpandedExtraInf(ticket){
@@ -123,6 +124,16 @@ function drawExpandedExtraInf(ticket){
     h5=document.createElement('h5');
     h5.innerText="Assigns";
     assigns.appendChild(h5);
+    h5=document.createElement('h5');
+    h5.innerText="Status";
+    const status= document.createElement('div');
+    status.appendChild(h5);
+    const p=document.createElement('p');
+    status.className='status';
+    p.innerText=ticket['status'];
+    status.appendChild(p);
+    extraInf.appendChild(status);
+    extraInf.appendChild(status);
     extraInf.appendChild(department);
     extraInf.appendChild(assigns);
     return extraInf;
@@ -152,7 +163,7 @@ function drawMessage(message){
     const userInf_=userInfo(message['client']);
     const p=document.createElement('p');
     p.className="text";
-    p.innerText=message['text'];
+    p.innerHTML=message['text'];
     messageContainer.appendChild(userInf_);
     messageContainer.appendChild(p);
     return messageContainer;
@@ -182,7 +193,7 @@ function closeSection(){
     body.style.overflow='scroll';
 }
 async function sendMessage(text) {
-
+    text= text.replace(/\r?\n/g, '<br />');
     const response = await fetch('../actions/sendMessage.php?text='+text+'&id='+expandedTicket['id']);
     let res = await response.json();
     if(res!==''){

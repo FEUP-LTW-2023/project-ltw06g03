@@ -138,18 +138,23 @@ function drawRegister() {?>
 
 
 function drawProfileBody($session) {
-    
-    $up = $session->getUp();
-    $username = $session->getUsername();
-    $userType = $session->getUserType();
-    $userEmail = $session->getEmail();
-    $userDepartments = $session->getDepartments();
-    $date = $session->getDateOfRegister();
-    $userImg = $session->getUserImg();
     require_once('../templates/tickets.php');
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
-    $tickets= Ticket::getTickets(getDatabaseConnection(),$up);
+
+    if(isset($_GET['up']))$up=intval($_GET['up']);
+    else $up=$session->getUp();
+
+
+    $user= User::getUser(getDatabaseConnection(),$up);
+    $user_up = $session->getUp();
+    $username = $user->name;
+    $userType = $user->role;
+    $userEmail = $user->email;
+    $userDepartments = $user->departments;
+    $date = $session->getDateOfRegister();
+    $userImg = $user->img;
+
     ?>
     <div class="user-page">
 
@@ -163,38 +168,37 @@ function drawProfileBody($session) {
                 <i class="fas fa-user"></i>
             <?php } ?>
 
-            <h2> <?= $username ?> </h2>
+            <h2> <?=$username ?> </h2>
             <h3> up<?= $up ?> </h3>
             <h4> <?= $userType ?> </h4>
         </div>
 
         <div class="user-info">
             <h4> User Email: <?= $userEmail ?> </h4>
-            <h4> This user joined at: <?= $date ?> </h4> 
+            <h4> This user joined at: <?= $date ?> </h4>
+            <?php if(count($userDepartments)>0){ ?>
             <h4> Departments: </h4>
             <ul>
             <?php if ($userType != 'Student') {
                 for ($i = 0; $i < count($userDepartments); $i++) { ?>
-                    <li><h4> <?= $userDepartments[$i] ?> </h4></li>
+                    <li><h4> <?= $userDepartments[$i]?> </h4></li>
             <?php }
             } ?>
             </ul>
-
+            <?php } ?>
         </div>
-
+        <?php if($user_up===$up){ ?>
         <div class="links">
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
             <a href ="../actions/logout.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
-            <a href="../pages/edit_user.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
+            <a href="../pages/edit.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
-    </div> 
+        <?php }?>
     </div>
-    
-
-<?php } 
-
+    </div>
+<?php }
 
 function drawUsersBody($db){ 
 
@@ -217,7 +221,7 @@ function drawUsersBody($db){
                         <th><h2> Up </h2></th>
                         <th><h2> Email </h2></th>
                         <th><h2> Departments </h2></th>
-          2              <th></th>
+                        <th></th>
 
                     </thead>
 
@@ -268,5 +272,31 @@ function drawUsersBody($db){
     </div>
         
 
-<?php } ?>
+<?php } 
 
+function drawEditBody(){
+   $session = new Session();
+   ?>
+
+   <div class="edit-page" >
+      <form action="../actions/update_user.php" method="post" enctype="multipart/form-data">
+         <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
+         <label for="image_input"> <img src="<?=$session->getUserImg()?>"></label>
+         <input type="file" accept="image/*" name="img" id="image_input">
+         <label for="name_input"><h5>Name:</h5></label>
+         <input type="text" name="name" value="<?= $session->getUsername()?>" id="name_input">
+         <label  for="email_input"><h5>Email:</h5></label>
+         <input type="email" name="email" value="<?= $session->getEmail() ?>" id="email_input">
+         <label  for="pass_input"><h5>New Password:</h5></label>
+         <input type="password" name="pass" placeholder="Change to update password" id="pass_input">
+         <i class="fas fa-eye"></i>
+         <label for="confirm_input" ><h5>Confirm Password</h5></label>
+         <input type="password" name="pass" placeholder="Confirm your new password" id="confirm_input">
+         <i class="fas fa-eye"></i>
+         <p class="errorMessage"></p>
+         <button type="submit" >Save</button>
+
+      </form>
+   </div>
+
+<?php } ?>

@@ -6,7 +6,7 @@ function drawTicket(Ticket $ticket){
     ?>
     <div class="ticketContainer" >
         <div class="user-info">
-            <img src="../docs/images/feup.png">
+            <img src="../docs/feup.png">
             <h3><?= $ticket->client->name?></h3>
             <p>Up<?= $ticket->client->up?></p>
         </div>
@@ -50,7 +50,7 @@ function drawExpandedTicket(Ticket $ticket){
     </div>
     <div class="about">
         <div class="user-info">
-            <img src="../docs/images/feup.png">
+            <img src="../docs/feup.png">
             <h3 > <?= $ticket->client->name?></h3>
             <p>Up<?= $ticket->client->up?></p>
         </div>

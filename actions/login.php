@@ -14,7 +14,7 @@ try {
     $user = User::getUser($db, $up);
 
     if ($user->up === -1) echo json_encode(["Account does not exist"]);
-    elseif ($user->pass === $pass) {
+    elseif ($user->pass == $pass) {
         $session->setUserUp($user->up);
         $session->setUsername($user->name);
         $session->setEmail($user->email);
@@ -24,14 +24,12 @@ try {
         echo json_encode('');
 
     } else  {
-        echo json_encode(['Password is invalid']);
+        echo json_encode(['Password is incorrect']);
     }
 
 }catch (Exception $exception){
     echo json_encode([$exception]);
 }
-
-
 ?>
 
 

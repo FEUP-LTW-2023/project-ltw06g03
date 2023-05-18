@@ -80,9 +80,9 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="../pages/profile.php"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a href="../pages/profile.php?up=<?=$session->getUp()?>"><i class="fas fa-user"></i><span>Profile</span></a>
                 <?php } else { ?>
-                    <a href="login.php"><i class="fas fa-user"></i><span>Login</span></a>
+                    <a href="../pages/login.php"><i class="fas fa-user"></i><span>Login</span></a>
                 <?php } ?>
             </li>
             
