@@ -55,13 +55,13 @@
 }
 .tickets,.newTicket{
     width: 75%;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: start;
     padding: 0 1rem;
 }
 .newTicket{
-    display: flex;
+    display: none;
     justify-content: center;
     flex-direction: column;
     padding: 0;

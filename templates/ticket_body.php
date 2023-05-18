@@ -29,7 +29,7 @@ function drawTicketBody($session){?>
             <header class="topBar"><h3>New Ticket</h3></header>
             <form>
                 <input type="text" placeholder="Short Title">
-                <textarea placeholder="Problem"></textarea>
+                <textarea placeholder="Description of the problem"></textarea>
                 <p class="errorMessage"></p>
                 <button>Cancel</button>
                 <button>Submit Ticket</button>
