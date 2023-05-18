@@ -10,11 +10,8 @@ export async function drawTickets(href) {
     href_ = href;
     const response = await fetch(href);
     let tickets = await response.json();
-    const title = document.createElement('h2');
     ticketSection.innerHTML='';
     ticketSection.className='ticketSection';
-    title.innerText = "User tickets";
-    ticketSection.appendChild(title);
     if(tickets.length===0){
         const notFound= document.createElement('div');
         notFound.className="notFound";

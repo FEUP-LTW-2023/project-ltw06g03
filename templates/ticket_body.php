@@ -25,8 +25,8 @@ function drawTicketBody($session){?>
                 <header class="topBar"><h3>My tickets</h3></header>
             <section class="ticketSection">
                 <?php
-
                 draw();
+
                 ?>
 
 

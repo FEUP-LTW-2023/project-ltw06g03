@@ -13,6 +13,17 @@
 
 
 }
+.tickets .topBar{
+    background: white;
+    height: fit-content;
+    padding: 0 1rem;
+    border-bottom: 1px solid #AAAAAAAA;
+}
+.tickets .ticketSection{
+    overflow: scroll;
+    height: 90%;
+
+}
 
 .ticketContainer *{
     overflow: clip;
@@ -236,7 +247,7 @@
 .notFound{
     width: auto;
     max-width: 40rem;
-    margin: auto;
+    margin: 2rem auto auto;
     padding: 1rem;
     text-align: center;
     background: #767676;
