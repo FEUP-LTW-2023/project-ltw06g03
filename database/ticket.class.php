@@ -48,7 +48,7 @@ class Ticket {
 
             if(is_numeric($search))$up=intval($search);
             else $up=-1;
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? LIMIT 10');
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? ORDER BY ID DESC ');
             $stmt->execute(array($up . '%', $search . '%',$search . '%'));
 
         $tickets = array();

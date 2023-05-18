@@ -26,7 +26,7 @@ function validateInputs(e) {
     e.preventDefault();
     let pass= document.querySelectorAll("form input[name='pass']");
     let name=document.getElementsByName('name')[0].value;
-    if(name.value.length>30){
+    if(name>30){
         err.innerText='Name has to be shorter that 30 characters';
         return;
     }
@@ -41,7 +41,6 @@ function validateInputs(e) {
             body: formData
         })
             .then(async function (response) {
-
                 if (response.ok) {
                     let res= await response.json();
                     if(res[0]===''){
