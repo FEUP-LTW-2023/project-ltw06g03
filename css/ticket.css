@@ -1,4 +1,6 @@
-
+h2{
+    margin: auto 0;
+}
 .ticketContainer{
 
     padding: 1rem;
@@ -32,7 +34,7 @@
 }
  .ticketContainer .user-info ~ * {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
 }
 .ticketContainer * *{
@@ -84,8 +86,7 @@
      box-shadow: -2px 0 rgba(0, 0, 0, 0.1);
      background: rgb(250, 250, 250);
      grid-template-columns: 1fr 20rem;
-     grid-template-rows: auto auto auto;
-     height: 98vh;
+     height: 100vh;
      overflow: scroll;
      right: 0;
      top: 0;
@@ -164,7 +165,7 @@
 .expandedTicket .about{
     padding: 1.5rem ;
     grid-area: 2/1/3/2;
-    height: fit-content;
+    height: auto;
 }
 
 .expandedTicket .messages{

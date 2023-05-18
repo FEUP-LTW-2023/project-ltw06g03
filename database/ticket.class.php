@@ -24,13 +24,39 @@ class Ticket {
         $this->messages=$messages;
     }
 
-    static function getTickets(PDO $db, int $up) : array {
+    static function getUserTickets(PDO $db, int $up) : array {
         $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ?');
         $stmt->execute(array($up));
 
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $up);
+            $messages= Message::getTicketMessages($db,$ticket['ID']);
+            $tickets[] = new Ticket(
+                $ticket['ID'],
+                $ticket['TITLE'],
+                $user,
+                $ticket['STATUS'],
+                $ticket['PROBLEM'],
+                $messages
+            );
+        }
+
+        return $tickets;
+    }
+    static function getTickets(PDO $db, string $search) : array {
+        try{
+            $up=intval($search);
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? LIMIT 10');
+            $stmt->execute(array($up . '%', $search . '%',$search . '%'));
+        } catch (Exception $exception){
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON USING (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? LIMIT 10');
+            $stmt->execute(array(-1 .'%', $search . '%',$search . '%'));
+        }
+
+        $tickets = array();
+        while ($ticket = $stmt->fetch()) {
+            $user = User::getUser($db, $ticket['CLIENT_ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
