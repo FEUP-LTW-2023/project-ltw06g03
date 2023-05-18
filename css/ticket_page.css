@@ -1,0 +1,51 @@
+.ticket-page{
+    width: 100vw;
+    min-height:100vh;
+
+}
+.ticket-page .menu{
+    width: 25%;
+    height: 100vh;
+    padding: 1rem;
+    background: #F0FFFF;
+    border-right:1px solid #AAAAAA ;
+    color: #3d3737FD;
+}
+.ticket-page .menu ul ,.searchbar {
+    border-bottom: 1px solid #AAAAAA  ;
+}
+.ticket-page .menu ul li ,.ticket-page .menu ul{
+    padding: 1rem;
+   font-size: 1.1rem;
+}
+.menu header{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.menu header button{
+  background: #FF4F47;
+    color: white;
+    font-weight: bold;
+
+}
+.searchbar{
+    background: white;
+    border: 1px solid #767676;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    font-size: 1.2rem;
+}
+.searchbar input{
+    font-size: 1rem;
+}
+.selected{
+    color: #0088BB;
+    font-weight: bold;
+}
+
+
+

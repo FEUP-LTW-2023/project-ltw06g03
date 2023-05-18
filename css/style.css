@@ -7,6 +7,31 @@ html,body,main{
   width: 100%;
 
 }
+ul{
+  margin: 0;
+  padding: 0;
+}
+ul li{
+  list-style: none;
+}
+ul li:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+button{
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5rem 1rem ;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+form input[type=text]{
+  border: none;
+  color: #3d3737FD;
+  outline: none;
+}
 body{
   display: grid;
   grid-template-columns: 4rem 1fr;
@@ -36,6 +61,7 @@ p{
   padding: 0;
   margin: 0;
   word-break: break-word;
+
 }
 .errorMessage{
   color: #FF4F47;
@@ -60,6 +86,7 @@ form button{
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+
 }
 form button:hover{
   background: #888888;
