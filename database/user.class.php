@@ -65,7 +65,7 @@ class User {
 
         while($user = $stmt->fetch()) {
 
-
+            $img='../docs/images/feup.png';
             if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
             $departments=Department::getUsersDepartments($db, $user['UP']);
 

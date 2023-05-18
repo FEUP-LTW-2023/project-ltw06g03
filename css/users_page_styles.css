@@ -17,7 +17,7 @@ main footer {
     position: relative;
     margin: 0 auto;
     padding: 1em;
-    background-color: #FFFFFFF0; 
+    background-color: #FFFFFFFA; 
     border-radius: 1em; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -39,8 +39,9 @@ tr td{
 }
 
 #searchuser {
-    width: 100%;
+    width: 90%;
     height: 1.5rem;
+    margin: 0 auto 1em auto;
 }
 
 .staff-page {
@@ -56,8 +57,42 @@ table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    font-size: 0.7rem;
+    
 }
 
 .noFound {
     text-align: center;
 }
+
+#table-box{
+    text-align: center;
+}
+
+.departments {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.departments * {
+    margin: 1em;
+    padding: 1em; 
+}
+
+.department {
+    border: 1px solid #3d3737FD;
+    border-radius: 25%;
+    width: 3em;
+
+}
+
+td a {
+    text-decoration: none;
+}
+
+thead {
+    background-color: #3d3737FD;
+    color: white;
+}
+

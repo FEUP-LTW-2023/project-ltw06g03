@@ -186,7 +186,7 @@ function drawProfileBody($session) {
             <?php
                 echo '<a href="../pages/tickets.php?up=' . $up . '"> User Tickets <i class="fas fa-ticket-alt"></i></a>';
             ?>
-            <a href ="../pages/home.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+            <a href ="../actions/logout.php"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
             <a href="../pages/edit_user.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
     </div> 
@@ -196,7 +196,13 @@ function drawProfileBody($session) {
 <?php } 
 
 
-function drawUsersBody($users){ ?>
+function drawUsersBody($db){ 
+
+    $db = getDatabaseConnection();
+    
+    $users = User::getUsers($db);
+
+    ?>
 
     <div class="staff-page">
         <div class="users-body">
@@ -210,6 +216,8 @@ function drawUsersBody($users){ ?>
                         <th><h2> User </h2></th>
                         <th><h2> Up </h2></th>
                         <th><h2> Email </h2></th>
+                        <th><h2> Departments </h2></th>
+          2              <th></th>
 
                     </thead>
 
@@ -228,12 +236,24 @@ function drawUsersBody($users){ ?>
 
                                 <td> <h3><?= $user->email?>  </h3></td>
 
+                                <td class="departments">
+                                <?php 
+                                
+                                    if (!count($user->departments)) { ?>
+                                        <h4> User is not assigned to any department </h4>
+                                    <?php }
+                                    else {
+                                        for ($i = 0; $i < count($user->departments) && $i < 3; $i++) { ?>
+                                            <h4 class="department"><?=$user->departments[$i]?></h4>
+                                        <?php }
+                                    } ?>
+                                </td>
 
                                 <td>
 
-                                    <i class="fas fa-search"></i> 
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-alt"></i>
+                                    <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i> </a></button>
+                                    <button id="edit-departments-and-role"><i class="fas fa-edit"></i> </button>
+                                    <button id="remove-user"><i class="fas fa-trash-alt"></i> </button>
 
                                 </td>
                             </tr>

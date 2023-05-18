@@ -8,18 +8,14 @@
     require_once(__DIR__ . '/../templates/body.php');
     $session = new Session();
 
-    if (!$session->isLoggedIn()) {
+    if (!$session->isLoggedIn() || $session->isStudent()) {
         header('Location: home.php');
     }
 
     else {
-        $db = getDatabaseConnection();
-    
-        $users = User::getUsers($db);
-
         drawUsersHeader();
         drawNavBar($session);
-        drawUsersBody($users);
+        drawUsersBody($db);
         drawFooter();
 
     }

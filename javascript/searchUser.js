@@ -18,7 +18,6 @@ if (searchUser) {
         section.innerHTML = ''
     
         for (const user of users) {
-            console.log(user)
             let tr = document.createElement('tr')
             tr.innerHTML = ''
 
@@ -29,11 +28,18 @@ if (searchUser) {
         
             tr.innerHTML += '<td>' + '<h3>' + user.up + '</h3>' + '</td>'
             tr.innerHTML += '<td>' + '<h3>' + user.email + '</h3>' + '</td>'
+
+            td.innerHTML = ''
+            for(const department of user.departments) {
+                td.innerHTML += '<h4' + department.name + '</h4>'
+            }
+
+            tr.appendChild(td)
             
             td.innerHTML = ''
-            td.innerHTML += '<i class="fas fa-search"></i> whitespace'
-            td.innerHTML += '<i class="fas fa-edit"></i> whitespace'
-            td.innerHTML += '<i class="fas fa-trash-alt"></i> whitespace'
+            td.innerHTML += '<i class="fas fa-search"></i> &nbsp;'
+            td.innerHTML += '<i class="fas fa-edit"></i> &nbsp;'
+            td.innerHTML += '<i class="fas fa-trash-alt"></i>'
 
             
             tr.appendChild(td)

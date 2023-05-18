@@ -1,7 +1,5 @@
 import {drawTickets,ticketSection} from "./ticket.js";
 
-
-
     const title= document.createElement('h2');
     title.innerText="My tickets";
     ticketSection.appendChild(title);
