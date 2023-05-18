@@ -5,8 +5,8 @@ function drawUserBody($session) {
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
 
-    if(isset($_GET['up']))$up=intval($_GET['up']);
-    else $up=$session->getUp();
+   $up=intval($_GET['up']);
+
 
 
     $user= User::getUser(getDatabaseConnection(),$up);

@@ -14,6 +14,7 @@
     if (!$session->isLoggedIn()) {
         header('Location: home.php');
     }
+    if(!isset($_GET['up']))header('Location: user.php?up='. $session->getUp());
 
     else {
         drawUserHeader($session);

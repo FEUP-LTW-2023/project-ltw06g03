@@ -20,8 +20,10 @@
     border-bottom: 1px solid #AAAAAAAA;
 }
 .tickets .ticketSection{
+
     overflow: scroll;
-    height: 90vh;
+    position: relative;
+    height: 90%;
 }
 
 .ticketContainer *{
