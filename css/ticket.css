@@ -13,7 +13,7 @@
 
 
 }
-.tickets .topBar{
+.topBar{
     background: white;
     height: fit-content;
     padding: 0 1rem;
@@ -96,10 +96,11 @@
 .text {
     padding: 1.5rem 1rem;
 }
+
 @keyframes move {
     0%{
-        right: -60rem;
-       opacity: 0%;
+        right: -50rem;
+       opacity: 0;
     }
     100%{
         right: 0;

@@ -23,15 +23,18 @@ function drawTicketBody($session){?>
         </section>
         <section class="tickets">
                 <header class="topBar"><h3>My tickets</h3></header>
-            <section class="ticketSection">
-                <?php
-                draw();
 
-                ?>
+        </section>
+        <section class="newTicket">
+            <header class="topBar"><h3>New Ticket</h3></header>
+            <form>
+                <input type="text" placeholder="Short Title">
+                <textarea placeholder="Problem"></textarea>
+                <p class="errorMessage"></p>
+                <button>Cancel</button>
+                <button>Submit Ticket</button>
+            </form>
 
-
-
-            </section>
         </section>
     </section>
 <?php }
