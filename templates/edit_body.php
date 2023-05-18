@@ -1,7 +1,6 @@
 <?php
 require_once('../utils/session.php');
 
-//set Session
 
 function drawEditBody(){
    $session = new Session();
@@ -24,7 +23,6 @@ function drawEditBody(){
          <i class="fas fa-eye"></i>
          <p class="errorMessage"></p>
          <button type="submit" >Save</button>
-
       </form>
    </div>
 

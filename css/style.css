@@ -7,6 +7,7 @@ html,body,main{
   width: 100%;
 
 }
+
 ul{
   margin: 0;
   padding: 0;
@@ -14,9 +15,10 @@ ul{
 ul li{
   list-style: none;
 }
-ul li:hover{
+ul li a:hover{
   text-decoration: underline;
   cursor: pointer;
+
 }
 button{
   height: fit-content;
@@ -73,6 +75,7 @@ p{
 }
 a:link,a:visited,a:hover,a:active{
   text-decoration: none;
+  color: inherit;
 }
 form button{
   background: #FF4F47;

@@ -1,24 +1,28 @@
 <?php
-function drawTicketBody($session){?>
+function drawTicketBody($session){
+    if(!isset($_GET['op']) or !is_numeric($_GET['op']) or ($_GET['op']>=6 and !$session->isStaff()) ) header('Location: tickets.php?op=0');
+
+    ?>
+
     <section class="ticket-page">
         <section class="menu">
             <header><h3>Tickets</h3><button>+ New Ticket</button> </header>
             <form class="searchbar"><i class="fas fa-search"></i><input type="text"></form>
             <aside>
                 <ul>
-                    <li class="selected">All Tickets</li>
-                    <li>Open Tickets</li>
-                    <li>Closed Tickets</li>
+                    <li ><a href="../pages/tickets.php?op=0">All Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=1">Open Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=2">Closed Tickets</a></li>
                 </ul>
                 <ul>
-                    <li>My Tickets</li>
-                    <li>My Open Tickets</li>
-                    <li>My Closed Tickets</li>
+                    <li><a href="../pages/tickets.php?op=3">My Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=4">My Open Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=5">My Closed Tickets</a></li>
                 </ul>
                 <?php if($session->isStaff()){  ?>
                     <ul>
-                        <li>Assigned Tickets</li>
-                        <li>Solved Tickets</li>
+                        <li><a href="../pages/tickets.php?op=6">Assigned Tickets</a></li>
+                        <li><a href="../pages/tickets.php?op=7">Solved Tickets</a></li>
                     </ul>
                 <?php } ?>
             </aside>

@@ -139,8 +139,10 @@
 
         border: none;
     }
+
     .ticket-page .menu{
         height: auto;
+        min-height: unset;
     }
     .ticket-page .menu aside{
         width: 100%;

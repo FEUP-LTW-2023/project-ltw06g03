@@ -24,10 +24,15 @@ class Ticket {
         $this->messages=$messages;
     }
 
-    static function getUserTickets(PDO $db, int $up) : array {
-        $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ?');
-        $stmt->execute(array($up));
-
+    static function getUserTickets(PDO $db, int $up, string $search,string $status) : array {
+        if($status==='') {
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND TITLE LIKE ?');
+            $stmt->execute(array($up, '%' . $search . '%'));
+        }
+        else{
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND STATUS= ? AND TITLE LIKE ?');
+            $stmt->execute(array($up, $status,'%' . $search . '%'));
+        }
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $up);
@@ -44,13 +49,18 @@ class Ticket {
 
         return $tickets;
     }
-    static function getTickets(PDO $db, string $search) : array {
 
+    static function getTickets(PDO $db, string $search,string $status) : array {
             if(is_numeric($search))$up=intval($search);
             else $up=-1;
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? ORDER BY ID DESC ');
-            $stmt->execute(array($up . '%', $search . '%',$search . '%'));
-
+            if($status==='') {
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? ORDER BY ID DESC LIMIT 100 ');
+                $stmt->execute(array($up . '%', '%' . $search . '%', '%' . $search . '%'));
+            }
+            else{
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE STATUS== ? AND (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
+                $stmt->execute(array($status,$up . '%', '%' . $search . '%', '%' . $search . '%'));
+            }
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $ticket['CLIENT_ID']);

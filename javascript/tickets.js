@@ -5,13 +5,27 @@ const formButtons= document.querySelectorAll('.newTicket button');
 const newTicket= document.querySelector(".menu  header button");
 const search= document.querySelector(' .menu .searchbar input');
 const url = new URL(window.location.href);
-let user=url.searchParams.get('up');
-let status=url.searchParams.get('status');
-let assign=url.searchParams.get('status');
-console.log(user);
+const op=Number(url.searchParams.get('op'));
+
+const li= document.querySelectorAll('.menu ul li');
+let api='';
+li[op].className='selected';
+
+if(op>=0 && op<3){
+    api='../api/api_tickets.php?';
+}
+else if(op>=3 && op<6) {
+    let response=await fetch('../api/api_session.php');
+    let up =await response.json();
+    api='../api/api_user_tickets.php?up='+up+'&';
+}
+
+if(op===1 || op===4 ) api+='status=OPEN&';
+else if(op===2 || op===5) api+='status=CLOSED&';
+
 
 search.addEventListener('input', async () => {
-    await drawTickets('../api/api_tickets.php?search=' + search.value);
+    await drawTickets(api+'search=' + search.value);
 })
 newTicket.addEventListener('click',()=>{
     page.style.display='none';
@@ -27,9 +41,8 @@ formButtons[1].addEventListener('click',async (e) => {
     await validateInputs();
 });
 
-
 page.appendChild(ticketSection);
-await drawTickets('../api/api_tickets.php?search=');
+await drawTickets(api+'search=');
 
 async function validateInputs() {
     let title = document.querySelector('.newTicket form input[type=text]');
@@ -44,8 +57,10 @@ async function validateInputs() {
             let res = await response.json();
 
             if (res[0] === '') {
+                document.querySelector('form').submit();
                 form.style.display = 'none';
                 page.style.display = 'flex';
+
             } else {
                 error.innerHTML = res[0];
             }
