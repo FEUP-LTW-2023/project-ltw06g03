@@ -1,7 +1,8 @@
 .ticket-page{
-    width: 100vw;
+    width: 100%;
     min-height:100vh;
-
+    display: flex;
+    color:#3d3737FD ;
 }
 .ticket-page .menu{
     width: 25%;
@@ -9,15 +10,18 @@
     padding: 1rem;
     background: #F0FFFF;
     border-right:1px solid #AAAAAA ;
-    color: #3d3737FD;
+
 }
-.ticket-page .menu ul ,.searchbar {
+
+
+.ticket-page .menu ul ,.searchbar,.topBar {
     border-bottom: 1px solid #AAAAAA  ;
 }
 .ticket-page .menu ul li ,.ticket-page .menu ul{
     padding: 1rem;
    font-size: 1.1rem;
 }
+
 .menu header{
     display: flex;
     justify-content: space-between;
@@ -38,6 +42,9 @@
     display: grid;
     grid-template-columns: 2rem 1fr;
     font-size: 1.2rem;
+    position: relative;
+    overflow: scroll;
+    margin-top: 1rem;
 }
 .searchbar input{
     font-size: 1rem;
@@ -46,6 +53,19 @@
     color: #0088BB;
     font-weight: bold;
 }
+.tickets{
+    width: 75%;
+    background: #AAAAAA44;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.tickets .topBar{
+    background: white;
+    height: fit-content;
+    padding: 0 1rem;
+}
+
 
 
 

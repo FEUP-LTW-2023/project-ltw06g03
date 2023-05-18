@@ -86,13 +86,13 @@ gap: 2rem;
 
 .user .user-icon-info h2 {
   margin: 0.25em 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .user .user-icon-info h3,
 .user .user-icon-info h4 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 
 .user .user-info {
@@ -107,7 +107,7 @@ gap: 2rem;
 }
 
 .user .user-info h4 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin: 0 0 0.5em;
 }
 
@@ -119,12 +119,18 @@ gap: 2rem;
 }
 
 .user .user-info ul li {
+  background: #3d3737FD;
+  color: white;
   list-style-type: none;
   margin-right: 0.5em;
   margin-bottom: 0.5em;
-  padding: 0.5em;
+  padding: 0.5rem 1rem;
   border-radius: 1em;
-  border: 1px solid #ccc;
+
+}
+.user .user-info ul li h4{
+  margin: 0;
+  padding: 0;
 }
 
 .user .links {

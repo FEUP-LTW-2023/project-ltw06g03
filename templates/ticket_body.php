@@ -22,11 +22,27 @@ function drawTicketBody($session){?>
             </aside>
         </section>
         <section class="tickets">
-            <section class="topBar">
-                <header></header>
-                <section class="filters"></section>
+                <header class="topBar"><h3>My tickets</h3></header>
+            <section class="ticketSection">
+
+                <div class="ticketContainer" >
+                    <div class="user-info">
+                        <img src="../docs/images/feup.png">
+                        <h3>Francisco</h3>
+                        <p>Up10</p>
+                    </div>
+                    <div class="subject">
+                        <p>I have a big problem</p>
+                    </div>
+                    <div class="department">
+                        <p></p>
+                    </div>
+                    <div class="status">
+                        <p>open</p>
+                    </div>
+                </div>
+
             </section>
-            <section class="ticketSection"></section>
         </section>
     </section>
 <?php }
