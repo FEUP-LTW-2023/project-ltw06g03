@@ -15,7 +15,7 @@
     else {
         drawUsersHeader();
         drawNavBar($session);
-        drawUsersBody($db);
+        drawUsersBody($session);
         drawFooter();
 
     }

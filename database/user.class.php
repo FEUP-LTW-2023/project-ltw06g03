@@ -22,10 +22,6 @@ class User {
         $this->img=$img;
         $this->departments=$departments;
     }
-    public function getUp() : int
-    {
-        return $this->up;
-    }
     
     static function getUser(PDO $db, int $id) : USER {
         $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON WHERE UP = ?');
@@ -57,11 +53,11 @@ class User {
     }
     function save(PDO $db) {
         $stmt = $db->prepare('
-        UPDATE PERSON SET NAME = ?, EMAIL = ?, PASSWORD= ?
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?, DEPARTMENTS= ?
         WHERE UP = ?
       ');
 
-        $stmt->execute(array($this->name, $this->email, $this->pass,$this->up));
+        $stmt->execute(array($this->name, $this->email, $this->pass,$this->up, $this->role, $this->departments));
     }
     function uploadImg(PDO $db,string $img){
         $stmt = $db->prepare('
@@ -73,7 +69,7 @@ class User {
     }
 
     static function getUsers(PDO $db) : array {
-        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD FROM PERSON');
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD, IMG FROM PERSON');
         $stmt->execute();
 
         $ret = array();
@@ -101,7 +97,7 @@ class User {
 
 
     static function searchUser(PDO $db, string $nameOrUP) : array {
-        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD, IMG FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
 
         try {
             $stmt->execute(array($nameOrUP . '%',  intval($nameOrUP) . '%'));
@@ -114,10 +110,9 @@ class User {
 
         while($user = $stmt->fetch()) {
 
-        
-        $img='../docs/feup.png';
-        if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
-        $departments=Department::getUsersDepartments($db, $user['UP']);
+            $img='../docs/feup.png';
+            if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
+            $departments=Department::getUsersDepartments($db, $user['UP']);
 
             $ret[] = new User(
                 $user['UP'],

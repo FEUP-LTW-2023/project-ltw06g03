@@ -10,23 +10,23 @@ $session = new Session();
 try {
 
     $up = intval($_GET['UP']);
-    $department = $_GET['department'];
+    $user= User::getUser($db,$up);
+    $departments = $_GET['departments'];
     $role = $_GET['role'];
 
     if($role!='student' && $role!='teacher' && $role!='admin') echo json_encode(["Role does not exist"]);
 
-    elseif ($user->pass === $pass) {
-        $session->setUserUp($user->up);
-        $session->setUsername($user->name);
-        $session->setEmail($user->email);
-        $session->setUserType($user->role);
-        $session->setUserImg($user->img);
-        $session->setDepartments($user->departments);
-        echo json_encode('');
+    else {
+        $user->role = $role;
+        $user->departments = $departments;
+        $user->save($db);
+        if($up==$session->getUp()) {
+            $session->setRole($role);
+            $session->setDepartments($departments);
+        }
+        echo json_encode(['']);
+    }        
 
-    } else  {
-        echo json_encode(['Something went wrong']);
-    }
 
 }catch (Exception $exception){
     echo json_encode([$exception]);

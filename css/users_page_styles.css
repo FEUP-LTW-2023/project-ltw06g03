@@ -89,6 +89,7 @@ table {
 
 td a {
     text-decoration: none;
+    color: black;
 }
 
 thead {
@@ -96,3 +97,7 @@ thead {
     color: white;
 }
 
+#table-box button{
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+}

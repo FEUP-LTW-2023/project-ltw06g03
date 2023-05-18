@@ -13,7 +13,7 @@ if($up) {
 }
 
 else {
-    $name = $_GET['name'];
+    $name = $_GET['up'];
     $users = User::searchUser($db, $name);
     echo json_encode($users);
 }

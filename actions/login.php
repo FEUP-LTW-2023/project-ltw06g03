@@ -18,7 +18,7 @@ try {
         $session->setUserUp($user->up);
         $session->setUsername($user->name);
         $session->setEmail($user->email);
-        $session->setUserType($user->role);
+        $session->setRole($user->role);
         $session->setUserImg($user->img);
         $session->setDepartments($user->departments);
         echo json_encode('');

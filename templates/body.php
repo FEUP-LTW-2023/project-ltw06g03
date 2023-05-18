@@ -200,7 +200,7 @@ function drawProfileBody($session) {
     </div>
 <?php }
 
-function drawUsersBody($db){ 
+function drawUsersBody($session){ 
 
     $db = getDatabaseConnection();
     
@@ -255,9 +255,10 @@ function drawUsersBody($db){
 
                                 <td>
 
-                                    <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i> </a></button>
-                                    <button id="edit-departments-and-role"><i class="fas fa-edit"></i> </button>
-                                    <button id="remove-user"><i class="fas fa-trash-alt"></i> </button>
+                                    <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i></a></button><!--
+                                --><button id="edit-departments"><i class="fas fa-building"></i></button><!--
+                                <?php if ($session->isAdmin())?>
+                                        --><button id="edit-role"><i class="fas fa-user-tag"></i></button>
 
                                 </td>
                             </tr>
