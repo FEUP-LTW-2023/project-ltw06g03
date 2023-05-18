@@ -21,8 +21,7 @@
 }
 .tickets .ticketSection{
     overflow: scroll;
-    height: 90%;
-
+    height: 90vh;
 }
 
 .ticketContainer *{

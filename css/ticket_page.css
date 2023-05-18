@@ -114,6 +114,15 @@
     grid-area: 4/3/5/4 ;
 }
 @media (max-width: 55rem) {
+    .newTicket{
+        width: auto;
+        padding: 0;
+    }
+    .newTicket form {
+        border-radius: 0;
+        width: 90%;
+
+    }
     .ticket-page{
         flex-direction: column;
 
