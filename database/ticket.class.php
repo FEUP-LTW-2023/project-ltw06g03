@@ -45,14 +45,11 @@ class Ticket {
         return $tickets;
     }
     static function getTickets(PDO $db, string $search) : array {
-        try{
-            $up=intval($search);
+
+            if(is_numeric($search))$up=intval($search);
+            else $up=-1;
             $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? LIMIT 10');
             $stmt->execute(array($up . '%', $search . '%',$search . '%'));
-        } catch (Exception $exception){
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON USING (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? LIMIT 10');
-            $stmt->execute(array(-1 .'%', $search . '%',$search . '%'));
-        }
 
         $tickets = array();
         while ($ticket = $stmt->fetch()) {

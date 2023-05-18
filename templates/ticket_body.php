@@ -7,11 +7,13 @@ function drawTicketBody($session){?>
             <aside>
                 <ul>
                     <li class="selected">All Tickets</li>
+                    <li>Open Tickets</li>
+                    <li>Closed Tickets</li>
                 </ul>
                 <ul>
                     <li>My Tickets</li>
-                    <li>Open Tickets</li>
-                    <li>Closed Tickets</li>
+                    <li>My Open Tickets</li>
+                    <li>My Closed Tickets</li>
                 </ul>
                 <?php if($session->isStaff()){  ?>
                     <ul>

@@ -5,18 +5,23 @@ export let ticketSection=document.createElement('div');
 ticketSection.className="ticketSection";
 
 let href_;
+let loading=false;
+let count=0;
 export async function drawTickets(href) {
-
     href_ = href;
+    if(loading)return;
+    loading=true;
     const response = await fetch(href);
     let tickets = await response.json();
-    ticketSection.innerHTML='';
-    ticketSection.className='ticketSection';
-    if(tickets.length===0){
-        const notFound= document.createElement('div');
-        notFound.className="notFound";
-        const p= document.createElement('p');
-        p.innerText="No tickets found";
+    count++;
+    console.log(href_);
+    ticketSection.innerHTML = '';
+    ticketSection.className = 'ticketSection';
+    if (tickets.length === 0) {
+        const notFound = document.createElement('div');
+        notFound.className = "notFound";
+        const p = document.createElement('p');
+        p.innerText = "No tickets found";
         notFound.appendChild(p);
         ticketSection.appendChild(notFound);
     }
@@ -27,8 +32,11 @@ export async function drawTickets(href) {
         ticketContainer.addEventListener('click', () => {
             expand(tickets[index])
         });
-        if(expandedTicket!==null &&  tickets[index]['id']===expandedTicket['id']) expand(tickets[index]);
+        if (expandedTicket !== null && tickets[index]['id'] === expandedTicket['id']) expand(tickets[index]);
     }
+    loading = false;
+    if(href!==href_) await drawTickets(href_);
+    console.log(count);
 
 }
 function drawTicket(ticket){

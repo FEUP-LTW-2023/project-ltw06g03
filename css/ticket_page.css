@@ -6,7 +6,7 @@
 }
 .ticket-page .menu{
     width: 25%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 1rem;
     background: #F0FFFF;
     border-right:1px solid #AAAAAA ;
@@ -34,6 +34,9 @@
     font-weight: bold;
 
 }
+.menu header button:hover{
+    background: #AAAAAA;
+}
 .searchbar{
     background: white;
     border: 1px solid #767676;
@@ -52,6 +55,10 @@
 .selected{
     color: #0088BB;
     font-weight: bold;
+}
+.tickets{
+    position: relative;
+    height: 100vh;
 }
 .tickets,.newTicket{
     width: 75%;

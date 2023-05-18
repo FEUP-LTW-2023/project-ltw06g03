@@ -22,13 +22,17 @@ gap: 2rem;
   border-radius: 1rem;
   max-width: 50rem;
   width: 100%;
-  min-height: 45rem;
+  max-height: 70rem;
+  min-height: 40rem;
   height: 80vh;
   position: relative;
   color:#3d3737FD ;
   overflow: hidden;
 
 }
+
+
+
 
 
 

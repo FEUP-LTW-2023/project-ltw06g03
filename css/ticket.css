@@ -15,16 +15,17 @@ h2{
 
 
 }
+
 .topBar{
+    position: relative;
     background: white;
-    height: fit-content;
+    height: 10%;
     padding: 0 1rem;
     border-bottom: 1px solid #AAAAAAAA;
 }
 .tickets .ticketSection{
-
-    overflow: scroll;
     position: relative;
+    overflow: scroll;
     height: 90%;
 }
 
@@ -92,24 +93,14 @@ h2{
      top: 0;
      padding: 1vh 1rem;
      z-index: 3;
-     animation: move 0.2s linear;
+
 
  }
 .text {
     padding: 1.5rem 1rem;
 }
 
-@keyframes move {
-    0%{
-        right: -50rem;
-       opacity: 0;
-    }
-    100%{
-        right: 0;
-        opacity: 100%;
-    }
 
-}
 .expandedTicket header{
     grid-area: 1/1/2/3;
     padding: 0rem 1rem;
@@ -149,6 +140,7 @@ h2{
     display: flex;
     justify-content: start;
     align-items: center;
+    height: fit-content;
 
 
 }
@@ -282,7 +274,7 @@ h2{
         width: auto;
         left: 4rem;
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: auto auto auto auto;
+
 
     }
     .expandedTicket .extra-inf{
@@ -292,6 +284,7 @@ h2{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        height: fit-content;
     }
     .expandedTicket .about{
         grid-area: 3/1/4/4;
@@ -303,6 +296,7 @@ h2{
 @media (max-width: 40rem) {
     .expandedTicket{
        left: 0;
+        display: block;
     }
     .expandedTicket h2{
         padding-left: 3rem;
