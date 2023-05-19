@@ -115,14 +115,12 @@
     left: 60%;
     margin: 0;
     top: 30%;
-    width: fit-content;
     min-width: 9rem;
     border: none;
     height: fit-content;
     max-height: 35vh;
     overflow:scroll ;
     text-align: center;
-
     border-radius: 1rem;
     background: #FF4F47;
     color: white;
@@ -136,6 +134,7 @@
     color: white;
     background: #3d3737FD;
 }
+
 dialog ul li{
     padding: 0.5rem 1rem;
     cursor: pointer;

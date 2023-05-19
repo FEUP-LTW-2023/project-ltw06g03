@@ -68,6 +68,52 @@ class User {
 
         $stmt->execute(array($img,$this->up));
     }
+    static function getUsersAssign(PDO $db, int $id) : array
+    {
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ?');
+        $stmt->execute(array($id));
+        $users = array();
+        while ($user = $stmt->fetch()) {
+            $img = $user['IMG'];
+            if (!isset($img) or !file_exists($img)) {
+                $img = '/docs/images/default_pfp.png';
+            }
+            $departments = Department::getUsersDepartments($db, $user['UP']);
+            $users[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+        return $users;
+    }
+    static function getUsersNotAssign(PDO $db, int $id) : array
+    {
+    $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?) ');
+        $stmt->execute(array($id));
+        $users = array();
+        while ($user = $stmt->fetch()) {
+            $img = $user['IMG'];
+            if (!isset($img) or !file_exists($img)) {
+                $img = '/docs/images/default_pfp.png';
+            }
+            $departments = Department::getUsersDepartments($db, $user['UP']);
+            $users[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+        return $users;
+    }
 
 }
 

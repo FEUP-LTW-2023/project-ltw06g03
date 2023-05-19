@@ -167,6 +167,47 @@ h2{
     padding: 1rem;
     border-left: 1px solid #77777777;
 }
+.expandedTicket .extra-inf .assigns{
+    display: flex;
+}
+.expandedTicket .extra-inf .assigns .assignTable{
+    position: absolute;
+    background: white;
+    border: 1px solid #AAAAAA;
+    max-height: 25rem;
+    overflow: scroll;
+    padding: 1rem;
+}
+
+.expandedTicket .extra-inf .assigns .user-info{
+    grid-template-columns: 2rem 1fr;
+}
+
+.expandedTicket .extra-inf .assigns img{
+    width: 2rem;
+    height: 2rem;
+}
+
+.expandedTicket .extra-inf .assigns .assignTable input{
+    display: none;
+}
+.expandedTicket .extra-inf .assigns .assignTable ul,.expandedTicket .extra-inf .assigns .assignTable ul li{
+    padding:  0.2rem 0.5rem;
+}
+.expandedTicket .extra-inf .assigns .assignTable ul li label{
+   width: 100%;
+    padding-left: 1rem;
+    position: relative;
+}
+.expandedTicket .extra-inf .assigns .assignTable ul li input:checked ~ label::before {
+    content: '\2714';
+    font-size: 1.5rem;
+    color: #3d3737FF;
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: -1.5rem;
+}
 
 .expandedTicket .messages .message{
     padding: 1rem;
@@ -191,7 +232,6 @@ h2{
     color: white;
     max-height: 2rem;
     border-radius: 10rem;
-
     text-align: center;
 }
 .expandedTicket .messages form{
@@ -210,7 +250,6 @@ h2{
 .expandedTicket .messages form textarea{
     height: 100%;
     width: 100%;
-
     border: none;
     font-size: 1rem;
 }

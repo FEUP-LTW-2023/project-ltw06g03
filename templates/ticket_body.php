@@ -47,7 +47,7 @@ function drawTicketBody($session){
                 </form>
                 <section class="department">
                     <label for="department">Chose Department: </label>
-                    <select id="department" name="department">
+                    <select id="department" name="department" >
                         <option></option>
                         <?php
                             foreach ($departments as $department){
@@ -60,25 +60,6 @@ function drawTicketBody($session){
 
         </section>
     </section>
-<?php }
-
-function draw(){?>
-    <div class="ticketContainer" >
-                    <div class="user-info">
-                        <img src="../docs/images/feup.png">
-                        <h3>Francisco</h3>
-                        <p>Up10</p>
-                    </div>
-                    <div class="subject">
-                        <p>I have a big problem</p>
-                    </div>
-                    <div class="department">
-                        <p></p>
-                    </div>
-                    <div class="status">
-                        <p>open</p>
-                    </div>
-                </div>
 <?php }
 
 ?>

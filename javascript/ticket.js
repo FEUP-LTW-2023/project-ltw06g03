@@ -3,7 +3,8 @@ let expandedTicket=null;
 const body= document.querySelector("main");
 export let ticketSection=document.createElement('div');
 ticketSection.className="ticketSection";
-
+const response = await fetch('../api/api_session.php');
+let user = await response.json();
 let href_;
 let loading=false;
 let count=0;
@@ -32,7 +33,7 @@ export async function drawTickets(href) {
         ticketContainer.addEventListener('click', () => {
             expand(tickets[index])
         });
-        if (expandedTicket !== null && tickets[index]['id'] === expandedTicket['id']) expand(tickets[index]);
+        if (expandedTicket !== null && tickets[index]['id'] === expandedTicket['id']) await expand(tickets[index]);
     }
     loading = false;
     if(href!==href_) await drawTickets(href_);
@@ -83,20 +84,20 @@ function userInfo(user){
     return userInf;
 }
 
-function expand(ticket){
-    body.style.overflow='hidden';
-    if(expanded!==null) closeSection();
-    const expand=document.createElement('div');
-    expand.className="expandedTicket";
+async function expand(ticket) {
+    body.style.overflow = 'hidden';
+    if (expanded !== null) closeSection();
+    const expand = document.createElement('div');
+    expand.className = "expandedTicket";
     expand.appendChild(drawExpandedHeader(ticket));
-    expand.appendChild(drawExpandedExtraInf(ticket));
+    expand.appendChild(await drawExpandedExtraInf(ticket));
     expand.appendChild(drawExpandedAbout(ticket));
-    expand.appendChild(drawMessages(ticket['messages'],ticket));
-    expandedTicket=ticket;
-    expanded=expand;
+    expand.appendChild(drawMessages(ticket['messages'], ticket));
+    expandedTicket = ticket;
+    expanded = expand;
     body.appendChild(expand);
-    const mess= document.querySelector(".messages");
-    mess.scrollTop=mess.scrollHeight;
+    const mess = document.querySelector(".messages");
+    mess.scrollTop = mess.scrollHeight;
 
 }
 function drawExpandedHeader(ticket){
@@ -116,31 +117,33 @@ function drawExpandedHeader(ticket){
     //header.appendChild(status);
     return header;
 }
-function drawExpandedExtraInf(ticket){
-    const extraInf= document.createElement('div');
-    extraInf.className="extra-inf";
-    const department=document.createElement('div');
-    department.className="department";
-    const assigns= document.createElement('div');
-    assigns.className="assigns";
-    let h5=document.createElement('h5');
-    h5.innerText="Departments";
+async function drawExpandedExtraInf(ticket) {
+    const extraInf = document.createElement('div');
+    extraInf.className = "extra-inf";
+    const department = document.createElement('div');
+    department.className = "department";
+
+    let h5 = document.createElement('h5');
+    h5.innerText = "Departments";
     department.appendChild(h5);
-    h5=document.createElement('h5');
-    h5.innerText="Assigns";
-    assigns.appendChild(h5);
-    h5=document.createElement('h5');
-    h5.innerText="Status";
-    const status= document.createElement('div');
+    let p = document.createElement('p');
+    p.innerHTML = ticket['department'];
+    h5.innerText = "Departments";
+    department.appendChild(h5);
+    department.appendChild(p);
+
+    h5 = document.createElement('h5');
+    h5.innerText = "Status";
+    const status = document.createElement('div');
     status.appendChild(h5);
-    const p=document.createElement('p');
-    status.className='status';
-    p.innerText=ticket['status'];
+    p = document.createElement('p');
+    status.className = 'status';
+    p.innerText = ticket['status'];
     status.appendChild(p);
     extraInf.appendChild(status);
     extraInf.appendChild(status);
     extraInf.appendChild(department);
-    extraInf.appendChild(assigns);
+    extraInf.appendChild(await assigns(ticket));
     return extraInf;
 }
 function drawExpandedAbout(ticket){
@@ -192,6 +195,71 @@ function form(){
     return form;
     
 }
+async function assigns(ticket) {
+    let role = user['role'];
+    const assigns = document.createElement('div');
+    assigns.className = "assigns";
+    let h5 = document.createElement('h5');
+    h5.innerText = "Assigns";
+    assigns.appendChild(h5);
+    const assignTable=await drawAssignTable(ticket);
+    let mess= document.createElement('a');
+    mess.innerText="Assign staff";
+    mess.addEventListener('click',()=>console.log('open'));
+    assigns.appendChild(mess);
+    assigns.appendChild(assignTable);
+    return assigns;
+}
+async function drawAssignTable(ticket) {
+    let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']);
+    let assignUsers = await response.json();
+    response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
+    let usersNotAssign = await response.json();
+    const assignTable = document.createElement('div');
+    assignTable.className = "assignTable";
+    let ul = document.createElement('ul');
+    ul.className = 'assigned';
+    for (let index = 0; index < assignUsers.length; index++){
+        let li = drawAssignTableElement(assignUsers [index],ticket, true);
+        ul.appendChild(li);
+    }
+    assignTable.appendChild(ul);
+    ul = document.createElement('ul');
+    ul.className = 'notAssigned';
+    for (let index = 0; index < usersNotAssign.length; index++) {
+        let li = drawAssignTableElement(usersNotAssign[index],ticket, false);
+        ul.appendChild(li);
+    }
+    assignTable.appendChild(ul);
+    return assignTable;
+}
+function drawAssignTableElement(user_,ticket_,checked){
+    const li= document.createElement('li');
+    const label= document.createElement('label');
+    const checkBox= document.createElement('input');
+    checkBox.type='checkBox';
+    checkBox.id=user_['up'];
+    checkBox.checked=checked;
+    label.htmlFor=user_['up'];
+    checkBox.addEventListener('change', async function () {
+        const user = user_;
+        const ticket = ticket_;
+        if (this.checked) {
+            let response = await fetch('../actions/assign.php?up='+user['up']+'&id='+ticket['id']);
+            let res=await response.json();
+            if(res[0]==='') console.log("Assigned");
+        } else {
+            let response = await fetch('../actions/discharge.php?up='+user['up']+'&id='+ticket['id']);
+            let res=await response.json();
+            if(res[0]==='') console.log("Discharge");
+        }
+    });
+    let user=userInfo(user_);
+    li.appendChild(checkBox);
+    label.appendChild(user);
+    li.appendChild(label);
+    return li;
+}
 function closeSection(){
     body.removeChild(expanded);
     expanded=null;
@@ -205,8 +273,4 @@ async function sendMessage(text) {
     if(res!==''){
 
     }
-
 }
-
-
-

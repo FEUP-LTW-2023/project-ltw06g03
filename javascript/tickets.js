@@ -17,13 +17,13 @@ if(op>=0 && op<3){
 }
 else if(op>=3 && op<6) {
     let response=await fetch('../api/api_session.php');
-    let up =await response.json();
-    api='../api/api_user_tickets.php?up='+up+'&';
+    let user =await response.json();
+    api='../api/api_user_tickets.php?up='+user['up']+'&';
 }
 else if(op>=6 && op<8){
     let response=await fetch('../api/api_session.php');
-    let up =await response.json();
-    api='../api/api_assign_tickets.php?up='+up+'&';
+    let user =await response.json();
+    api='../api/api_assign_tickets.php?up='+user['up']+'&';
 }
 
 if(op===1 || op===4 || op===6 ) api+='status=OPEN&';
