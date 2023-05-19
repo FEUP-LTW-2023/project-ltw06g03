@@ -3,12 +3,16 @@ let expandedTicket=null;
 const body= document.querySelector("main");
 export let ticketSection=document.createElement('div');
 ticketSection.className="ticketSection";
-const response = await fetch('../api/api_session.php');
+let response = await fetch('../api/api_session.php');
 let user = await response.json();
 let href_;
 let loading=false;
 let count=0;
 let role=user['role'];
+response = await fetch('../api/api_status.php');
+const allStatus= await response.json();
+response = await fetch('../api/api_departments.php');
+const allDepartments= await response.json();
 export async function drawTickets(href) {
     href_ = href;
     if(loading)return;
@@ -123,11 +127,6 @@ async function drawExpandedExtraInf(ticket) {
     let h5 = document.createElement('h5');
     h5.innerText = "Departments";
     department.appendChild(h5);
-    let p = document.createElement('p');
-    p.innerHTML = ticket['department'];
-    h5.innerText = "Departments";
-    department.appendChild(h5);
-    department.appendChild(p);
     h5 = document.createElement('h5');
     h5.innerText = "Status";
     const status = document.createElement('div');
@@ -135,19 +134,21 @@ async function drawExpandedExtraInf(ticket) {
     status.appendChild(h5);
     if (role !== 'Admin' && role !== 'Staff') {
         let p = document.createElement('p');
+        p.innerHTML = ticket['department'];
+        department.appendChild(p);
+        p = document.createElement('p');
         p.innerText = ticket['status'];
         status.appendChild(p);
     } else {
         let select = document.createElement('select');
-        const response = await fetch('../api/api_status.php');
-        const res= await response.json();
+
         let op= document.createElement('option');
         op.innerText= ticket['status'];
         select.appendChild(op);
-        for( let index=0; index<res.length;index++){
-            if(res[index]!==ticket['status']) {
+        for( let index=0; index<allStatus.length;index++){
+            if(allStatus[index]!==ticket['status']) {
                 let op = document.createElement('option');
-                op.innerText = res[index];
+                op.innerText = allStatus[index];
                 select.appendChild(op);
             }
         }
@@ -157,6 +158,26 @@ async function drawExpandedExtraInf(ticket) {
             let res= await response.json();
             if(res[0] ==='') await drawTickets(href_);
         });
+
+        let select2 = document.createElement('select');
+
+        let op2= document.createElement('option');
+        op2.innerText= ticket['department'];
+        select2.appendChild(op2);
+        for( let index=0; index<allDepartments.length;index++){
+            if(allDepartments[index]!==ticket['department']) {
+                let op = document.createElement('option');
+                op.innerText = allDepartments[index];
+                select2.appendChild(op);
+            }
+        }
+        department.appendChild(select2);
+        select2.addEventListener('change',async () => {
+            let response = await fetch('../actions/update_ticket.php?status=' + ticket['status'] + '&department=' +select2.value+'&id='+ticket['id']);
+            let res= await response.json();
+            if(res[0] ==='') await drawTickets(href_);
+        });
+
 
     }
     extraInf.appendChild(status);
