@@ -37,8 +37,6 @@ export async function drawTickets(href) {
     }
     loading = false;
     if(href!==href_) await drawTickets(href_);
-    console.log(count);
-
 }
 function drawTicket(ticket){
 
@@ -84,7 +82,6 @@ function userInfo(user){
     userInf.appendChild(profileImg);
     userInf.appendChild(name);
     userInf.appendChild(up);
-
     return userInf;
 }
 
@@ -205,47 +202,85 @@ async function assigns(ticket) {
     let h5 = document.createElement('h5');
     h5.innerText = "Assigns";
     assigns.appendChild(h5);
-    let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']);
-    let assignUsers = await response.json();
 
     let mess;
-    if(assignUsers.length===0) {
+    if(ticket['assigns'].length===0) {
          mess= document.createElement('a');
         mess.innerText = "No one assign";
     }else {
-        mess=assignImgs(assignUsers);
+        mess=assignImgs(ticket['assigns']);
         }
 
     if(role==='Admin' || role ==='Staff') {
-        let response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
-        let usersNotAssign = await response.json();
-        const assignTable = await drawAssignTable(ticket, assignUsers, usersNotAssign);
-        assigns.appendChild(assignTable);
-    }
 
+        const assignTable = await drawAssignTable(ticket);
+        assigns.appendChild(assignTable);
+        mess.addEventListener('click',()=>{
+            assignTable.style.display='block';
+        });
+
+    }
     assigns.appendChild(mess);
 
     return assigns;
 }
-async function drawAssignTable(ticket,assignUsers,usersNotAssign) {
+async function drawAssignTable(ticket) {
+    let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']);
+    let assignUsers = await response.json();
+     response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
+
+    let usersNotAssign = await response.json();
+
     const assignTable = document.createElement('div');
     assignTable.className = "assignTable";
+    const header= document.createElement('header');
+    const cancel= document.createElement('button');
+    cancel.innerText='X';
+    cancel.addEventListener('click',()=>{
+        assignTable.style.display='none';
+    })
+    const form= document.createElement('form');
+    form.className="searchbar";
+    const i= document.createElement('i');
+    i.className="fas fa-search";
+    const input=document.createElement('input');
+    input.type='text';
+    form.appendChild(i);
+    form.appendChild(input);
+    input.addEventListener('input',async () => {
+        let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']+'&search='+input.value);
+        let assignUsers = await response.json();
+        response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']+'&search='+input.value);
+
+        let usersNotAssign = await response.json();
+        drawElements(users, assignUsers, usersNotAssign, ticket);
+    });
+    header.appendChild(form);
+    header.appendChild(cancel);
+    assignTable.appendChild(header);
+    const users= document.createElement('div');
+    users.className='users';
+    assignTable.appendChild(users);
+    drawElements(users,assignUsers,usersNotAssign,ticket);
+    return assignTable;
+}
+function drawElements(section,assignUsers,usersNotAssign,ticket){
+    section.innerHTML='';
+
     let ul = document.createElement('ul');
     ul.className = 'assigned';
     for (let index = 0; index < assignUsers.length; index++){
         let li = drawAssignTableElement(assignUsers [index],ticket, true);
         ul.appendChild(li);
     }
-    assignTable.appendChild(ul);
+    section.appendChild(ul);
     ul = document.createElement('ul');
     ul.className = 'notAssigned';
     for (let index = 0; index < usersNotAssign.length; index++) {
         let li = drawAssignTableElement(usersNotAssign[index],ticket, false);
         ul.appendChild(li);
     }
-    assignTable.appendChild(ul);
-
-    return assignTable;
+    section.appendChild(ul);
 }
 function drawAssignTableElement(user_,ticket_,checked){
     const li= document.createElement('li');

@@ -106,7 +106,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="../css/responsive_style.css">
-    <link rel="stylesheet" href="../css/ticket_page.css">
+     <link rel="stylesheet" href="../css/ticket_page.css">
     <link rel="stylesheet" href="../css/ticket.css">
     <script src="../javascript/tickets.js" type="module" ></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

@@ -71,7 +71,7 @@ h2{
     font-size: 0.8rem;
 }
 
- .expandedTicket{
+.expandedTicket{
      position: fixed;
      display: grid;
      width: 70rem;
@@ -173,15 +173,41 @@ h2{
     position: relative;
 }
 .expandedTicket .extra-inf .assigns .assignTable{
-    display: block;
+    display: none;
     position: absolute;
     top:100%;
     background: white;
     border: 1px solid #AAAAAA;
-    height: 30vh;
+    width: fit-content;
+    padding: 1rem;
+
+
+
+
+}
+.expandedTicket .extra-inf .assigns .assignTable header{
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+    grid-template-rows: 3rem;
+    gap: 1rem;
+   width: 100%;
+    padding: 0;
+
+
+
+}
+.expandedTicket .extra-inf .assigns .assignTable header button{
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    padding: 0;
+}
+
+.expandedTicket .extra-inf .assigns .assignTable .users{
     overflow: scroll;
     padding: 1rem 2rem;
-
+    height: 25vh;
 }
 
 .expandedTicket .extra-inf .assigns .user-info{
@@ -196,11 +222,11 @@ h2{
     object-fit: cover;
 }
 
-.expandedTicket .extra-inf .assigns .assignTable input{
+.expandedTicket .extra-inf .assigns .assignTable input[type=checkbox]{
     display: none;
 }
 .expandedTicket .extra-inf .assigns .assignTable ul,.expandedTicket .extra-inf .assigns .assignTable ul li{
-    padding:  0.2rem 0.5rem;
+    padding:  0.2rem 0rem;
 }
 .expandedTicket .extra-inf .assigns .assignTable ul:nth-of-type(1) {
     border-bottom: 1px solid #AAAAAA;

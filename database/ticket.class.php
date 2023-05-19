@@ -39,7 +39,7 @@ class Ticket {
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $up);
-            $assigns= User::getUsersAssign($db,$ticket['ID']);
+            $assigns= User::getUsersAssign($db,$ticket['ID'],'');
             $messages= Message::getTicketMessages($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
@@ -72,7 +72,7 @@ class Ticket {
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $ticket['CLIENT_ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
-            $assigns= User::getUsersAssign($db,$ticket['ID']);
+            $assigns= User::getUsersAssign($db,$ticket['ID'],'');
             $tickets[] = new Ticket(
                 $ticket['ID'],
                 $ticket['TITLE'],
@@ -102,7 +102,7 @@ class Ticket {
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $ticket['CLIENT_ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
-            $assigns= User::getUsersAssign($db,$ticket['ID']);
+            $assigns= User::getUsersAssign($db,$ticket['ID'],'');
             $tickets[] = new Ticket(
                 $ticket['ID'],
                 $ticket['TITLE'],

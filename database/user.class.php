@@ -68,10 +68,12 @@ class User {
 
         $stmt->execute(array($img,$this->up));
     }
-    static function getUsersAssign(PDO $db, int $id) : array
+    static function getUsersAssign(PDO $db, int $id,string $search) : array
     {
-        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ?');
-        $stmt->execute(array($id));
+        $up=-1;
+        if(is_numeric($search))$up=$search;
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ? AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt->execute(array($id,$up . '%', '%' . $search . '%' ));
         $users = array();
         while ($user = $stmt->fetch()) {
             $img = $user['IMG'];
@@ -91,10 +93,12 @@ class User {
         }
         return $users;
     }
-    static function getUsersNotAssign(PDO $db, int $id) : array
+    static function getUsersNotAssign(PDO $db, int $id,string $search) : array
     {
-    $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)and ( ROLE=? or ROLE=?)');
-        $stmt->execute(array($id,'Admin','Staff'));
+        $up=-1;
+        if(is_numeric($search))$up=$search;
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)AND ( ROLE=? or ROLE=?) AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt->execute(array($id,'Admin','Staff',$up .'%','%'. $search .'%'));
         $users = array();
         while ($user = $stmt->fetch()) {
             $img = $user['IMG'];

@@ -48,10 +48,13 @@
     position: relative;
     overflow: scroll;
     margin-top: 1rem;
+
 }
 .searchbar input{
     font-size: 1rem;
+    width: 100%;
 }
+
 .selected{
     color: #0088BB;
     font-weight: bold;
