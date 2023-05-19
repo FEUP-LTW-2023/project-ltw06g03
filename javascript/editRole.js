@@ -1,3 +1,14 @@
+const rolebutton = document.querySelectorAll('.edit-role');
+if(rolebutton) {
+  for (let i = 0; i < rolebutton.length; i++) {
+    rolebutton[i].addEventListener('click', function (event) {
+        const up = event.target.id.split('-')[2];
+        roleDropdown(up);
+    });
+  }
+}
+
+
 function roleDropdown(up) {
     let userRoleElement = document.querySelector(`#table-box tr#user-${up} h3.user-role`);
     
@@ -76,16 +87,33 @@ async function changeButtons(up, role)  {
   const buttons = document.querySelector('.users-buttons-' + up + '')
 
   buttons.innerHTML = ''
-  buttons.innerHTML += '<button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i> </a></button>'
+  buttons.innerHTML += '<button><a href="../pages/profile.php?up='+ up +'"><i class="fas fa-search"></i> </a></button>'
+
 
   if(role != "Student") {
-      buttons.innerHTML += '<button id="edit-departments-' + up +'" onclick=departmentDropdown('+ up +')><i class="fas fa-building"></i></button>'
-  }
+    const departmentButton = document.createElement('button');
+    departmentButton.id = 'edit-departments-' + up;
+    departmentButton.className = 'edit-departments';
+    departmentButton.innerHTML = '<i class="fas fa-building"></i>';
+    departmentButton.addEventListener('click', function (event) {
+      departmentDropdown(up);
+    });
+    buttons.appendChild(departmentButton);
+
+}
 
   const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
   const session = await sessionResponse.json();
   if (session[0] == 'Admin') {
-      buttons.innerHTML += '<button id="edit-role-' + up + '" onclick="roleDropdown(' + up + ')"><i class="fas fa-user-tag"></i></button>';
-  }
+    const roleButton = document.createElement('button');
+    roleButton.id = 'edit-role-' + up;
+    roleButton.className = 'edit-role';
+    roleButton.innerHTML = '<i class="fas fa-user-tag"></i>';
+    roleButton.addEventListener('click', function (event) {
+      roleDropdown(up);
+    });
+    buttons.appendChild(roleButton);
+
+}
 
 } 

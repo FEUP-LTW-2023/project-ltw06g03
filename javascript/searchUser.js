@@ -49,17 +49,32 @@ if (searchUser) {
             td.innerHTML = ''
             td.className = 'users-buttons-' + user.up
             td.innerHTML += '<button><a href="../pages/profile.php?up='+ user.up +'"><i class="fas fa-search"></i></a></button>'
-
-            if(user.role != "Student") {
-                td.innerHTML += '<button id="edit-departments-' + user.up +'" onclick=departmentDropdown('+ user.up +')><i class="fas fa-building"></i></button>'
-            }
-
-            const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
-            const session = await sessionResponse.json();
-            if (session[0] == 'Admin') {
-                td.innerHTML += '<button id="edit-role-' + user.up + '" onclick="roleDropdown(' + user.up + ')"><i class="fas fa-user-tag"></i></button>';
-            }
         
+            if(user.role != "Student") {
+                const departmentButton = document.createElement('button');
+                departmentButton.id = 'edit-departments-' + user.up;
+                departmentButton.className = 'edit-departments';
+                departmentButton.innerHTML = '<i class="fas fa-building"></i>';
+                departmentButton.addEventListener('click', function (event) {
+                    departmentDropdown(up);
+                });
+
+                td.appendChild(departmentButton);
+            
+            }
+            
+              const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
+              const session = await sessionResponse.json();
+              if (session[0] == 'Admin') {
+                const roleButton = document.createElement('button');
+                roleButton.id = 'edit-role-' + user.up;
+                roleButton.className = 'edit-role';
+                roleButton.innerHTML = '<i class="fas fa-user-tag"></i>';
+                roleButton.addEventListener('click', function (event) {
+                    roleDropdown(up);
+                  });
+                td.appendChild(roleButton);
+            }
 
             tr.appendChild(td)
             

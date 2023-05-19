@@ -257,9 +257,9 @@ function drawUsersBody($session){
 
                                     <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i></a></button><!--
                                     <?php if ($user->role != "Student") {?> 
-                                        --><button id="edit-departments-<?= $user->up ?>" onclick="departmentDropdown(<?=$user->up ?>)"><i class="fas fa-building"></i></button><!--<?php } ?>
+                                        --><button class="edit-departments" id="edit-departments-<?= $user->up ?>" onclick="departmentDropdown(<?=$user->up ?>)"><i class="fas fa-building"></i></button><!--<?php } ?>
                                     <?php if ($session->isAdmin()) {?>
-                                        --><button id="edit-role-<?= $user->up ?>" onclick="roleDropdown(<?=$user->up ?>)"><i class="fas fa-user-tag"></i></button>
+                                        --><button class="edit-role" id="edit-role-<?= $user->up ?>"><i class="fas fa-user-tag"></i></button>
                                     <?php } 
                                         else { ?> --> <?php }
                                     ?>
