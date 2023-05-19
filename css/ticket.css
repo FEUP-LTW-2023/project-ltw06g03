@@ -7,7 +7,7 @@ h2{
     width: auto;
     background: white;
     display: grid;
-   grid-template-columns: 1fr 1fr 5rem 6rem;
+   grid-template-columns: 2fr 3fr 6rem 5rem 6rem;
     margin:  auto auto;
     border-bottom: 1px solid #77777777;
     cursor: pointer;
@@ -180,14 +180,16 @@ h2{
     border: 1px solid #AAAAAA;
     height: 30vh;
     overflow: scroll;
-    padding: 1rem;
+    padding: 1rem 2rem;
+
 }
 
 .expandedTicket .extra-inf .assigns .user-info{
     grid-template-columns: 2rem 1fr;
 }
 
-.expandedTicket .extra-inf .assigns img{
+
+.expandedTicket .extra-inf .assigns img,.assignImg img{
     width: 2rem;
     height: 2rem;
     border-radius: 10rem;
@@ -199,6 +201,9 @@ h2{
 }
 .expandedTicket .extra-inf .assigns .assignTable ul,.expandedTicket .extra-inf .assigns .assignTable ul li{
     padding:  0.2rem 0.5rem;
+}
+.expandedTicket .extra-inf .assigns .assignTable ul:nth-of-type(1) {
+    border-bottom: 1px solid #AAAAAA;
 }
 .expandedTicket .extra-inf .assigns .assignTable ul li label{
    width: 100%;
@@ -287,10 +292,10 @@ h2{
     color: white;
     font-size: 1rem;
 }
-@media (max-width: 75rem) {
+@media (max-width: 83rem) {
 
     .ticketContainer{
-        grid-template-columns: 1fr 5rem 5rem;
+        grid-template-columns: 1fr 8rem 5rem 5rem;
         grid-template-rows: 1fr 1fr;
     }
     .ticketContainer .user-info{
@@ -305,7 +310,7 @@ h2{
 
     }
 }
-@media (max-width: 55rem) {
+@media (max-width: 63rem) {
     .expandedTicket{
         width: auto;
         left: 4rem;
@@ -313,6 +318,12 @@ h2{
 
 
     }
+    .ticketContainer{
+        width: auto;
+        padding: 0;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
     .expandedTicket .extra-inf{
         grid-area: 2/1/3/4;
         border-left: none;
@@ -329,16 +340,10 @@ h2{
         grid-area: 4/1/5/4;
     }
 }
-@media (max-width: 40rem) {
-    .expandedTicket{
-       left: 0;
-        display: block;
-    }
-    .expandedTicket h2{
-        padding-left: 3rem;
-    }
+@media (max-width: 48rem) {
     .ticketContainer{
-
+        width: auto;
+        padding: 0;
         grid-template-rows: 1fr 1fr 1fr;
     }
     .ticketContainer .user-info{
@@ -357,6 +362,19 @@ h2{
         grid-area: 3/3/4/4;
 
     }
+    .ticketContainer .assignImg{
+        grid-area: 3/1/4/2;
+    }
+}
+@media (max-width: 40rem) {
+    .expandedTicket{
+       left: 0;
+        display: block;
+    }
+    .expandedTicket h2{
+        padding-left: 3rem;
+    }
+
 }
 
 

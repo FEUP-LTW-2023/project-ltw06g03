@@ -13,8 +13,9 @@ class Ticket {
     public  string  $department;
     public string $problem;
     public array $messages;
+    public array $assigns;
 
-    public function __construct(int $id, string $title,User $client,string $status,string $problem, array  $messages,string $department)
+    public function __construct(int $id, string $title,User $client,string $status,string $problem, array  $messages,string $department,array $assign)
     {
         $this->id = $id;
         $this->title = $title;
@@ -23,6 +24,7 @@ class Ticket {
         $this->problem=$problem;
         $this->messages=$messages;
         $this->department=$department;
+        $this->assigns=$assign;
     }
 
     static function getUserTickets(PDO $db, int $up, string $search,string $status) : array {
@@ -37,6 +39,7 @@ class Ticket {
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $up);
+            $assigns= User::getUsersAssign($db,$ticket['ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
@@ -45,7 +48,8 @@ class Ticket {
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
                 $messages,
-                $ticket['DEPARTMENT']
+                $ticket['DEPARTMENT'],
+                $assigns
             );
         }
 
@@ -68,6 +72,7 @@ class Ticket {
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $ticket['CLIENT_ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
+            $assigns= User::getUsersAssign($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
                 $ticket['TITLE'],
@@ -75,7 +80,8 @@ class Ticket {
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
                 $messages,
-                $ticket['DEPARTMENT']
+                $ticket['DEPARTMENT'],
+                $assigns
             );
         }
 
@@ -96,6 +102,7 @@ class Ticket {
         while ($ticket = $stmt->fetch()) {
             $user = User::getUser($db, $ticket['CLIENT_ID']);
             $messages= Message::getTicketMessages($db,$ticket['ID']);
+            $assigns= User::getUsersAssign($db,$ticket['ID']);
             $tickets[] = new Ticket(
                 $ticket['ID'],
                 $ticket['TITLE'],
@@ -103,7 +110,8 @@ class Ticket {
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
                 $messages,
-                $ticket['DEPARTMENT']
+                $ticket['DEPARTMENT'],
+                $assigns
             );
         }
         return $tickets;

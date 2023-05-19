@@ -51,6 +51,9 @@ function drawTicket(ticket){
     let p=document.createElement('p');
     p.innerText=ticket['title'];
     subject.appendChild(p);
+
+    let imgs= assignImgs(ticket['assigns']);
+
     let dep= document.createElement("div");
     dep.className="department";
     p=document.createElement('p');
@@ -62,6 +65,7 @@ function drawTicket(ticket){
     p.innerText=ticket['status'];
     status.appendChild(p);
     ticketContainer.appendChild(subject);
+    ticketContainer.appendChild(imgs);
     ticketContainer.appendChild(dep);
     ticketContainer.appendChild(status);
 
@@ -209,24 +213,15 @@ async function assigns(ticket) {
          mess= document.createElement('a');
         mess.innerText = "No one assign";
     }else {
-         mess=document.createElement('div');
-        mess.className="assignImg";
-        let count=assignUsers.length;
-        if(assignUsers.length>3) count=3;
-        for(let index=0;index<count;index++){
-            let img= document.createElement("img");
-            img.src=assignUsers[index]['img'];
-            mess.appendChild(img);
+        mess=assignImgs(assignUsers);
         }
-    }
 
     if(role==='Admin' || role ==='Staff') {
-        response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
+        let response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
         let usersNotAssign = await response.json();
         const assignTable = await drawAssignTable(ticket, assignUsers, usersNotAssign);
         assigns.appendChild(assignTable);
     }
-
 
     assigns.appendChild(mess);
 
@@ -249,6 +244,7 @@ async function drawAssignTable(ticket,assignUsers,usersNotAssign) {
         ul.appendChild(li);
     }
     assignTable.appendChild(ul);
+
     return assignTable;
 }
 function drawAssignTableElement(user_,ticket_,checked){
@@ -265,11 +261,11 @@ function drawAssignTableElement(user_,ticket_,checked){
         if (this.checked) {
             let response = await fetch('../actions/assign.php?up='+user['up']+'&id='+ticket['id']);
             let res=await response.json();
-            if(res[0]==='') console.log("Assigned");
+            if(res[0]==='') await drawTickets(href_);
         } else {
             let response = await fetch('../actions/discharge.php?up='+user['up']+'&id='+ticket['id']);
             let res=await response.json();
-            if(res[0]==='') console.log("Discharge");
+            if(res[0]==='') await drawTickets(href_);
         }
     });
     let user=userInfo(user_);
@@ -283,6 +279,19 @@ function closeSection(){
     expanded=null;
     expandedTicket=null;
     body.style.overflow='scroll';
+}
+function assignImgs(assignUsers){
+    let imgs=document.createElement('div');
+    imgs.className="assignImg";
+    let count=assignUsers.length;
+    if(assignUsers.length>3) count=3;
+    for(let index=0;index<count;index++){
+        let img= document.createElement("img");
+        img.src=assignUsers[index]['img'];
+        imgs.appendChild(img);
+    }
+    return imgs;
+
 }
 async function sendMessage(text) {
     text= text.replace(/\r?\n/g, '<br />');

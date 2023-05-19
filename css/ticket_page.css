@@ -176,7 +176,11 @@ dialog ul li:hover{
 
     grid-area: 4/3/5/4 ;
 }
-@media (max-width: 55rem) {
+@media (max-width: 63rem) {
+    .tickets{
+        width: auto;
+        padding: 0;
+    }
     .newTicket{
         width: auto;
         padding: 0;
@@ -197,6 +201,8 @@ dialog ul li:hover{
     .ticket-page .menu{
         height: auto;
         min-height: unset;
+        width: auto;
+        padding: 0;
     }
     .ticket-page .menu aside{
         width: 100%;
@@ -217,6 +223,7 @@ dialog ul li:hover{
 
 
 }
+
 
 
 
