@@ -69,15 +69,23 @@
 }
 .newTicket{
     display: none;
-    justify-content: center;
     flex-direction: column;
+    justify-content: start;
     padding: 0;
+}
+.newTicket div{
+    display: flex;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+
 
 }
 .newTicket form {
-    max-width: 45rem;
+    max-width: 40rem;
     width: 100%;
-    margin: auto;
+
     display: grid;
     grid-template-columns: 1fr 5rem 9rem;
     grid-template-rows: 5rem 10rem  3rem 3rem;
@@ -86,6 +94,55 @@
     border-radius: 1rem;
     column-gap: 1rem;
 
+}
+.newTicket .department{
+
+    width: auto;
+    padding: 1rem;
+    display: flex;
+    position: relative;
+    gap: 1rem;
+}
+.newTicket .department a h5 {
+    margin: 0;
+}
+.newTicket .department a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.newTicket .department select{
+    padding:  0;
+    left: 60%;
+    margin: 0;
+    top: 30%;
+    width: fit-content;
+    min-width: 9rem;
+    border: none;
+    height: fit-content;
+    max-height: 35vh;
+    overflow:scroll ;
+    text-align: center;
+
+    border-radius: 1rem;
+    background: #FF4F47;
+    color: white;
+  font-size: 1rem;
+}
+.newTicket .department select option{
+    background: white;
+    color: #3d3737FD;
+}
+.newTicket .department select option:hover{
+    color: white;
+    background: #3d3737FD;
+}
+dialog ul li{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+dialog ul li:hover{
+    color: white;
+    background: #3d3737FD;
 }
 .newTicket form input{
     grid-area: 1/1/2/4 ;
@@ -126,9 +183,7 @@
         padding: 0;
     }
     .newTicket form {
-        border-radius: 0;
         width: 90%;
-
     }
     .ticket-page{
         flex-direction: column;

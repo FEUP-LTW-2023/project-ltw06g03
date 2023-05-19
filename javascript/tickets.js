@@ -7,6 +7,7 @@ const search= document.querySelector(' .menu .searchbar input');
 const url = new URL(window.location.href);
 const op=Number(url.searchParams.get('op'));
 
+
 const li= document.querySelectorAll('.menu ul li');
 let api='';
 li[op].className='selected';
@@ -50,29 +51,31 @@ page.appendChild(ticketSection);
 await drawTickets(api+'search=');
 
 async function validateInputs() {
+    let department= document.querySelector('.newTicket select');
     let title = document.querySelector('.newTicket form input[type=text]');
     let text = document.querySelector('form textarea');
     let error = document.querySelector('form .errorMessage');
     if (title.value === '') error.innerHTML = 'Title can not be empty';
-    if (title.value.length>50) error.innerHTML = 'Title has to be shorter than 50 characters';
+    else if (title.value.length>50) error.innerHTML = 'Title has to be shorter than 50 characters';
     else if (text.value === '') error.innerHTML = 'Description can not be empty';
+    else if(department.value==='') error.innerHTML='Chose a department';
     else {
-        const response = await fetch('../actions/newTicket.php?title='+title.value+'&text='+text.value);
+        const response = await fetch('../actions/newTicket.php?title='+title.value+'&text='+text.value+'&department='+department.value);
         if (response.ok) {
             let res = await response.json();
-
+            console.log(res);
             if (res[0] === '') {
-                document.querySelector('form').submit();
+               document.querySelector('form').submit();
                 form.style.display = 'none';
                 page.style.display = 'flex';
 
             } else {
-                error.innerHTML = res[0];
+                error.innerHTML = "Error sending the message";
             }
         }
         else {
             error.innerHTML="ERR";
         }
     }
-
 }
+
