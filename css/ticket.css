@@ -135,7 +135,8 @@ h2{
 
 
 }
-.expandedTicket  .status p{
+.expandedTicket  .status p,.expandedTicket  .status select{
+    border: none;
     background: #FF4F47;
     color: white;
     width: fit-content;

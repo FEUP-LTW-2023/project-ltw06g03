@@ -8,6 +8,7 @@ let user = await response.json();
 let href_;
 let loading=false;
 let count=0;
+let role=user['role'];
 export async function drawTickets(href) {
     href_ = href;
     if(loading)return;
@@ -29,7 +30,7 @@ export async function drawTickets(href) {
 
     for (let index = 0; index < tickets.length; index++) {
         let ticketContainer = drawTicket(tickets[index]);
-        ticketSection.appendChild(ticketContainer);
+        ticketSection.appendChild( ticketContainer);
         ticketContainer.addEventListener('click', () => {
             expand(tickets[index])
         });
@@ -38,29 +39,31 @@ export async function drawTickets(href) {
     loading = false;
     if(href!==href_) await drawTickets(href_);
 }
-function drawTicket(ticket){
+function drawTicket(ticket) {
 
-    let ticketContainer= document.createElement("div");
-    ticketContainer.className="ticketContainer";
+    let ticketContainer = document.createElement("div");
+    ticketContainer.className = "ticketContainer";
     ticketContainer.appendChild(userInfo(ticket['client']));
     console.log();
-    let subject= document.createElement("div");
-    subject.className="subject";
-    let p=document.createElement('p');
-    p.innerText=ticket['title'];
+    let subject = document.createElement("div");
+    subject.className = "subject";
+    let p = document.createElement('p');
+    p.innerText = ticket['title'];
     subject.appendChild(p);
 
-    let imgs= assignImgs(ticket['assigns']);
+    let imgs = assignImgs(ticket['assigns']);
 
-    let dep= document.createElement("div");
-    dep.className="department";
-    p=document.createElement('p');
-    p.innerText=ticket['department'];
+    let dep = document.createElement("div");
+    dep.className = "department";
+    p = document.createElement('p');
+    p.innerText = ticket['department'];
     dep.appendChild(p);
-    let status= document.createElement("div");
-    status.className="status";
-    p=document.createElement('p');
-    p.innerText=ticket['status'];
+    let status;
+
+    status = document.createElement("div");
+    status.className = "status";
+     p = document.createElement('p');
+    p.innerText = ticket['status'];
     status.appendChild(p);
     ticketContainer.appendChild(subject);
     ticketContainer.appendChild(imgs);
@@ -105,17 +108,11 @@ function drawExpandedHeader(ticket){
     const header= document.createElement('header');
     const h2= document.createElement('h2');
     const button=document.createElement('button');
-    //const status= document.createElement('div');
-    //const p=document.createElement('p');
-   // status.className='status';
     h2.innerText=ticket['title'];
     button.innerText='X';
-    //p.innerText=ticket['status'];
     button.addEventListener('click',closeSection);
-    //status.appendChild(p);
     header.appendChild(h2);
     header.appendChild(button);
-    //header.appendChild(status);
     return header;
 }
 async function drawExpandedExtraInf(ticket) {
@@ -123,7 +120,6 @@ async function drawExpandedExtraInf(ticket) {
     extraInf.className = "extra-inf";
     const department = document.createElement('div');
     department.className = "department";
-
     let h5 = document.createElement('h5');
     h5.innerText = "Departments";
     department.appendChild(h5);
@@ -132,16 +128,37 @@ async function drawExpandedExtraInf(ticket) {
     h5.innerText = "Departments";
     department.appendChild(h5);
     department.appendChild(p);
-
     h5 = document.createElement('h5');
     h5.innerText = "Status";
     const status = document.createElement('div');
+    status.className='status'
     status.appendChild(h5);
-    p = document.createElement('p');
-    status.className = 'status';
-    p.innerText = ticket['status'];
-    status.appendChild(p);
-    extraInf.appendChild(status);
+    if (role !== 'Admin' && role !== 'Staff') {
+        let p = document.createElement('p');
+        p.innerText = ticket['status'];
+        status.appendChild(p);
+    } else {
+        let select = document.createElement('select');
+        const response = await fetch('../api/api_status.php');
+        const res= await response.json();
+        let op= document.createElement('option');
+        op.innerText= ticket['status'];
+        select.appendChild(op);
+        for( let index=0; index<res.length;index++){
+            if(res[index]!==ticket['status']) {
+                let op = document.createElement('option');
+                op.innerText = res[index];
+                select.appendChild(op);
+            }
+        }
+        status.appendChild(select);
+        select.addEventListener('change',async () => {
+            let response = await fetch('../actions/update_ticket.php?status=' + select.value + '&department=' + ticket['department']+'&id='+ticket['id']);
+            let res= await response.json();
+            if(res[0] ==='') await drawTickets(href_);
+        });
+
+    }
     extraInf.appendChild(status);
     extraInf.appendChild(department);
     extraInf.appendChild(await assigns(ticket));
@@ -183,7 +200,7 @@ function form(){
     const text=document.createElement('textarea');
     const submit= document.createElement('button');
     submit.innerText="Send";
-    submit.addEventListener('click',async (e) => {
+    submit.addEventListener('click',async  (e) => {
         e.preventDefault();
         await sendMessage(text.value);
         await drawTickets(href_);
@@ -196,7 +213,7 @@ function form(){
     
 }
 async function assigns(ticket) {
-    let role = user['role'];
+
     const assigns = document.createElement('div');
     assigns.className = "assigns";
     let h5 = document.createElement('h5');
