@@ -93,8 +93,8 @@ class User {
     }
     static function getUsersNotAssign(PDO $db, int $id) : array
     {
-    $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?) ');
-        $stmt->execute(array($id));
+    $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)and ( ROLE=? or ROLE=?)');
+        $stmt->execute(array($id,'Admin','Staff'));
         $users = array();
         while ($user = $stmt->fetch()) {
             $img = $user['IMG'];

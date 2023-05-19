@@ -162,7 +162,6 @@ function drawMessages(messages){
     messagesSection.className='messages';
     for(let index=0; index<messages.length;index++) messagesSection.appendChild(drawMessage(messages[index]));
     messagesSection.appendChild(form());
-
     return messagesSection;
 }
 
@@ -202,19 +201,38 @@ async function assigns(ticket) {
     let h5 = document.createElement('h5');
     h5.innerText = "Assigns";
     assigns.appendChild(h5);
-    const assignTable=await drawAssignTable(ticket);
-    let mess= document.createElement('a');
-    mess.innerText="Assign staff";
-    mess.addEventListener('click',()=>console.log('open'));
-    assigns.appendChild(mess);
-    assigns.appendChild(assignTable);
-    return assigns;
-}
-async function drawAssignTable(ticket) {
     let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']);
     let assignUsers = await response.json();
-    response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
-    let usersNotAssign = await response.json();
+
+    let mess;
+    if(assignUsers.length===0) {
+         mess= document.createElement('a');
+        mess.innerText = "No one assign";
+    }else {
+         mess=document.createElement('div');
+        mess.className="assignImg";
+        let count=assignUsers.length;
+        if(assignUsers.length>3) count=3;
+        for(let index=0;index<count;index++){
+            let img= document.createElement("img");
+            img.src=assignUsers[index]['img'];
+            mess.appendChild(img);
+        }
+    }
+
+    if(role==='Admin' || role ==='Staff') {
+        response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
+        let usersNotAssign = await response.json();
+        const assignTable = await drawAssignTable(ticket, assignUsers, usersNotAssign);
+        assigns.appendChild(assignTable);
+    }
+
+
+    assigns.appendChild(mess);
+
+    return assigns;
+}
+async function drawAssignTable(ticket,assignUsers,usersNotAssign) {
     const assignTable = document.createElement('div');
     assignTable.className = "assignTable";
     let ul = document.createElement('ul');

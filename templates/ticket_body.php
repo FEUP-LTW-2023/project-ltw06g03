@@ -15,12 +15,12 @@ function drawTicketBody($session){
             <aside>
                 <ul>
                     <li ><a href="../pages/tickets.php?op=0">All Tickets</a></li>
-                    <li><a href="../pages/tickets.php?op=1">Open Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=1">Opened Tickets</a></li>
                     <li><a href="../pages/tickets.php?op=2">Closed Tickets</a></li>
                 </ul>
                 <ul>
                     <li><a href="../pages/tickets.php?op=3">My Tickets</a></li>
-                    <li><a href="../pages/tickets.php?op=4">My Open Tickets</a></li>
+                    <li><a href="../pages/tickets.php?op=4">My Opened Tickets</a></li>
                     <li><a href="../pages/tickets.php?op=5">My Closed Tickets</a></li>
                 </ul>
                 <?php if($session->isStaff()){  ?>

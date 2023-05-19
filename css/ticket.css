@@ -168,13 +168,17 @@ h2{
     border-left: 1px solid #77777777;
 }
 .expandedTicket .extra-inf .assigns{
+    align-items: center;
     display: flex;
+    position: relative;
 }
 .expandedTicket .extra-inf .assigns .assignTable{
+    display: block;
     position: absolute;
+    top:100%;
     background: white;
     border: 1px solid #AAAAAA;
-    max-height: 25rem;
+    height: 30vh;
     overflow: scroll;
     padding: 1rem;
 }
@@ -186,6 +190,8 @@ h2{
 .expandedTicket .extra-inf .assigns img{
     width: 2rem;
     height: 2rem;
+    border-radius: 10rem;
+    object-fit: cover;
 }
 
 .expandedTicket .extra-inf .assigns .assignTable input{
