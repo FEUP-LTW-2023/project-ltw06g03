@@ -180,7 +180,7 @@ h2{
     border: 1px solid #AAAAAA;
     width: fit-content;
     padding: 1rem;
-
+    z-index: 4;
 
 
 
@@ -232,7 +232,7 @@ h2{
     border-bottom: 1px solid #AAAAAA;
 }
 .expandedTicket .extra-inf .assigns .assignTable ul li label{
-   width: 100%;
+   width: fit-content;
     padding-left: 1rem;
     position: relative;
 }
@@ -337,6 +337,14 @@ h2{
     }
 }
 @media (max-width: 63rem) {
+    .expandedTicket .extra-inf .assigns{
+        position: unset;
+    }
+    .expandedTicket .extra-inf .assigns .assignTable{
+        width: 20rem;
+        top:10%;
+        right: 0;
+    }
     .expandedTicket{
         width: auto;
         left: 4rem;
@@ -367,6 +375,14 @@ h2{
     }
 }
 @media (max-width: 48rem) {
+    .expandedTicket .extra-inf .assigns .assignTable{
+        width: 80%;
+        top:10%;
+        right: 5%;
+        left: 5%;
+        height: 80%;
+        padding: 2.5%;
+    }
     .ticketContainer{
         width: auto;
         padding: 0;
