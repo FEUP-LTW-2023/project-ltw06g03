@@ -11,18 +11,21 @@ try {
 
     $up = intval($_GET['UP']);
     $user= User::getUser($db,$up);
-    $departments = $_GET['departments'];
     $role = $_GET['role'];
 
-    if($role!='student' && $role!='teacher' && $role!='admin') echo json_encode(["Role does not exist"]);
 
+    if ($user->role === $role) {
+        echo json_encode(["Role is the same"]);
+    }
+
+    elseif (!in_array($role, ['Student', 'Staff', 'Admin'])) {
+        echo json_encode(["Role does not exist"]);
+    } 
     else {
         $user->role = $role;
-        $user->departments = $departments;
         $user->save($db);
         if($up==$session->getUp()) {
             $session->setRole($role);
-            $session->setDepartments($departments);
         }
         echo json_encode(['']);
     }        

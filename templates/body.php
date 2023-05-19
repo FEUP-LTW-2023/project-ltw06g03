@@ -229,11 +229,11 @@ function drawUsersBody($session){
                         
                         <?php foreach($users as $user){ ?>
 
-                            <tr>
+                            <tr id="user-<?= $user->up ?>">
 
                                 <td>
                                     <h2><?= $user->name ?></h2>
-                                    <h3><?= $user->role ?></h3>
+                                    <h3 class="user-role"><?= $user->role ?></h3>
                                 </td> 
 
                                 <td> <h3><?= $user->up?> </h3></td>
@@ -256,10 +256,13 @@ function drawUsersBody($session){
                                 <td>
 
                                     <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i></a></button><!--
-                                --><button id="edit-departments"><i class="fas fa-building"></i></button><!--
-                                <?php if ($session->isAdmin())?>
-                                        --><button id="edit-role"><i class="fas fa-user-tag"></i></button>
-
+                                    <?php if ($user->role != "Student") {?> 
+                                        --><button id="edit-departments-<?= $user->up ?>" onclick="departmentDropdown(<?=$user->up ?>)"><i class="fas fa-building"></i></button><!--<?php } ?>
+                                    <?php if ($session->isAdmin()) {?>
+                                        --><button id="edit-role-<?= $user->up ?>" onclick="roleDropdown(<?=$user->up ?>)"><i class="fas fa-user-tag"></i></button>
+                                    <?php } 
+                                        else { ?> --> <?php }
+                                    ?>
                                 </td>
                             </tr>
 

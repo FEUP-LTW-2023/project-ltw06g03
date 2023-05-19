@@ -53,12 +53,15 @@ class User {
     }
     function save(PDO $db) {
         $stmt = $db->prepare('
-        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?, DEPARTMENTS= ?
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?
         WHERE UP = ?
       ');
 
-        $stmt->execute(array($this->name, $this->email, $this->pass,$this->up, $this->role, $this->departments));
+        $stmt->execute(array($this->name, $this->email, $this->role, $this->pass, $this->up));
     }
+
+
+
     function uploadImg(PDO $db,string $img){
         $stmt = $db->prepare('
         UPDATE PERSON SET  IMG= ?
@@ -99,11 +102,14 @@ class User {
     static function searchUser(PDO $db, string $nameOrUP) : array {
         $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD, IMG FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
 
-        try {
-            $stmt->execute(array($nameOrUP . '%',  intval($nameOrUP) . '%'));
+
+
+        if (is_numeric($nameOrUP)) {
+            $nameOrUP = intval($nameOrUP);
+            $stmt->execute(array('',  $nameOrUP . '%'));
         }
-        catch(Exception $e) {
-            $stmt->execute(array($nameOrUP . '%',  -1 . '%'));
+        else {
+            $stmt->execute(array('%'. $nameOrUP .'%',  -1 ));
         }
 
         $ret = array();
