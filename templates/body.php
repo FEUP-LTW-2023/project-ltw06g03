@@ -253,7 +253,7 @@ function drawUsersBody($session){
                                     } ?>
                                 </td>
 
-                                <td>
+                                <td class="users-buttons-<?=$user->up?>">
 
                                     <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i></a></button><!--
                                     <?php if ($user->role != "Student") {?> 

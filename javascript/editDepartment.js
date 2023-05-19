@@ -1,0 +1,1 @@
+const userDepartments = document.querySelector()

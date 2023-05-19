@@ -1,6 +1,10 @@
 function roleDropdown(up) {
-    const userRoleElement = document.querySelector(`#table-box tr#user-${up} h3.user-role`);
+    let userRoleElement = document.querySelector(`#table-box tr#user-${up} h3.user-role`);
     
+    if (!userRoleElement) {
+      return;
+    }
+
     const currentRole = userRoleElement.textContent.trim();
     
     const dropdown = document.createElement('select');
@@ -28,6 +32,7 @@ function roleDropdown(up) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
             const newRoleElement = document.createElement('h3');
+            newRoleElement.classList.add('user-role');
             newRoleElement.textContent = role;
 
             newRoleElement.addEventListener('click', roleDropdown.bind(null, up));
@@ -55,12 +60,32 @@ function roleDropdown(up) {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           const newRoleElement = document.createElement('h3');
+          newRoleElement.classList.add('user-role');
           newRoleElement.textContent = role;
           dropdown.replaceWith(newRoleElement);
+          changeButtons(up, role);
         }
       };
       xhr.send();
     }
+  
   });
   
-  
+async function changeButtons(up, role)  {
+
+  const buttons = document.querySelector('.users-buttons-' + up + '')
+
+  buttons.innerHTML = ''
+  buttons.innerHTML += '<button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i> </a></button>'
+
+  if(role != "Student") {
+      buttons.innerHTML += '<button id="edit-departments-' + up +'" onclick=departmentDropdown('+ up +')><i class="fas fa-building"></i></button>'
+  }
+
+  const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
+  const session = await sessionResponse.json();
+  if (session[0] == 'Admin') {
+      buttons.innerHTML += '<button id="edit-role-' + up + '" onclick="roleDropdown(' + up + ')"><i class="fas fa-user-tag"></i></button>';
+  }
+
+} 

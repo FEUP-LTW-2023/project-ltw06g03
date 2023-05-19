@@ -21,7 +21,7 @@ if (searchUser) {
     
         for (const user of users) {
             const tr = document.createElement('tr')
-            tr.className = 'user-'+user.up
+            tr.id = 'user-'+user.up
             tr.innerHTML = ''
 
             let td = document.createElement('td')
@@ -47,7 +47,8 @@ if (searchUser) {
             tr.appendChild(td2)
 
             td.innerHTML = ''
-            td.innerHTML += '<button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i> </a></button>'
+            td.className = 'users-buttons-' + user.up
+            td.innerHTML += '<button><a href="../pages/profile.php?up='+ user.up +'"><i class="fas fa-search"></i></a></button>'
 
             if(user.role != "Student") {
                 td.innerHTML += '<button id="edit-departments-' + user.up +'" onclick=departmentDropdown('+ user.up +')><i class="fas fa-building"></i></button>'
@@ -55,7 +56,6 @@ if (searchUser) {
 
             const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
             const session = await sessionResponse.json();
-            console.log(session);
             if (session[0] == 'Admin') {
                 td.innerHTML += '<button id="edit-role-' + user.up + '" onclick="roleDropdown(' + user.up + ')"><i class="fas fa-user-tag"></i></button>';
             }
