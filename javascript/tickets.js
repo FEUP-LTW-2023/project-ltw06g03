@@ -19,9 +19,14 @@ else if(op>=3 && op<6) {
     let up =await response.json();
     api='../api/api_user_tickets.php?up='+up+'&';
 }
+else if(op>=6 && op<8){
+    let response=await fetch('../api/api_session.php');
+    let up =await response.json();
+    api='../api/api_assign_tickets.php?up='+up+'&';
+}
 
-if(op===1 || op===4 ) api+='status=OPEN&';
-else if(op===2 || op===5) api+='status=CLOSED&';
+if(op===1 || op===4 || op===6 ) api+='status=OPEN&';
+else if(op===2 || op===5 || op===7) api+='status=CLOSED&';
 
 
 search.addEventListener('input', async () => {

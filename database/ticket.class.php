@@ -26,11 +26,11 @@ class Ticket {
 
     static function getUserTickets(PDO $db, int $up, string $search,string $status) : array {
         if($status==='') {
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND TITLE LIKE ?');
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND TITLE LIKE ? ORDER BY ID DESC LIMIT 100');
             $stmt->execute(array($up, '%' . $search . '%'));
         }
         else{
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND STATUS= ? AND TITLE LIKE ?');
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND STATUS= ? AND TITLE LIKE ? ORDER BY ID DESC LIMIT 100');
             $stmt->execute(array($up, $status,'%' . $search . '%'));
         }
         $tickets = array();
@@ -49,6 +49,7 @@ class Ticket {
 
         return $tickets;
     }
+
 
     static function getTickets(PDO $db, string $search,string $status) : array {
             if(is_numeric($search))$up=intval($search);
@@ -77,6 +78,34 @@ class Ticket {
 
         return $tickets;
     }
+    static function getAssignTickets(PDO $db, int $up,string $search,string $status) : array {
+        if(is_numeric($search))$up_=intval($search);
+        else $up_=-1;
+        if($status==='') {
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
+            $stmt->execute(array($up,$up_ . '%', '%' . $search . '%', '%' . $search . '%'));
+        }
+        else{
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND STATUS== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
+            $stmt->execute(array($up,$status,$up_ . '%', '%' . $search . '%', '%' . $search . '%'));
+        }
+        $tickets = array();
+        while ($ticket = $stmt->fetch()) {
+            $user = User::getUser($db, $ticket['CLIENT_ID']);
+            $messages= Message::getTicketMessages($db,$ticket['ID']);
+            $tickets[] = new Ticket(
+                $ticket['ID'],
+                $ticket['TITLE'],
+                $user,
+                $ticket['STATUS'],
+                $ticket['PROBLEM'],
+                $messages
+            );
+        }
+
+        return $tickets;
+    }
+
 
 }
 ?>
