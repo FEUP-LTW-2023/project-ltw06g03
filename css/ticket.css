@@ -7,7 +7,7 @@ h2{
     width: auto;
     background: white;
     display: grid;
-   grid-template-columns: 1fr 1fr 5rem 5rem;
+   grid-template-columns: 1fr 1fr 5rem 6rem;
     margin:  auto auto;
     border-bottom: 1px solid #77777777;
     cursor: pointer;
@@ -68,18 +68,9 @@ h2{
     background: #FF4F47;
     color: white;
     border-radius: 10rem;
+    font-size: 0.8rem;
 }
- .labels{
-    position: relative;
-    padding: 1rem;
-    width: auto;
-    background: white;
-    display: none;
-    grid-template-columns: 1fr 1fr 5rem 5rem;
-    margin:  auto auto;
-    border-bottom: 1px solid #77777777;
-    cursor: pointer;
-}
+
  .expandedTicket{
      position: fixed;
      display: grid;
@@ -152,7 +143,7 @@ h2{
     padding: 0.5rem 1rem;
     border-radius: 10rem;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 .expandedTicket .about{
     padding: 1.5rem ;

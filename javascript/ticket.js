@@ -53,7 +53,7 @@ function drawTicket(ticket){
     let dep= document.createElement("div");
     dep.className="department";
     p=document.createElement('p');
-    p.innerText='cica';
+    p.innerText=ticket['department'];
     dep.appendChild(p);
     let status= document.createElement("div");
     status.className="status";

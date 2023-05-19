@@ -14,7 +14,7 @@ class Ticket {
     public string $problem;
     public array $messages;
 
-    public function __construct(int $id, string $title,User $client,string $status,string $problem, array  $messages)
+    public function __construct(int $id, string $title,User $client,string $status,string $problem, array  $messages,string $department)
     {
         $this->id = $id;
         $this->title = $title;
@@ -22,6 +22,7 @@ class Ticket {
         $this->status=$status;
         $this->problem=$problem;
         $this->messages=$messages;
+        $this->department=$department;
     }
 
     static function getUserTickets(PDO $db, int $up, string $search,string $status) : array {
@@ -43,7 +44,8 @@ class Ticket {
                 $user,
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
-                $messages
+                $messages,
+                $ticket['DEPARTMENT']
             );
         }
 
@@ -72,7 +74,8 @@ class Ticket {
                 $user,
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
-                $messages
+                $messages,
+                $ticket['DEPARTMENT']
             );
         }
 
@@ -99,10 +102,10 @@ class Ticket {
                 $user,
                 $ticket['STATUS'],
                 $ticket['PROBLEM'],
-                $messages
+                $messages,
+                $ticket['DEPARTMENT']
             );
         }
-
         return $tickets;
     }
 
