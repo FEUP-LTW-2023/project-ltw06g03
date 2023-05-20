@@ -1,0 +1,41 @@
+.add-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.add-page form{
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+    display: grid;
+    padding: 2rem;
+    min-width: 25rem;
+    gap: 1rem;
+    font-size: 1.3rem;
+    margin: 2rem;
+
+}
+
+.add-page form button{
+
+    font-size: 1.2rem;
+}
+
+.add-page form i{
+    color: #888888;
+}
+
+@media (max-width: 60em){
+    .add-page form{
+        min-width: 20rem;
+    }
+}
+    
+@media (max-width: 40em){
+    .add-page form{
+        min-width: 10rem;
+    }
+}

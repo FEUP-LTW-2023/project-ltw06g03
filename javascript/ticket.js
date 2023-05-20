@@ -39,7 +39,6 @@ function drawTicket(ticket){
     let ticketContainer= document.createElement("div");
     ticketContainer.className="ticketContainer";
     ticketContainer.appendChild(userInfo(ticket['client']));
-    console.log();
     let subject= document.createElement("div");
     subject.className="subject";
     let p=document.createElement('p');

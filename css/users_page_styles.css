@@ -120,3 +120,8 @@ button{
     background: #81150C;
     color: white;
 }
+
+.add-buttons a {
+    text-decoration: none;
+    color: white;
+}

@@ -44,7 +44,6 @@ export function departmentDropdown(up, departmentsList) {
 
                     const Departments = await fetch(`../api/api_user_departments.php?UP=${up}`);
                     const currentDepartments = await Departments.json();
-                    console.log(currentDepartments);
                     const newdiv = document.createElement('div');
                     newdiv.classList.add('departments');
                     if (currentDepartments.length === 0) {

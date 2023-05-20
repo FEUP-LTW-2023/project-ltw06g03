@@ -279,9 +279,7 @@ function drawUsersBody($session){
         </div>
     <?php if($session->isAdmin()) {?>
     <div class="add-buttons">
-        <button id="add-user"><i class="fas fa-plus"></i><i class="fas fa-user"> Add user </i></button>
-        <button id="add-department"><i class="fas fa-plus"></i><i class="fas fa-building"> Add Department </i></button>
-        <button id="add-status"><i class="fas fa-plus"></i><i class="fas fa-info-circle"> Add Status </i></button>
+        <button><a href="../pages/addDepartmentOrStatus.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
     </div>
     <?php }?>
 
@@ -315,5 +313,29 @@ function drawEditBody(){
 
       </form>
    </div>
+
+<?php } 
+
+
+function drawAddBody() {
+    $session = new Session();
+    ?>
+    <div class="add-page">
+    <div class="add-department">
+        <form action="../actions/add_department.php?name=">
+            <label for="name">Department Name:</label>
+            <input type="text" name="name" id="name">
+            <button type="submit"><i class="fas fa-plus"></i> Add Department </button>
+        </form>
+    </div>
+
+    <div class="add-status">
+        <form action="">
+            <label for="status-name">Status Name:</label>
+            <input type="text" name="status-name" id="status-name">
+            <button type="submit"><i class="fas fa-plus"></i> Add Status </button>
+        </form>
+    </div>
+    </div>
 
 <?php } ?>
