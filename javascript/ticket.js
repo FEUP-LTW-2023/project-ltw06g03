@@ -100,7 +100,7 @@ async function expand(ticket) {
     expand.appendChild(drawExpandedHeader(ticket));
     expand.appendChild(await drawExpandedExtraInf(ticket));
     expand.appendChild(drawExpandedAbout(ticket));
-    expand.appendChild(drawMessages(ticket['messages'], ticket));
+    expand.appendChild(drawMessages(ticket));
     expandedTicket = ticket;
     expanded = expand;
     body.appendChild(expand);
@@ -196,11 +196,13 @@ function drawExpandedAbout(ticket){
     about.appendChild(problem);
     return about;
 }
-function drawMessages(messages){
+function drawMessages(ticket){
+    let messages=ticket['messages'];
     const messagesSection=document.createElement('div');
     messagesSection.className='messages';
     for(let index=0; index<messages.length;index++) messagesSection.appendChild(drawMessage(messages[index]));
-    messagesSection.appendChild(form());
+    if(role==='Admin' || role==='Staff' || ticket['client']['up']===user['up'])
+        messagesSection.appendChild(form());
     return messagesSection;
 }
 
