@@ -52,9 +52,7 @@ main{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/feup.png');
-  background-repeat: round;
-  background-size: cover ;
+
 
 
 }

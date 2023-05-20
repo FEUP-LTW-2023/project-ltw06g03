@@ -48,7 +48,7 @@ function validateInputs(e) {
                     else   throw res[0] ;
                     // Handle the response from PHP if needed
                 } else {
-                    throw "Error while uploading the image!";
+                    throw "Error while uploading the images!";
                 }
             })
             .catch(function(error) {

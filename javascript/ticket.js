@@ -20,7 +20,7 @@ export async function drawTickets(href) {
     const response = await fetch(href);
     let tickets = await response.json();
     count++;
-    console.log(href_);
+
     ticketSection.innerHTML = '';
     ticketSection.className = 'ticketSection';
     if (tickets.length === 0) {
@@ -168,9 +168,9 @@ async function drawExpandedExtraInf(ticket) {
         op2.innerText= ticket['department'];
         select2.appendChild(op2);
         for( let index=0; index<allDepartments.length;index++){
-            if(allDepartments[index]!==ticket['department']) {
+            if(allDepartments[index]['name']!==ticket['department']) {
                 let op = document.createElement('option');
-                op.innerText = allDepartments[index];
+                op.innerText = allDepartments[index]['name'];
                 select2.appendChild(op);
             }
         }

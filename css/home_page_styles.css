@@ -8,6 +8,9 @@
     position: relative;
     flex-direction: column;
     justify-content: center;
+    background-image:url("../docs/feup.png");
+    background-repeat: no-repeat;
+    background-size: cover ;
 
 }
 .homePageHeader .indicator{
