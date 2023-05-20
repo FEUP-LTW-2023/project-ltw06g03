@@ -94,13 +94,13 @@
     background: gray;
 }
 
-.FAQ {
+.about {
     max-width: 75rem;
     margin: auto;
 
     padding: 1rem;
 }
-.FAQ h1{
+.about h1{
     width: 100%;
     position: relative;
     text-align: center;
@@ -108,28 +108,28 @@
     font-weight: bold;
     padding: 1rem;
 }
-.FAQ article{
+.about article{
     display: flex;
     margin-bottom: 5rem;
 }
-.FAQ article .Text{
+.about article .Text{
     max-width: 45rem;
     font-size: 1rem;
 }
-.FAQ article img{
+.about article img{
     max-width: 30rem;
 
     margin-left: 3rem;
     max-height: 30rem;
     align-self: center;
 }
-.FAQ article .Text header{
+.about article .Text header{
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
 
 }
-.FAQ article .Text header::before{
+.about article .Text header::before{
     content: '';
     width: 4rem;
     height: 0.2rem;
@@ -137,14 +137,12 @@
     position: absolute;
 
 }
-.FAQ article .Text p::first-letter{
+.about article .Text p::first-letter{
     font-size: 1.2rem;
     font-weight: bold;
 }
-.FAQ :nth-child(odd) img{
+.about :nth-child(odd) img{
     order: -1;
     margin: 3rem 3rem 0rem 0;
 }
-
-
 

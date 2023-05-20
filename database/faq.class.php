@@ -18,11 +18,11 @@ class FAQ {
         $this->text=$text;
     }
 
-    static function getFaqs(PDO $db,string $search) : array {
+    static function getFaqs(PDO $db) : array {
 
-        $search='%'.$search .'%';
-        $stmt = $db->prepare('SELECT  TITLE,TEXT FROM FAQ WHERE TITLE LIKE ? OR TEXT LIKE ?  ');
-        $stmt->execute(array($search,$search));
+
+        $stmt = $db->prepare('SELECT  TITLE,TEXT FROM FAQ  ');
+        $stmt->execute();
 
         $faqs = array();
         while ($faq = $stmt->fetch()) {

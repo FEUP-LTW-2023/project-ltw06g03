@@ -58,6 +58,33 @@ h4{
     height: fit-content;
     border-bottom: 1px solid #AAAAAA;
 }
+.faqSection{
+    margin: auto;
+    min-height: 100vh;
+    width: auto;
+    display: flex;
+    background: #AAAAAA33;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+
+    position: relative;
+
+
+}
+.faqSection .faq{
+    margin:  0;
+    overflow-y: scroll;
+    position: relative;
+    background: white;
+    padding: 1rem;
+    width: 100%;
+    max-width: 25rem;
+    height: 20rem;
+
+    border-radius: 1rem;
+}
+
 @media (max-width: 40rem) {
     main .page form,.doubts{
             border-radius: 0;

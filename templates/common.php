@@ -26,6 +26,7 @@
                     <li><a href="../pages/home.php">Home</a></li>
                     <li><a href="https://sigarra.up.pt/feup/pt/web_page.inicial">Feup Official</a></li>
                     <li><a href="https://github.com/FEUP-LTW-2023/project-ltw06g03">Source code</a></li>
+                    <li><a href="../pages/faqs.php">FAQ's</a></li>
 
                 </ul>
             </div>
@@ -66,7 +67,7 @@
 
                 <?php if($session->isStaff()) {?>
                     <li><a href="users.php"><i class="fas fa-users"></i><span>Users</span></a></li>
-                    <li><a href="faqs.php"><i class="fa fa-question-circle" aria-hidden="true"></i><span>FAQs</span></a></li>
+                    <li><a href="faqs_create.php"><i class="fa fa-question-circle" aria-hidden="true"></i><span>FAQs</span></a></li>
 
                 <?php } ?>
             
