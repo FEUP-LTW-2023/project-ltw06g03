@@ -37,8 +37,12 @@ class User {
             '',
             []
         );
-        $img='../docs/default_pfp.png';
-        if($user['IMG']!=null) $img="data:image/png;base64," . $user['IMG'] ;
+
+        $img=$user['IMG'];
+        if(!isset($img) or !file_exists($img)) {
+            $img='/docs/images/default_pfp.png' ;
+        }
+
         $departments=Department::getUsersDepartments($db, $user['UP']);
 
         return new User(
@@ -62,11 +66,11 @@ class User {
 
     function save(PDO $db) {
         $stmt = $db->prepare('
-        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?
+
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?,IMG=?
         WHERE UP = ?
       ');
-
-        $stmt->execute(array($this->name, $this->email, $this->role, $this->pass, $this->up));
+        $stmt->execute(array($this->name, $this->email, $this->role, $this->pass, $this->img,$this->up));
     }
 
 
@@ -78,6 +82,56 @@ class User {
       ');
 
         $stmt->execute(array($img,$this->up));
+    }
+    static function getUsersAssign(PDO $db, int $id,string $search) : array
+    {
+        $up=-1;
+        if(is_numeric($search))$up=$search;
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ? AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt->execute(array($id,$up . '%', '%' . $search . '%' ));
+        $users = array();
+        while ($user = $stmt->fetch()) {
+            $img = $user['IMG'];
+            if (!isset($img) or !file_exists($img)) {
+                $img = '/docs/images/default_pfp.png';
+            }
+            $departments = Department::getUsersDepartments($db, $user['UP']);
+            $users[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+        return $users;
+    }
+    static function getUsersNotAssign(PDO $db, int $id,string $search) : array
+    {
+        $up=-1;
+        if(is_numeric($search))$up=$search;
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)AND ( ROLE=? or ROLE=?) AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt->execute(array($id,'Admin','Staff',$up .'%','%'. $search .'%'));
+        $users = array();
+        while ($user = $stmt->fetch()) {
+            $img = $user['IMG'];
+            if (!isset($img) or !file_exists($img)) {
+                $img = '/docs/images/default_pfp.png';
+            }
+            $departments = Department::getUsersDepartments($db, $user['UP']);
+            $users[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+        return $users;
     }
 
     static function getUsers(PDO $db) : array {

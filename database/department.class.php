@@ -52,6 +52,17 @@ class Department {
 
         return $departments;
     }
+    static function getDepartments(PDO $db):array{
+        $stmt = $db->prepare('SELECT NAME FROM DEPARTMENT ');
+        $stmt->execute();
+
+        $departments = array();
+        while ($department = $stmt->fetch()) {
+            $departments[] = $department['NAME'];
+        }
+
+        return $departments;
+    }
 
     static function getAllDepartments(PDO $db) : array {
         $stmt = $db->prepare('SELECT NAME FROM DEPARTMENT');

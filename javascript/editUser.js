@@ -24,10 +24,15 @@ function validateInputs(e) {
     let err= document.querySelector('form .errorMessage');
     e.preventDefault();
     let pass= document.querySelectorAll("form input[name='pass']");
+    let name=document.getElementsByName('name')[0].value;
+    if(name>30){
+        err.innerText='Name has to be shorter that 30 characters';
+        return;
+    }
     if(pass[0].value===pass[1].value) {
         const formData = new FormData(); // Create a new FormData object
         formData.append('img', imgInput.files[0]);
-        formData.append('name',document.getElementsByName('name')[0].value)
+        formData.append('name',name);
         formData.append('email',document.getElementsByName('email')[0].value)
         formData.append('pass',document.getElementsByName('pass')[0].value)// Append the file to the form data
         fetch('../actions/update_user.php', {
@@ -35,7 +40,6 @@ function validateInputs(e) {
             body: formData
         })
             .then(async function (response) {
-
                 if (response.ok) {
                     let res= await response.json();
                     if(res[0]===''){
