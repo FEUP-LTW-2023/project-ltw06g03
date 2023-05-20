@@ -20,6 +20,12 @@ class Status {
 
         return $status_;
     }
+    function new(PDO $db){
+    $stmt = $db->prepare('INSERT INTO STATUS(NAME) values (?);');
+    $stmt->execute(array($this->name));
+
+    }
+
 
 }
 ?>
