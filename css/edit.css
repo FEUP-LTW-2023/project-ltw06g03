@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     margin: auto;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/images/feup.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/feup.png');
     background-repeat: no-repeat;
     background-size: cover ;
     justify-content: center;

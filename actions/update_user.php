@@ -30,7 +30,7 @@ try {
 
             $check = getimagesize($_FILES["img"]["tmp_name"]);
             if ($check === false) {
-                $responseMessage = "Invalid image file.";
+                $responseMessage = "Invalid images file.";
                 $uploadOk = 0;
             }
 

@@ -8,7 +8,6 @@ form.addEventListener('submit',(e)=>{
 const imgInput= document.querySelector('form input[type=file]');
 imgInput.addEventListener('input',async (e) => {
     let img = document.querySelector('form img');
-    console.log(imgInput.files[0]);
     let reader = new FileReader();
     img.src = e.target.result;
     reader.onload = async function (e) {
@@ -44,12 +43,12 @@ function validateInputs(e) {
                 if (response.ok) {
                     let res= await response.json();
                     if(res[0]===''){
-                        window.location.href = window.location.origin+'/pages/user.php';
+                        window.location.href = window.location.origin+'/pages/profile.php';
                     }
                     else   throw res[0] ;
                     // Handle the response from PHP if needed
                 } else {
-                    throw "Error while uploading the image!";
+                    throw "Error while uploading the images!";
                 }
             })
             .catch(function(error) {

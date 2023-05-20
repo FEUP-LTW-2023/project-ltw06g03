@@ -9,7 +9,7 @@
     <footer>
         <div class="row">
             <div class="col">
-                <img src="../docs/images/logo-feup.png">
+                <img src="../docs/logo-feup.png">
                 <p>Feup is an engineering faculty from the University of Porto located in Portugal</p>
             </div>
             <div class="col">
@@ -64,11 +64,7 @@
                 <li><a href="tickets.php"><i class="fa fa-ticket" ></i><span>Tickets</span></a></li>
 
                 <?php if($session->isStaff()) {?>
-                    <li><a href="staff.php"><i class="fas fa-users"></i><span>Staff</span></a></li>
-                    
-                    <?php if($session->isAdmin()) { ?>
-                        <li><a href="statistics.php"><i class="fas fa-chart-line"></i><span>Statics</span></a></li>
-                    <?php } ?>
+                    <li><a href="users.php"><i class="fas fa-users"></i><span>Users</span></a></li>
 
                 <?php } ?>
             
@@ -80,7 +76,7 @@
             
             <li> 
                 <?php if($session->isLoggedIn()) {?>
-                    <a href="../pages/user.php?up=<?=$session->getUp()?>"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a href="../pages/profile.php?up=<?=$session->getUp()?>"><i class="fas fa-user"></i><span>Profile</span></a>
                 <?php } else { ?>
                     <a href="../pages/login.php"><i class="fas fa-user"></i><span>Login</span></a>
                 <?php } ?>

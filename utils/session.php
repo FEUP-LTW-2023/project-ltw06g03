@@ -7,7 +7,7 @@ class Session {
     }
 
     public function isLoggedIn() {
-        return isset($_SESSION['email']);
+        return isset($_SESSION['up']);
     }
 
     public function loggout() {
@@ -24,12 +24,9 @@ class Session {
     public function getEmail() {
         return isset($_SESSION['email']) ? $_SESSION['email'] : null;
     }
-    public function get() {
-        return isset($_SESSION['email']) ? $_SESSION['email'] : null;
-    }
 
-    public function getUserType() {
-        return isset($_SESSION['userType']) ? $_SESSION['userType'] : null;
+    public function getRole() {
+        return isset($_SESSION['role']) ? $_SESSION['role'] : null;
     }
 
     public function getDepartments() {
@@ -56,9 +53,6 @@ class Session {
         $_SESSION['username'] = $username;
     }
 
-    public function setUserType($userType) {
-        $_SESSION['userType'] = $userType;
-    }
     public function setUserUp($up) {
         $_SESSION['up'] = $up;
     }
@@ -67,6 +61,10 @@ class Session {
         $_SESSION['departments'] = $departments;
     }
 
+    public function setRole($role) {
+        $_SESSION['role'] = $role;
+    }
+    
     public function setDateOfRegister($dateOfRegister) {
         $_SESSION['dateOfRegister'] = $dateOfRegister;
     }
@@ -80,15 +78,15 @@ class Session {
     }
 
     public function isStudent() {
-        return ($_SESSION['userType'] == "Student") ? true : false;
+        return ($_SESSION['role'] == "Student") ? true : false;
     }
 
     public function isStaff() {
-        return ($_SESSION['userType'] == "Staff" || $_SESSION['userType'] == "Admin") ? true : false;
+        return ($_SESSION['role'] == "Staff" || $_SESSION['role'] == "Admin") ? true : false;
     }
 
     public function isAdmin() {
-        return ($_SESSION['userType'] == "Admin") ? true : false;
+        return ($_SESSION['role'] == "Admin") ? true : false;
     }
 
 }

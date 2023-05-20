@@ -7,7 +7,7 @@ $stmt->bindParam(':name', $_POST['name']);
 $stmt->bindParam(':up',$up );
 $stmt->bindParam(':email', $_POST['email']);
 $stmt->bindParam(':pass', $_POST['pass']);
-$file_contents = file_get_contents('../docs/images/default_pfp.png');
+$file_contents = file_get_contents('../docs/default_pfp.png');
 $base64 = base64_encode($file_contents);
 $stmt->bindParam(':img', $base64);
 $stmt->execute();

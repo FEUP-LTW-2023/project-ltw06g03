@@ -22,6 +22,7 @@ class User {
         $this->img=$img;
         $this->departments=$departments;
     }
+    
     static function getUser(PDO $db, int $id) : USER {
         $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,PASSWORD,IMG FROM PERSON WHERE UP = ?');
         $stmt->execute(array($id));
@@ -36,10 +37,12 @@ class User {
             '',
             []
         );
+
         $img=$user['IMG'];
         if(!isset($img) or !file_exists($img)) {
             $img='/docs/images/default_pfp.png' ;
         }
+
         $departments=Department::getUsersDepartments($db, $user['UP']);
 
         return new User(
@@ -52,14 +55,26 @@ class User {
             $departments
         );
     }
-    function save(PDO $db) {
+
+    function delete(PDO $db) {
         $stmt = $db->prepare('
-        UPDATE PERSON SET NAME = ?, EMAIL = ?, PASSWORD= ?,IMG= ?
-        WHERE UP = ?
+        DELETE FROM PERSON WHERE UP = ?
       ');
 
-        $stmt->execute(array($this->name, $this->email, $this->pass,$this->img,$this->up));
+        $stmt->execute(array($this->up));
     }
+
+    function save(PDO $db) {
+        $stmt = $db->prepare('
+
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?,IMG=?
+        WHERE UP = ?
+      ');
+        $stmt->execute(array($this->name, $this->email, $this->role, $this->pass, $this->img,$this->up));
+    }
+
+
+
     function uploadImg(PDO $db,string $img){
         $stmt = $db->prepare('
         UPDATE PERSON SET  IMG= ?
@@ -117,6 +132,69 @@ class User {
             );
         }
         return $users;
+    }
+
+    static function getUsers(PDO $db) : array {
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD, IMG FROM PERSON');
+        $stmt->execute();
+
+        $ret = array();
+
+
+        while($user = $stmt->fetch()) {
+
+            $img='../docs/feup.png';
+            if($user['IMG']!=null) $img="data:images/png;base64," . $user['IMG'] ;
+            $departments=Department::getUsersDepartments($db, $user['UP']);
+
+            $ret[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+
+        return $ret;
+    }
+
+
+    static function searchUser(PDO $db, string $nameOrUP) : array {
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, PASSWORD, IMG FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
+
+
+
+        if (is_numeric($nameOrUP)) {
+            $nameOrUP = intval($nameOrUP);
+            $stmt->execute(array('',  $nameOrUP . '%'));
+        }
+        else {
+            $stmt->execute(array('%'. $nameOrUP .'%',  -1 ));
+        }
+
+        $ret = array();
+
+        while($user = $stmt->fetch()) {
+
+            $img='../docs/feup.png';
+            if($user['IMG']!=null) $img="data:images/png;base64," . $user['IMG'] ;
+            $departments=Department::getUsersDepartments($db, $user['UP']);
+
+            $ret[] = new User(
+                $user['UP'],
+                $user['NAME'],
+                $user['EMAIL'],
+                $user['ROLE'],
+                $user['PASSWORD'],
+                $img,
+                $departments
+            );
+        }
+
+        return $ret;
     }
 
 }

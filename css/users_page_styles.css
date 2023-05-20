@@ -1,0 +1,132 @@
+h2, h3, h4 {
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+main footer {
+    width: -moz-available;
+}
+main{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/feup.png');
+    background-repeat: no-repeat;
+    background-size: cover ;
+}
+
+.users-body {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 80vw;
+    height: 80vh;
+    position: relative;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: #FFFFFFFA; 
+    border-radius: 1em; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table{
+    height: 100%;
+    overflow: scroll;
+}
+
+tr td{
+    padding: 0.5em;
+    border-collapse: collapse;
+    border-bottom: 1px solid #3d3737FD;
+    border-spacing: 0;
+}
+
+.users-body tr:last-child > *{
+    border: none;
+}
+
+#searchuser {
+    width: 90%;
+    height: 1.5rem;
+    margin: 0 auto 1em auto;
+}
+
+.staff-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.7rem;
+    
+}
+
+.noFound {
+    text-align: center;
+}
+
+#table-box{
+    text-align: center;
+}
+
+.department {
+    border: 1px solid #3d3737FD;
+    border-radius: 25%;
+    width: 3em;
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+}
+
+.departments div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+td a {
+    text-decoration: none;
+    color: black;
+}
+
+thead {
+    background-color: #3d3737FD;
+    color: white;
+}
+
+button{
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+}
+
+.add-buttons {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-buttons button {
+    border: none;
+    border-radius: 1em;
+    padding: 1em;
+    transition: color 0.2s;
+    background: #FF4F47;
+    color: white;
+}
+
+.add-buttons button:hover {
+    background: #81150C;
+    color: white;
+}
+
+.add-buttons a {
+    text-decoration: none;
+    color: white;
+}
