@@ -1,8 +1,7 @@
-
 html,body,main{
-    padding: 0;
-    margin: 0;
-    height: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
   scroll-behavior: smooth;
   width: 100%;
 
@@ -50,8 +49,7 @@ main{
   padding: 0;
   position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+ 
 
 
 
@@ -62,7 +60,6 @@ h1,h2,h3,h4,h5,h6{
 form i{
   cursor: pointer;
 }
-
 p{
   padding: 0;
   margin: 0;
@@ -126,7 +123,7 @@ form button:hover{
 
 }
 .navbar ul li {
-width: 100%;
+  width: 100%;
 }
 .navbar ul li a{
   display: flex;
@@ -225,7 +222,7 @@ footer .row .copyRight{
 
 }
 footer .row .col ul {
- margin: 0;
+  margin: 0;
   padding: 0;
 }
 footer .row .col ul li{
@@ -303,5 +300,4 @@ footer .row .col h3 .underline span{
   }
 
 }
-
 

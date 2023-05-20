@@ -23,7 +23,7 @@
     .user .links {
         grid-row: 3;
         grid-column: 1;
-      }
+    }
 
     .user .links a {
         margin-bottom: 1em;;

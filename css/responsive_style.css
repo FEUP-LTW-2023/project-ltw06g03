@@ -18,9 +18,9 @@
 
 @media (max-width: 40rem) {
 
-body{
-    display: block;
-}
+    body{
+        display: block;
+    }
     .navbar .items {
         width: 0;
     }
@@ -43,7 +43,7 @@ body{
         display: flex;
         width: 3rem;
         height: 3rem;
-       justify-content: center;
+        justify-content: center;
         align-items: center;
         -moz-border-radius: 2rem;
         -webkit-border-radius: 2rem;
@@ -120,7 +120,7 @@ body{
         background: #3d3737FD;
         padding: 1rem;
         left: 3rem;
-       font-weight: bold;
+        font-weight: bold;
         border-radius: 0.5rem;
         z-index: 30;
     }
