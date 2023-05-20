@@ -38,7 +38,12 @@ export async function drawTickets(href) {
         ticketContainer.addEventListener('click', () => {
             expand(tickets[index])
         });
-        if (expandedTicket !== null && tickets[index]['id'] === expandedTicket['id']) await expand(tickets[index]);
+
+    }
+    if (expandedTicket !== null){
+        let response= await fetch('../api/api_ticket.php?id='+expandedTicket['id']);
+        let res= await response.json();
+        await expand(res);
     }
     loading = false;
     if(href!==href_) await drawTickets(href_);
@@ -67,7 +72,7 @@ function drawTicket(ticket) {
 
     status = document.createElement("div");
     status.className = "status";
-     p = document.createElement('p');
+    p = document.createElement('p');
     p.innerText = ticket['status'];
     status.appendChild(p);
     ticketContainer.appendChild(subject);
@@ -222,8 +227,8 @@ async function drawMessages(ticket) {
             }
         }
     }
-        if (role === 'Admin' || role === 'Staff' || ticket['client']['up'] === user['up'])
-            messagesSection.appendChild(form());
+    if (role === 'Admin' || role === 'Staff' || ticket['client']['up'] === user['up'])
+        messagesSection.appendChild(form());
 
     return messagesSection;
 }
@@ -267,7 +272,7 @@ function form(){
     form.appendChild(text);
     form.appendChild(submit);
     return form;
-    
+
 }
 async function assigns(ticket) {
 
@@ -279,11 +284,11 @@ async function assigns(ticket) {
 
     let mess;
     if(ticket['assigns'].length===0) {
-         mess= document.createElement('a');
+        mess= document.createElement('a');
         mess.innerText = "No one assign";
     }else {
         mess=assignImgs(ticket['assigns']);
-        }
+    }
 
     if(role==='Admin' || role ==='Staff') {
 
@@ -301,7 +306,7 @@ async function assigns(ticket) {
 async function drawAssignTable(ticket) {
     let response = await fetch('../api/api_users_assign.php?id=' + ticket['id']);
     let assignUsers = await response.json();
-     response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
+    response = await fetch('../api/api_users_not_assign.php?id=' + ticket['id']);
 
     let usersNotAssign = await response.json();
 
