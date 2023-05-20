@@ -6,16 +6,19 @@ const newTicket= document.querySelector(".menu  header button");
 const search= document.querySelector(' .menu .searchbar input');
 const url = new URL(window.location.href);
 const op=Number(url.searchParams.get('op'));
-
+const filter= document.querySelector('.topBar select');
+filter.addEventListener('change',async () => {
+    await drawTickets(api + "department=" + filter.value + "&search=" + search.value)
+})
 
 const li= document.querySelectorAll('.menu ul li');
 let api='';
 li[op].className='selected';
 
-if(op>=0 && op<3){
+if(op>=3 && op<6){
     api='../api/api_tickets.php?';
 }
-else if(op>=3 && op<6) {
+else if(op>=0 && op<3) {
     let response=await fetch('../api/api_session.php');
     let user =await response.json();
     api='../api/api_user_tickets.php?up='+user['up']+'&';

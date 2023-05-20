@@ -27,14 +27,15 @@ class Ticket {
         $this->assigns=$assign;
     }
 
-    static function getUserTickets(PDO $db, int $up, string $search,string $status) : array {
+    static function getUserTickets(PDO $db, int $up, string $search,string $status,string $department) : array {
+        if($department==='')$department='%';
         if($status==='') {
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND TITLE LIKE ? ORDER BY ID DESC LIMIT 100');
-            $stmt->execute(array($up, '%' . $search . '%'));
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND TITLE LIKE ? AND DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100');
+            $stmt->execute(array($up, '%' . $search . '%',$department));
         }
         else{
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND STATUS= ? AND TITLE LIKE ? ORDER BY ID DESC LIMIT 100');
-            $stmt->execute(array($up, $status,'%' . $search . '%'));
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET WHERE CLIENT_ID = ? AND STATUS= ? AND TITLE LIKE ? AND DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100');
+            $stmt->execute(array($up, $status,'%' . $search . '%',$department));
         }
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
@@ -57,16 +58,17 @@ class Ticket {
     }
 
 
-    static function getTickets(PDO $db, string $search,string $status) : array {
+    static function getTickets(PDO $db, string $search,string $status,string $department) : array {
+            if($department==='') $department='%';
             if(is_numeric($search))$up=intval($search);
             else $up=-1;
             if($status==='') {
-                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ? ORDER BY ID DESC LIMIT 100 ');
-                $stmt->execute(array($up . '%', '%' . $search . '%', '%' . $search . '%'));
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100 ');
+                $stmt->execute(array($up . '%', '%' . $search . '%', '%' . $search . '%',$department ));
             }
             else{
-                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE STATUS== ? AND (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
-                $stmt->execute(array($status,$up . '%', '%' . $search . '%', '%' . $search . '%'));
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE STATUS== ? AND (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100 ');
+                $stmt->execute(array($status,$up . '%', '%' . $search . '%', '%' . $search . '%',$department));
             }
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
@@ -110,16 +112,17 @@ class Ticket {
 
     }
 
-    static function getAssignTickets(PDO $db, int $up,string $search,string $status) : array {
+    static function getAssignTickets(PDO $db, int $up,string $search,string $status,string $department) : array {
+        if($department==='') $department='%';
         if(is_numeric($search))$up_=intval($search);
         else $up_=-1;
         if($status==='') {
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
-            $stmt->execute(array($up,$up_ . '%', '%' . $search . '%', '%' . $search . '%'));
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100 ');
+            $stmt->execute(array($up,$up_ . '%', '%' . $search . '%', '%' . $search . '%',$department));
         }
         else{
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND STATUS== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) ORDER BY ID DESC LIMIT 100 ');
-            $stmt->execute(array($up,$status,$up_ . '%', '%' . $search . '%', '%' . $search . '%'));
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND STATUS== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY ID DESC LIMIT 100 ');
+            $stmt->execute(array($up,$status,$up_ . '%', '%' . $search . '%', '%' . $search . '%',$department));
         }
         $tickets = array();
         while ($ticket = $stmt->fetch()) {
