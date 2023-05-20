@@ -263,6 +263,14 @@ h2{
     border-radius: 1rem;
     margin-bottom: 2rem;
 }
+.expandedTicket .messages .event{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 1rem;
+    margin: 2rem 0rem;
+    padding: 1rem;
+}
 
 .expandedTicket .department{
     display: flex;

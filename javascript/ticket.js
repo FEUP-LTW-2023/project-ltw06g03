@@ -100,7 +100,7 @@ async function expand(ticket) {
     expand.appendChild(drawExpandedHeader(ticket));
     expand.appendChild(await drawExpandedExtraInf(ticket));
     expand.appendChild(drawExpandedAbout(ticket));
-    expand.appendChild(drawMessages(ticket));
+    expand.appendChild(await drawMessages(ticket));
     expandedTicket = ticket;
     expanded = expand;
     body.appendChild(expand);
@@ -156,7 +156,9 @@ async function drawExpandedExtraInf(ticket) {
         select.addEventListener('change',async () => {
             let response = await fetch('../actions/update_ticket.php?status=' + select.value + '&department=' + ticket['department']+'&id='+ticket['id']);
             let res= await response.json();
-            if(res[0] ==='') await drawTickets(href_);
+            response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Changes Status to '+select.value);
+            let event_res=await response.json();
+            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
         });
 
         let select2 = document.createElement('select');
@@ -175,7 +177,9 @@ async function drawExpandedExtraInf(ticket) {
         select2.addEventListener('change',async () => {
             let response = await fetch('../actions/update_ticket.php?status=' + ticket['status'] + '&department=' +select2.value+'&id='+ticket['id']);
             let res= await response.json();
-            if(res[0] ==='') await drawTickets(href_);
+            response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Changed department to '+select2.value);
+            let event_res=await response.json();
+            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
         });
 
 
@@ -196,15 +200,33 @@ function drawExpandedAbout(ticket){
     about.appendChild(problem);
     return about;
 }
-function drawMessages(ticket){
-    let messages=ticket['messages'];
-    const messagesSection=document.createElement('div');
-    messagesSection.className='messages';
-    for(let index=0; index<messages.length;index++) messagesSection.appendChild(drawMessage(messages[index]));
-    if(role==='Admin' || role==='Staff' || ticket['client']['up']===user['up'])
-        messagesSection.appendChild(form());
+async function drawMessages(ticket) {
+    let messages = ticket['messages'];
+    const messagesSection = document.createElement('div');
+    messagesSection.className = 'messages';
+    let message_index = 0, event_index = 0;
+    let response = await fetch('../api/api_events.php?id=' + ticket['id']);
+    if(response.ok) {
+        let events= await response.json();
+        console.log(events);
+        console.log(messages);
+        while (message_index+event_index<messages.length+events.length){
+            if(events.length===event_index) messagesSection.appendChild(drawMessage(messages[message_index++]));
+            else if(messages.length===message_index) messagesSection.appendChild(drawEvent(events[event_index++]));
+            else if( messages[message_index]['date']>events[event_index]['date'] ){
+                messagesSection.appendChild(drawEvent(events[event_index++]));
+            }
+            else{
+                messagesSection.appendChild(drawMessage(messages[message_index++]));
+            }
+        }
+    }
+        if (role === 'Admin' || role === 'Staff' || ticket['client']['up'] === user['up'])
+            messagesSection.appendChild(form());
+
     return messagesSection;
 }
+
 
 function drawMessage(message){
     const messageContainer= document.createElement('div');
@@ -216,6 +238,17 @@ function drawMessage(message){
     messageContainer.appendChild(userInf_);
     messageContainer.appendChild(p);
     return messageContainer;
+}
+function drawEvent(event){
+    const eventContainer= document.createElement('div');
+    eventContainer.className='event';
+    const userInf_=userInfo(event['user']);
+    const p=document.createElement('p');
+    p.className="text";
+    p.innerHTML=event['description'];
+    eventContainer.appendChild(userInf_);
+    eventContainer.appendChild(p);
+    return eventContainer;
 }
 function form(){
     const form=document.createElement('form');
@@ -336,11 +369,16 @@ function drawAssignTableElement(user_,ticket_,checked){
         if (this.checked) {
             let response = await fetch('../actions/assign.php?up='+user['up']+'&id='+ticket['id']);
             let res=await response.json();
-            if(res[0]==='') await drawTickets(href_);
+            response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Assigned '+user['name']);
+            let event_res=await response.json();
+            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
+
         } else {
             let response = await fetch('../actions/discharge.php?up='+user['up']+'&id='+ticket['id']);
             let res=await response.json();
-            if(res[0]==='') await drawTickets(href_);
+            response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Discharged '+user['name']);
+            let event_res=await response.json();
+            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
         }
     });
     let user=userInfo(user_);
