@@ -142,8 +142,8 @@
     <link rel="stylesheet" href="../css/add.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/addDepartment.js" defer type="module"></script>
-    <script src="../javascript/addStatus.js" defer type="module"></script>
+    <script src="../javascript/addFields.js" defer type="module"></script>
+
 </head>
 <body>
 <?php } ?>

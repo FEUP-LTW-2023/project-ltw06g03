@@ -6,6 +6,14 @@ html,body,main{
   width: 100%;
 
 }
+select{
+  background: #FF4F47;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+}
 
 ul{
   margin: 0;

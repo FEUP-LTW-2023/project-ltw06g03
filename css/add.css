@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap;
     min-height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../docs/feup.png');
     background-repeat: no-repeat;
@@ -16,19 +16,22 @@
     display: grid;
     padding: 2rem;
     min-width: 25rem;
-    gap: 1rem;
+    gap: 2rem;
     font-size: 1.3rem;
     margin: 2rem;
-
+    max-width: 40rem;
+}
+.add-page form input{
+    border-bottom: 1px solid #AAAAAA;
+    font-size: 1rem;
 }
 
 .add-page form button{
-
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .add-page form i{
-    color: #888888;
+    color: white;
 }
 
 @media (max-width: 60em){

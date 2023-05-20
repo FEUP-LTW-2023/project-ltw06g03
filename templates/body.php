@@ -279,7 +279,7 @@ function drawUsersBody($session){
         </div>
     <?php if($session->isAdmin()) {?>
     <div class="add-buttons">
-        <button><a href="../pages/addDepartmentOrStatus.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
+        <button><a href="../pages/addFields.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
     </div>
     <?php }?>
 
@@ -318,7 +318,6 @@ function drawEditBody(){
 
 
 function drawAddBody() {
-    $session = new Session();
     ?>
     <div class="add-page">
     <div class="add-department">
