@@ -1,30 +1,28 @@
 <?php
 
 declare(strict_types = 1);
-require_once(__DIR__ . '/../database/user.class.php');
 
 
-class Doubts {
-    public int $id;
+
+class Doubt{
     public string $text;
 
 
 
-    public function __construct(int $id,string $text)
+    public function __construct(string $text)
     {
-       $this->id=$id;
+
        $this->text=$text;
     }
 
     static function getDoubts(PDO $db) : array {
-        $stmt = $db->prepare('SELECT ID, TEXT FROM DOUBTS ORDER BY ID DESC ');
+        $stmt = $db->prepare('SELECT ID, TEXT FROM DOUBT ORDER BY ID DESC ');
         $stmt->execute();
 
         $doubts = array();
         while ($doubt = $stmt->fetch()) {
 
-            $doubts[] = new Doubts(
-                $doubt['ID'],
+            $doubts[] = new Doubt(
                 $doubt['TEXT'],
             );
         }
@@ -32,7 +30,7 @@ class Doubts {
         return $doubts;
     }
     function new(PDO $db){
-        $stmt = $db->prepare('INSERT INTO DOUBTS(TEXT) values (?)');
+        $stmt = $db->prepare('INSERT INTO DOUBT(TEXT) values (?)');
         $stmt->execute(array($this->text));
     }
 

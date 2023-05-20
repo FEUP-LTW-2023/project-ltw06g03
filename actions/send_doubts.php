@@ -7,12 +7,14 @@ require_once(__DIR__ . '/../database/connection.php');
 
 $db = getDatabaseConnection();
 
-require_once(__DIR__ . '/../database/doubts.class.php');
-
-$text = $_GET['text'];
-$doubt = new Department($text);
-$doubt->new($db);
-header('Location: /pages/home.php');
-
+require_once(__DIR__ . '/../database/doubt.class.php');
+try {
+    $text = $_GET['text'];
+    $doubt = new Doubt($text);
+    $doubt->new($db);
+    header('Location: /pages/home.php');
+}catch (Exception $exception){
+    header('Location: /pages/home.php');
+}
 
 ?>

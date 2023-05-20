@@ -16,6 +16,6 @@ $title=$_GET['title'];
 $text=$_GET['text'];
 $department= new FAQ($title,$text);
 $department->new($db);
-header('Location: /pages/users.php');
+header('Location: /pages/faqs.php');
 
 ?>
