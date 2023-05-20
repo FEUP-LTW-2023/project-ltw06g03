@@ -23,15 +23,15 @@
             <div class="col">
                 <h3>Links<div class="underline"><span></span></div></h3>
                 <ul>
-                    <li><a>Home</a></li>
-                    <li><a>Feup Official</a></li>
-                    <li><a>Source code</a></li>
-                    <li><a>About us</a></li>
+                    <li><a href="../pages/home.php">Home</a></li>
+                    <li><a href="https://sigarra.up.pt/feup/pt/web_page.inicial">Feup Official</a></li>
+                    <li><a href="https://github.com/FEUP-LTW-2023/project-ltw06g03">Source code</a></li>
+
                 </ul>
             </div>
             <div class="col">
-                <h3>Send us Feedback<div class="underline"><span></span></div></h3>
-                <form >
+                <h3>Send us Doubts<div class="underline"><span></span></div></h3>
+                <form action="../actions/sendFaq">
                     <i class='fas fa-envelope' alt="d"></i>
                     <textarea type="email" placeholder="email" required></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
