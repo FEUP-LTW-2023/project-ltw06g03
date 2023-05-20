@@ -1,7 +1,6 @@
 <?php
 require_once('../utils/session.php');
 
-//set Session
 
 function drawEditBody(){
    $session = new Session();
@@ -15,7 +14,7 @@ function drawEditBody(){
          <label for="name_input"><h5>Name:</h5></label>
          <input type="text" name="name" value="<?= $session->getUsername()?>" id="name_input">
          <label  for="email_input"><h5>Email:</h5></label>
-         <input type="email" name="email" value="<?= $session->getEmail() ?>" id="email_input">
+         <input type="email" name="email" value="<?= $session->getEmail()?>" id="email_input">
          <label  for="pass_input"><h5>New Password:</h5></label>
          <input type="password" name="pass" placeholder="Change to update password" id="pass_input">
          <i class="fas fa-eye"></i>
@@ -24,7 +23,6 @@ function drawEditBody(){
          <i class="fas fa-eye"></i>
          <p class="errorMessage"></p>
          <button type="submit" >Save</button>
-
       </form>
    </div>
 

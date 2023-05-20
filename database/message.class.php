@@ -8,17 +8,19 @@ class Message {
     public int $ticketId;
     public string $text;
     public User $client;
+    public string $date;
 
 
-    public function __construct(int $id,string $text, User $client)
+    public function __construct(int $id,string $text, User $client,string $date)
     {
         $this->ticketId=$id;
         $this->text=$text;
         $this->client=$client;
+        $this->date=$date;
     }
 
     static function getTicketMessages(PDO $db, int $id) : array {
-        $stmt = $db->prepare('SELECT TICKET_ID, TEXT,PERSON_ID FROM TICKET_MESSAGE WHERE TICKET_ID = ?');
+        $stmt = $db->prepare('SELECT TICKET_ID, TEXT,PERSON_ID,CREATED_AT FROM TICKET_MESSAGE WHERE TICKET_ID = ? ORDER BY CREATED_AT ASC ');
         $stmt->execute(array($id));
 
         $messages = array();
@@ -27,7 +29,8 @@ class Message {
             $messages[] = new Message(
                 $message['TICKET_ID'],
                 $message['TEXT'],
-                $user
+                $user,
+                $message['CREATED_AT']
             );
         }
 
