@@ -44,6 +44,7 @@ export async function drawTickets(href) {
         let response= await fetch('../api/api_ticket.php?id='+expandedTicket['id']);
         let res= await response.json();
         await expand(res);
+
     }
     loading = false;
     if(href!==href_) await drawTickets(href_);
@@ -214,8 +215,6 @@ async function drawMessages(ticket) {
     let response = await fetch('../api/api_events.php?id=' + ticket['id']);
     if(response.ok) {
         let events= await response.json();
-        console.log(events);
-        console.log(messages);
         while (message_index+event_index<messages.length+events.length){
             if(events.length===event_index) messagesSection.appendChild(drawMessage(messages[message_index++]));
             else if(messages.length===message_index) messagesSection.appendChild(drawEvent(events[event_index++]));

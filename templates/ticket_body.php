@@ -1,12 +1,14 @@
 <?php
 function drawTicketBody($session){
-    if( !$session->isStaff() and ($_GET['op']>2 )) header('Location: tickets.php?op=0');
-    if(!isset($_GET['op']) or !is_numeric($_GET['op']) or ($_GET['op']>7 ) ) header('Location: tickets.php?op=0');
+    if( !$session->isStaff() and ($_GET['op']>0 )) header('Location: tickets.php?op=0');
+    if(!isset($_GET['op']) or !is_numeric($_GET['op']) or ($_GET['op']>3 ) ) header('Location: tickets.php?op=0');
 
     require_once(__DIR__ . '/../database/connection.php');
     require_once(__DIR__ . '/../database/department.class.php');
+    require_once(__DIR__ . '/../database/status.class.php');
     $db = getDatabaseConnection();
     $departments = Department::getDepartments($db);
+    $status = Status::getStatus($db);
 
     ?>
 
@@ -17,18 +19,13 @@ function drawTicketBody($session){
             <aside>
                 <ul>
                     <li><a href="../pages/tickets.php?op=0">My Tickets</a></li>
-                    <li><a href="../pages/tickets.php?op=1">My Opened Tickets</a></li>
-                    <li><a href="../pages/tickets.php?op=2">My Closed Tickets</a></li>
                 </ul>
                 <?php if($session->isStaff()){  ?>
                     <ul>
-                        <li ><a href="../pages/tickets.php?op=3">All Tickets</a></li>
-                        <li><a href="../pages/tickets.php?op=4">Opened Tickets</a></li>
-                        <li><a href="../pages/tickets.php?op=5">Closed Tickets</a></li>
+                        <li ><a href="../pages/tickets.php?op=1">All Tickets</a></li>
                     </ul>
                     <ul>
-                        <li><a href="../pages/tickets.php?op=6">Assigned Tickets</a></li>
-                        <li><a href="../pages/tickets.php?op=7">Solved Tickets</a></li>
+                        <li><a href="../pages/tickets.php?op=2">Assigned Tickets</a></li>
                     </ul>
                 <?php } ?>
             </aside>
@@ -42,6 +39,14 @@ function drawTicketBody($session){
                         foreach ($departments as $department){
                             ?>
                             <option><?= $department?></option>
+                        <?php } ?>
+                    </select>
+                    <select>
+                        <option></option>
+                        <?php
+                        foreach ($status as $status){
+                            ?>
+                            <option><?= $status?></option>
                         <?php } ?>
                     </select>
                 </header>

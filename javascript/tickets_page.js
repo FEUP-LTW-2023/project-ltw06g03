@@ -6,35 +6,37 @@ const newTicket= document.querySelector(".menu  header button");
 const search= document.querySelector(' .menu .searchbar input');
 const url = new URL(window.location.href);
 const op=Number(url.searchParams.get('op'));
-const filter= document.querySelector('.topBar select');
-filter.addEventListener('change',async () => {
-    await drawTickets(api + "department=" + filter.value + "&search=" + search.value)
+const filters= document.querySelectorAll('.topBar select');
+filters[0].addEventListener('change',async () => {
+    await drawTickets(api + "department=" + filters[0].value +"&status=" + filters[1].value +"&search=" + search.value)
+});
+filters[1].addEventListener('change',async () => {
+    await drawTickets(api + "department=" + filters[0].value +"&status=" + filters[1].value+ "&search=" + search.value)
 })
 
 const li= document.querySelectorAll('.menu ul li');
 let api='';
 li[op].className='selected';
 
-if(op>=3 && op<6){
+if(op===1){
     api='../api/api_tickets.php?';
 }
-else if(op>=0 && op<3) {
+else if(op===0) {
     let response=await fetch('../api/api_session.php');
     let user =await response.json();
     api='../api/api_user_tickets.php?up='+user['up']+'&';
 }
-else if(op>=6 && op<8){
+else if(op===2){
     let response=await fetch('../api/api_session.php');
     let user =await response.json();
     api='../api/api_assign_tickets.php?up='+user['up']+'&';
 }
 
-if(op===1 || op===4 || op===6 ) api+='status=OPEN&';
-else if(op===2 || op===5 || op===7) api+='status=CLOSED&';
+
 
 
 search.addEventListener('input', async () => {
-    await drawTickets(api+'search=' + search.value);
+    await drawTickets(api + "department=" + filters[0].value +"&status=" + filters[1].value +"&search=" + search.value);
 })
 newTicket.addEventListener('click',()=>{
     page.style.display='none';

@@ -18,6 +18,7 @@ async function validateRegisterInputs(event) {
         if(up.value<0) throw "Up must be positive";
         const response = await fetch('../api/api_user.php?up=' + up.value);
         let user = await response.json();
+
         user=user[0];
         if (user['up'] !== -1) throw "Account already created with " + up.value;
         registerForm.submit();
