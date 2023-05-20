@@ -1,3 +1,5 @@
+import { departmentDropdown } from './editDepartment.js';
+
 const rolebutton = document.querySelectorAll('.edit-role');
 if(rolebutton) {
   for (let i = 0; i < rolebutton.length; i++) {
@@ -19,7 +21,7 @@ function roleDropdown(up) {
     const currentRole = userRoleElement.textContent.trim();
     
     const dropdown = document.createElement('select');
-    dropdown.id = `dropdown-${up}`;
+    dropdown.id = `dropdown-role-${up}`;
     
     const options = ['Student', 'Staff', 'Admin'];
     options.forEach((option) => {
@@ -35,52 +37,30 @@ function roleDropdown(up) {
     });
 
 
-    dropdown.addEventListener('change', function () {
+    userRoleElement.replaceWith(dropdown);
+
+
+    dropdown.addEventListener('change', async function (event) {
     const role = dropdown.value;
 
-    const xhr = new XMLHttpRequest();
-        xhr.open('GET', `../actions/update_role.php?UP=${up}&role=${role}`);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-            const newRoleElement = document.createElement('h3');
-            newRoleElement.classList.add('user-role');
-            newRoleElement.textContent = role;
-
-            newRoleElement.addEventListener('click', roleDropdown.bind(null, up));
-            
-            dropdown.replaceWith(newRoleElement);
-        }
-    };
-    xhr.send();
-
-  });
-
-    userRoleElement.replaceWith(dropdown);
-}
-  
-  const tableBox = document.querySelector('#table-box');
-  tableBox.addEventListener('change', function (event) {
-    const dropdown = event.target;
-  
-    if (dropdown.tagName === 'SELECT' && dropdown.id.startsWith('dropdown-')) {
-      const up = dropdown.id.split('-')[1];
-      const role = dropdown.value;
-  
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `../actions/update_role.php?UP=${up}&role=${role}`);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          const newRoleElement = document.createElement('h3');
-          newRoleElement.classList.add('user-role');
-          newRoleElement.textContent = role;
-          dropdown.replaceWith(newRoleElement);
-          changeButtons(up, role);
-        }
-      };
-      xhr.send();
+    let response = await fetch(`../actions/update_role.php?UP=${up}&role=${role}`) ;
+    if (response.ok) {
+      if (dropdown.tagName === 'SELECT' && dropdown.id.startsWith('dropdown-role-')) {
+        const up = dropdown.id.split('-')[2];
+        const role = dropdown.value;
+    
+        const newRoleElement = document.createElement('h3');
+        newRoleElement.classList.add('user-role');
+        newRoleElement.textContent = role;
+        dropdown.replaceWith(newRoleElement);
+        changeButtons(up, role);
+      }
     }
-  
   });
+
+}
+
+
   
 async function changeButtons(up, role)  {
 
@@ -95,8 +75,10 @@ async function changeButtons(up, role)  {
     departmentButton.id = 'edit-departments-' + up;
     departmentButton.className = 'edit-departments';
     departmentButton.innerHTML = '<i class="fas fa-building"></i>';
+    const departmentsResponse = await fetch('../api/api_departments.php');
+    const departments = await departmentsResponse.json();
     departmentButton.addEventListener('click', function (event) {
-      departmentDropdown(up);
+      departmentDropdown(up, departments);
     });
     buttons.appendChild(departmentButton);
 

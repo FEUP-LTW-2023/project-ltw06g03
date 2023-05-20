@@ -65,10 +65,6 @@
 
                 <?php if($session->isStaff()) {?>
                     <li><a href="users.php"><i class="fas fa-users"></i><span>Users</span></a></li>
-                    
-                    <?php if($session->isAdmin()) { ?>
-                        <li><a href="statistics.php"><i class="fas fa-chart-line"></i><span>Statics</span></a></li>
-                    <?php } ?>
 
                 <?php } ?>
             

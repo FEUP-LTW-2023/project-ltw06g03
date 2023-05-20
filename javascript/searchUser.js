@@ -40,9 +40,13 @@ if (searchUser) {
                 td2.innerHTML = '<h4> User is not assigned to any department </h4>'
             }
             else {
+                const div = document.createElement('div')
+                div.className = 'department-list'
                 for(const department of user.departments) {
-                    td2.innerHTML += '<h4 class="department">' + department + '</h4>'
+                    div.innerHTML += '<h4 class="department">' + department + '</h4>'
                 }
+
+                td2.appendChild(div)
             }
             tr.appendChild(td2)
 

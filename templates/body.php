@@ -240,24 +240,28 @@ function drawUsersBody($session){
 
                                 <td> <h3><?= $user->email?>  </h3></td>
 
-                                <td class="departments">
-                                <?php 
-                                
-                                    if (!count($user->departments)) { ?>
-                                        <h4> User is not assigned to any department </h4>
-                                    <?php }
-                                    else {
-                                        for ($i = 0; $i < count($user->departments) && $i < 3; $i++) { ?>
-                                            <h4 class="department"><?=$user->departments[$i]?></h4>
+                                <td>
+                                    <div class="departments">
+                                    <?php 
+                                        
+                                        if (!count($user->departments)) { ?>
+                                            <h4 class="no-department"> User is not assigned to any department </h4>
                                         <?php }
-                                    } ?>
+                                        else { ?>
+                                        <div class="department-list-<?=$user->up?>">
+                                        <?php    for ($i = 0; $i < count($user->departments); $i++) { ?>
+                                                <h4 class="department"><?=$user->departments[$i]?></h4>
+                                            <?php } ?>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
                                 </td>
 
                                 <td class="users-buttons-<?=$user->up?>">
 
                                     <button><a href="../pages/profile.php?up=<?=$user->up?>"><i class="fas fa-search"></i></a></button><!--
                                     <?php if ($user->role != "Student") {?> 
-                                        --><button class="edit-departments" id="edit-departments-<?= $user->up ?>" onclick="departmentDropdown(<?=$user->up ?>)"><i class="fas fa-building"></i></button><!--<?php } ?>
+                                        --><button class="edit-departments" id="edit-departments-<?= $user->up ?>"><i class="fas fa-building"></i></button><!--<?php } ?>
                                     <?php if ($session->isAdmin()) {?>
                                         --><button class="edit-role" id="edit-role-<?= $user->up ?>"><i class="fas fa-user-tag"></i></button>
                                     <?php } 
@@ -273,7 +277,16 @@ function drawUsersBody($session){
             </div>
 
         </div>
+    <?php if($session->isAdmin()) {?>
+    <div class="add-buttons">
+        <button id="add-user"><i class="fas fa-plus"></i><i class="fas fa-user"> Add user </i></button>
+        <button id="add-department"><i class="fas fa-plus"></i><i class="fas fa-building"> Add Department </i></button>
+        <button id="add-status"><i class="fas fa-plus"></i><i class="fas fa-info-circle"> Add Status </i></button>
     </div>
+    <?php }?>
+
+</div>
+
         
 
 <?php } 

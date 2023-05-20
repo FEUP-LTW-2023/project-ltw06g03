@@ -51,6 +51,15 @@ class User {
             $departments
         );
     }
+
+    function delete(PDO $db) {
+        $stmt = $db->prepare('
+        DELETE FROM PERSON WHERE UP = ?
+      ');
+
+        $stmt->execute(array($this->up));
+    }
+
     function save(PDO $db) {
         $stmt = $db->prepare('
         UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?
