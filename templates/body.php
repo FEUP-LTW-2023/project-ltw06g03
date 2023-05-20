@@ -294,7 +294,7 @@ function drawEditBody(){
    ?>
 
    <div class="edit-page" >
-      <form action="../actions/update_user.php" method="post" enctype="multipart/form-data">
+      <form action="" method="post" enctype="multipart/form-data">
          <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
          <label for="image_input"> <img src="<?=$session->getUserImg()?>"></label>
          <input type="file" accept="image/*" name="img" id="image_input">

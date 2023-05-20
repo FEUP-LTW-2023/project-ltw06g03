@@ -11,7 +11,7 @@
     if (!$session->isLoggedIn()) {
         header('Location: home.php');
     }
-    if(!isset($_GET['up']))header('Location: user.php?up='. $session->getUp());
+    if(!isset($_GET['up']))header('Location: profile.php?up='. $session->getUp());
 
     else {
         drawProfileHeader($session);

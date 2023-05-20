@@ -1,13 +1,17 @@
 <?php
-
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if($session->isStaff()){
+    header('Location: /');
+}
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/event.class.php');
-require_once(__DIR__ . '/../utils/session.php');
+
+
 
 
 $db = getDatabaseConnection();
-$session = new Session();
-if(!$session->isLoggedIn()) header('Location: /pages/home.php');
+
 $id = intval($_GET['id']);
 $up = $session->getUp();
 $text= $_GET['description'];

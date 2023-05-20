@@ -1,10 +1,12 @@
 <?php
 
-require_once(__DIR__ . '/../database/connection.php');
+
 require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if(!$session->isLoggedIn()) header('Location: /pages/home.php');
+require_once(__DIR__ . '/../database/connection.php');
 try {
-    $session = new Session();
-    if(!$session->isLoggedIn()) header('Location: /pages/home.php');
+
     $dbh = getDatabaseConnection();
     $stmt = $dbh->prepare('INSERT INTO TICKET (TITLE, PROBLEM,CLIENT_ID,DEPARTMENT) VALUES (:title, :problem,:up,:dep)');
     $up = $session->getUp();
