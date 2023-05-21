@@ -1,3 +1,6 @@
+import {roleDropdown} from './editRole.js';
+import {departmentDropdown} from './editDepartment.js';2
+
 const searchUser = document.querySelector("#searchuser")
 
 if (searchUser) {
@@ -33,11 +36,13 @@ if (searchUser) {
             tr.innerHTML += '<td>' + '<h3>' + user.email + '</h3>' + '</td>'
 
             const td2 = document.createElement('td')
-            td2.className = 'departments'
-            td2.innerHTML = ''
+            const departmentsSection = document.createElement('section')
+            departmentsSection.className = 'departments'
+            departmentsSection.innerHTML = ''
             
             if(user.departments.length == 0) {
-                td2.innerHTML = '<h4> User is not assigned to any department </h4>'
+                departmentsSection.innerHTML = '<h4 class="no-department"> User is not assigned to any department </h4>'
+
             }
             else {
                 const div = document.createElement('div')
@@ -45,9 +50,10 @@ if (searchUser) {
                 for(const department of user.departments) {
                     div.innerHTML += '<h4 class="department">' + department + '</h4>'
                 }
-
-                td2.appendChild(div)
+                departmentsSection.appendChild(div)
             }
+            td2.appendChild(departmentsSection)
+
             tr.appendChild(td2)
 
             td.innerHTML = ''
@@ -59,23 +65,25 @@ if (searchUser) {
                 departmentButton.id = 'edit-departments-' + user.up;
                 departmentButton.className = 'edit-departments';
                 departmentButton.innerHTML = '<i class="fas fa-building"></i>';
+                const departmentsResponse = await fetch('../api/api_departments.php');
+                const departments = await departmentsResponse.json();
                 departmentButton.addEventListener('click', function (event) {
-                    departmentDropdown(up);
+                    departmentDropdown(user.up, departments);
                 });
 
                 td.appendChild(departmentButton);
             
             }
             
-              const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
+              const sessionResponse = (await fetch('../api/api_session.php')); 
               const session = await sessionResponse.json();
-              if (session[0] == 'Admin') {
+              if (session.role === 'Admin') {
                 const roleButton = document.createElement('button');
                 roleButton.id = 'edit-role-' + user.up;
                 roleButton.className = 'edit-role';
                 roleButton.innerHTML = '<i class="fas fa-user-tag"></i>';
                 roleButton.addEventListener('click', function (event) {
-                    roleDropdown(up);
+                    roleDropdown(user.up);
                   });
                 td.appendChild(roleButton);
             }

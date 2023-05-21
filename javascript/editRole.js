@@ -4,16 +4,14 @@ const rolebutton = document.querySelectorAll('.edit-role');
 if(rolebutton) {
   for (let i = 0; i < rolebutton.length; i++) {
     rolebutton[i].addEventListener('click', function (event) {
-        if(event.target.matches('i')) {
-            const up = event.target.closest('button').id.split('-')[2];
-            roleDropdown(up);
-        }
+      const up = event.target.closest('button').id.split('-')[2];
+      roleDropdown(up);
     });
   }
 }
 
 
-function roleDropdown(up) {
+export async function roleDropdown(up) {
     let userRoleElement = document.querySelector(`#table-box tr#user-${up} h3.user-role`);
     
     if (!userRoleElement) {
@@ -38,7 +36,8 @@ function roleDropdown(up) {
       dropdown.appendChild(optionElement);
     });
 
-
+    const sessionResponse = (await fetch('../api/api_session.php')); 
+    const session = await sessionResponse.json();
     userRoleElement.replaceWith(dropdown);
 
 
@@ -55,7 +54,13 @@ function roleDropdown(up) {
         newRoleElement.classList.add('user-role');
         newRoleElement.textContent = role;
         dropdown.replaceWith(newRoleElement);
-        await changeButtons(up, role);
+
+        if (parseInt(up,10) === parseInt(session.up,10)) {
+          window.location.reload();
+        }
+        else {
+          await changeButtons(up, role, session.role);
+        }
       }
     }
   });
@@ -64,13 +69,12 @@ function roleDropdown(up) {
 
 
   
-async function changeButtons(up, role)  {
+async function changeButtons(up, role, sessionRole)  {
 
   const buttons = document.querySelector('.users-buttons-' + up + '')
 
   buttons.innerHTML = ''
   buttons.innerHTML += '<button><a href="../pages/profile.php?up='+ up +'"><i class="fas fa-search"></i> </a></button>'
-
 
   if(role !== "Student") {
     const departmentButton = document.createElement('button');
@@ -86,9 +90,7 @@ async function changeButtons(up, role)  {
 
 }
 
-  const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
-  const session = await sessionResponse.json();
-  if (session[0] === 'Admin') {
+  if (sessionRole === 'Admin') {
     const roleButton = document.createElement('button');
     roleButton.id = 'edit-role-' + up;
     roleButton.className = 'edit-role';
