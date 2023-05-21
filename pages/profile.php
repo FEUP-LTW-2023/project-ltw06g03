@@ -3,7 +3,7 @@
 require_once('../utils/session.php');
 require_once('../templates/header.php');
 require_once('../templates/common.php');
-require_once('../templates/body.php');
+require_once('../templates/profile_body.php');
 
 
 //set Session
