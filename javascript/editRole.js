@@ -13,7 +13,7 @@ if(rolebutton) {
 }
 
 
-function roleDropdown(up) {
+export async function roleDropdown(up) {
     let userRoleElement = document.querySelector(`#table-box tr#user-${up} h3.user-role`);
     
     if (!userRoleElement) {
@@ -38,7 +38,8 @@ function roleDropdown(up) {
       dropdown.appendChild(optionElement);
     });
 
-
+    const sessionResponse = (await fetch('../api/api_session.php')); 
+    const session = await sessionResponse.json();
     userRoleElement.replaceWith(dropdown);
 
 
@@ -55,7 +56,13 @@ function roleDropdown(up) {
         newRoleElement.classList.add('user-role');
         newRoleElement.textContent = role;
         dropdown.replaceWith(newRoleElement);
-        await changeButtons(up, role);
+
+        if (parseInt(up,10) === parseInt(session.up,10)) {
+          window.location.reload();
+        }
+        else {
+          await changeButtons(up, role, session.role);
+        }
       }
     }
   });
@@ -64,7 +71,7 @@ function roleDropdown(up) {
 
 
   
-async function changeButtons(up, role)  {
+async function changeButtons(up, role, sessionRole)  {
 
   const buttons = document.querySelector('.users-buttons-' + up + '')
 
@@ -85,26 +92,15 @@ async function changeButtons(up, role)  {
 
 }
 
-  let ownRole = false;  
-  const sessionResponse = (await fetch('../api/api_session.php')); 
-  const session = await sessionResponse.json();
-  console.log(session)
-  console.log(session.role)
-  if (session.role === 'Admin') {
+  if (sessionRole === 'Admin') {
     const roleButton = document.createElement('button');
     roleButton.id = 'edit-role-' + up;
     roleButton.className = 'edit-role';
     roleButton.innerHTML = '<i class="fas fa-user-tag"></i>';
-    ownRole = true;
     roleButton.addEventListener('click', function (event) {
       roleDropdown(up);
     });
     buttons.appendChild(roleButton);
-
-    if (ownRole) {
-      window.location.reload();
-    }
-
 
 }
 
