@@ -10,7 +10,6 @@ const allStatus= await getStatus();
 const allDepartments= await getDepartments();
 let href_;
 let loading=false;
-console.log(user);
 let role=user['role'];
 
 export async function drawTickets(href) {

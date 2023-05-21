@@ -1,5 +1,4 @@
 import {addPasswordToggle} from "./script.js";
-import {isHtml} from "./api";
 const loginForm= document.getElementsByName("LoginForm")[0];
 loginForm.addEventListener("submit",async (event) => {
     await validateLoginInputs(event);

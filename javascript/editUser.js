@@ -1,5 +1,5 @@
 import {addPasswordToggle} from "./script.js";
-import {isHtml} from "./api";
+import {isHtml} from "./api.js";
 const form= document.querySelector('form');
 const eyes= document.querySelectorAll('form i.fa-eye');
 addPasswordToggle(eyes);
