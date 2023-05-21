@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
 if(!$session->isStaff()){
     header('Location: /');
+    exit();
 }
 $up=intval($_GET['up']);
 $id=intval($_GET['id']);

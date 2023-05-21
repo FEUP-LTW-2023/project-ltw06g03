@@ -10,8 +10,16 @@ $db = getDatabaseConnection();
 
 try {
 
-    $up = intval($_GET['up']);
+    $up = $_GET['up'];
     $pass = $_GET['pass'];
+
+    $up = stripslashes($up);
+    $up = htmlspecialchars($up);
+    $up = intval($up);
+
+    $pass = stripslashes($pass);
+    $pass = htmlspecialchars($pass);
+
     $user = User::getUser($db, $up);
 
 
