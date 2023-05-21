@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../templates/faqs.php');
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
 require_once(__DIR__ . '/../templates/common.php');
-if(!$session->isStaff() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/) {
+if(!$session->isStaff() ) {
     header('Location: /pages/home.php');
     exit();
 }

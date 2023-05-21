@@ -286,7 +286,6 @@ async function assigns(ticket) {
     }else {
         mess=assignImgs(ticket['assigns']);
     }
-    console.log(role);
     if(role==='Admin' || role ==='Staff') {
 
         const assignTable = await drawAssignTable(ticket);
