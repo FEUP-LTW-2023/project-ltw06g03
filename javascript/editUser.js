@@ -1,4 +1,5 @@
 import {addPasswordToggle} from "./script.js";
+import {isHtml} from "./api";
 const form= document.querySelector('form');
 const eyes= document.querySelectorAll('form i.fa-eye');
 addPasswordToggle(eyes);
@@ -25,11 +26,12 @@ function validateInputs(e) {
     e.preventDefault();
     let pass= document.querySelectorAll("form input[name='pass']");
     let name=document.getElementsByName('name')[0].value;
-    if(name>30){
+    let email= document.getElementsByName('email')[0].value;
+    if(isHtml(name)|| isHtml(email)|| isHtml(pass[0].value) )err.innerText="Html elements are not allowed";
+    else if(name>30){
         err.innerText='Name has to be shorter that 30 characters';
-        return;
     }
-    if(pass[0].value===pass[1].value) {
+    else if(pass[0].value===pass[1].value) {
         const formData = new FormData(); // Create a new FormData object
         formData.append('img', imgInput.files[0]);
         formData.append('name',name);
