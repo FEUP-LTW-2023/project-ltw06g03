@@ -17,7 +17,7 @@ try {
 
     $up = encode_int($_GET['up']);
 
-    $pass = encode_string($_GET['pass']);
+    $pass = ($_GET['pass']);
 
     $user = User::getUser($db, $up);
 

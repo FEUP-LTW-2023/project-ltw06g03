@@ -21,7 +21,7 @@ try {
     $department = encode_string($_GET['department']);
 
     $dbh = getDatabaseConnection();
-    Ticket::new($dbh,$title,$text,$up,$dep);
+    Ticket::new($dbh,$title,$problem,$up,$department);
     echo json_encode(['']);
 } catch (Exception $exception) {
     echo json_encode($exception);

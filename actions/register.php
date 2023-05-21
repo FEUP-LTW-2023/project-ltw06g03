@@ -10,9 +10,9 @@ $up = encode_int($_POST['up']);
 
 $name = encode_string($_POST['name']);
 
-$email = encode_string($_POST['email']);
+$email = ($_POST['email']);
 
-$pass = encode_string($_POST['pass']);
+$pass = ($_POST['pass']);
 
 $user=new User($up, $name, $email,'','',[],'');
 $user->new($dbh,password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]));
