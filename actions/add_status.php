@@ -10,10 +10,13 @@
 
     $db=getDatabaseConnection();
 
-
+try {
     $name=$_GET['name'];
     $status= new Status($name);
     $status->new($db);
-    header('Location: /pages/users.php');
+}catch (Exception $exception){
+
+}
+header('Location: /pages/users.php');
 
 ?>
