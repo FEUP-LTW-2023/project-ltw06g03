@@ -68,7 +68,6 @@ async function validateInputs() {
         const response = await fetch('../actions/newTicket.php?title='+title.value+'&text='+text.value+'&department='+department.value);
         if (response.ok) {
             let res = await response.json();
-            console.log(res);
             if (res[0] === '') {
                document.querySelector('form').submit();
                 form.style.display = 'none';
