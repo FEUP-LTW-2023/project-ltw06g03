@@ -33,11 +33,11 @@ if (searchUser) {
             tr.innerHTML += '<td>' + '<h3>' + user.email + '</h3>' + '</td>'
 
             const td2 = document.createElement('td')
-            td2.className = 'departments'
-            td2.innerHTML = ''
+            const departments = document.createElement('section')
+            departments.className = 'departments'
             
             if(user.departments.length == 0) {
-                td2.innerHTML = '<h4> User is not assigned to any department </h4>'
+                departments.innerHTML = '<h4> User is not assigned to any department </h4>'
             }
             else {
                 const div = document.createElement('div')
@@ -46,8 +46,9 @@ if (searchUser) {
                     div.innerHTML += '<h4 class="department">' + department + '</h4>'
                 }
 
-                td2.appendChild(div)
+                departments.appendChild(div)
             }
+            td2.appendChild(departments)
             tr.appendChild(td2)
 
             td.innerHTML = ''

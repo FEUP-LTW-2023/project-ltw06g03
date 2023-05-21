@@ -245,7 +245,7 @@ function drawUsersBody($session){
                                 <td> <h3><?= $user->email?>  </h3></td>
 
                                 <td>
-                                    <div class="departments">
+                                    <section class="departments">
                                     <?php 
                                         
                                         if (!count($user->departments)) { ?>
@@ -258,7 +258,7 @@ function drawUsersBody($session){
                                             <?php } ?>
                                         </div>
                                         <?php } ?>
-                                    </div>
+                                        </section>
                                 </td>
 
                                 <td class="users-buttons-<?=$user->up?>">

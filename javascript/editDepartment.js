@@ -47,13 +47,13 @@ export function departmentDropdown(up, departmentsList) {
 
                     const Departments = await fetch(`../api/api_user_departments.php?UP=${up}`);
                     const currentDepartments = await Departments.json();
-                    const newdiv = document.createElement('div');
-                    newdiv.classList.add('departments');
+                    const newsection = document.createElement('section');
+                    newsection.classList.add('departments');
                     if (currentDepartments.length === 0) {
                         const noDepartmentsElement = document.createElement('h4');
                         noDepartmentsElement.classList.add('no-department');
                         noDepartmentsElement.textContent = 'User is not assigned to any department';
-                        newdiv.appendChild(noDepartmentsElement);
+                        newsection.appendChild(noDepartmentsElement);
                         
                     }
                     else {
@@ -65,9 +65,9 @@ export function departmentDropdown(up, departmentsList) {
                             newDepartmentElement.textContent = department;
                             departmentsdiv.appendChild(newDepartmentElement);
                         }
-                        newdiv.appendChild(departmentsdiv);
+                        newsection.appendChild(departmentsdiv);
                     }
-                    dropdown.replaceWith(newdiv);
+                    dropdown.replaceWith(newsection);
                     const editButton = document.querySelector('#edit-departments-' + up + ' i');
                     console.log(editButton);
                     editButton.addEventListener('click', function (event) {
