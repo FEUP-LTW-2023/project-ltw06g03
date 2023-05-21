@@ -1,6 +1,7 @@
 <?php
 function drawHomeBody(){
     require_once(__DIR__ . '/../utils/session.php');
+    require_once(__DIR__ . '/../templates/faqs.php');
     $session = new Session();
     ?>
 
@@ -17,13 +18,13 @@ function drawHomeBody(){
 
     </header>
     <div class="indicator">
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
     </div>
 
 </div>
-    <section class="FAQ" id="FAQ">
+    <section class="about" id="about">
         <h1>Frequently Asked Questions</h1>
         <article>
             <div class="Text">
@@ -79,7 +80,10 @@ function drawHomeBody(){
     </section>
 
 
-<?php }
+
+<?php
+
+}
 
 
 function drawLogin() {?>

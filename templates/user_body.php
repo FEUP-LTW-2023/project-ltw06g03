@@ -1,7 +1,7 @@
 <?php
 
 function drawUserBody($session) {
-    require_once('../templates/tickets.php');
+
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
 

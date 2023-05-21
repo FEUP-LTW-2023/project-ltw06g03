@@ -40,7 +40,29 @@ form input[type=text]{
   border: none;
   color: #3d3737FD;
   outline: none;
+  border-bottom: 1px solid #AAAAAA;
+  font-size: 1rem;
 }
+form input[type=submit]{
+ width: fit-content;
+  padding: 0.5rem;
+  background: #FF4F47;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+form input[type=submit]:hover{
+  background: #888888;
+
+}
+p{
+  font-size: 1rem;
+}
+
+
 body{
   display: grid;
   grid-template-columns: 4rem 1fr;
