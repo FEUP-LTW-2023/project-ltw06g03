@@ -162,4 +162,44 @@
   background: #81150c ;
 
 }
+
+@media (max-width: 85rem) {
+  .user-page{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+    border: none;
+    width: 100%;
+  }
+
+
+
+
+  .user .user-info,
+  .user .user-icon-info {
+    grid-column: 1;
+    width: 100%;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .user .links {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .user .links a {
+    margin-bottom: 1em;;
+  }
+
+}
+@media (max-width: 60rem) {
+  .ticketSection{
+    padding: 0;
+  }
+
+}
+
   

@@ -14,7 +14,7 @@ try {
     $user->name=$_POST['name'];
     $user->email=$_POST['email'];
     $targetPath='/docs/images/default_pfp.png';
-    if($_POST['pass']!=='')$user->pass=password_hash ($_POST['pass'] , PASSWORD_DEFAULT, ['cost' => 13]);
+    if(isset($_POST['pass']) && $_POST['pass']!=='')$user->updatePass($db,password_hash ($_POST['pass'] , PASSWORD_DEFAULT, ['cost' => 13]));
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_FILES["img"]["size"] > 0) {
             $uploadOk = 1;
