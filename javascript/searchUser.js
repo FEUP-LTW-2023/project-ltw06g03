@@ -50,7 +50,7 @@ if (searchUser) {
                 for(const department of user.departments) {
                     div.innerHTML += '<h4 class="department">' + department + '</h4>'
                 }
-                departments.appendChild(div)
+                departmentsSection.appendChild(div)
             }
             td2.appendChild(departmentsSection)
 
