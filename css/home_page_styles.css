@@ -118,7 +118,9 @@
 }
 .about article img{
     max-width: 30rem;
-
+    box-shadow: 5px 5px 5px 5px #AAAAAA33 ;
+    border-left: 2px solid #AAAAAA33 ;
+    border-top: 2px solid #AAAAAA33;
     margin-left: 3rem;
     max-height: 30rem;
     align-self: center;
@@ -144,6 +146,7 @@
 .about :nth-child(odd) img{
     order: -1;
     margin: 3rem 3rem 0rem 0;
+
 }
 
 @media (max-width: 85rem) {

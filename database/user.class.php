@@ -217,10 +217,10 @@ class User {
 
         return $ret;
     }
-    function new($db)
+    function new($db,string $pass)
     {
         $stmt = $db->prepare('INSERT INTO PERSON (UP, EMAIL,NAME,PASSWORD) VALUES (?, ?,?,?)');
-        $stmt->execute(array($this->up, $this->email, $this->name, $this->pass));
+        $stmt->execute(array($this->up, $this->email, $this->name, $pass));
     }
 
 }
