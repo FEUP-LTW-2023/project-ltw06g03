@@ -1,5 +1,4 @@
 const userDepartments = document.querySelectorAll(".edit-departments ")
-console.log(userDepartments);
 if (userDepartments) {
     const departmentsapi = await fetch("../api/api_departments.php");
     const departmentsList = await departmentsapi.json();
@@ -14,7 +13,7 @@ if (userDepartments) {
     }
 }
 
-export function departmentDropdown(up, departmentsList) {
+export async function departmentDropdown(up, departmentsList) {
     let departments = document.querySelector(`#table-box tr#user-${up} .departments`);
 
     if (!departments) return;
@@ -69,7 +68,6 @@ export function departmentDropdown(up, departmentsList) {
                     }
                     dropdown.replaceWith(newdiv);
                     const editButton = document.querySelector('#edit-departments-' + up + ' i');
-                    console.log(editButton);
                     editButton.addEventListener('click', function (event) {
                         if(event.target.matches('i')) {
                             departmentDropdown(up, departmentsList);
