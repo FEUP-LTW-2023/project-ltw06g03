@@ -8,19 +8,19 @@
 
 <?php function drawFooter() { ?>
     <footer>
-        <div class="row">
-            <div class="col">
+        <section class="row">
+            <section class="col">
                 <img src="../docs/logo-feup.png">
                 <p>Feup is an engineering faculty from the University of Porto located in Portugal</p>
-            </div>
-            <div class="col">
+            </section>
+            <section class="col">
                 <h3>FEUP<div class="underline"><span></span></div></h3>
                 <p>R. Dr. Roberto Frias</p>
                 <p>4200-465 Porto</p>
                 <h4>feuptt@gmail.com</h4>
                 <h4>22 508 1977 / 1405</h4>
-            </div>
-            <div class="col">
+            </section>
+            <section class="col">
                 <h3>Links<div class="underline"><span></span></div></h3>
                 <ul>
                     <li><a href="../pages/home.php">Home</a></li>
@@ -29,19 +29,19 @@
                     <li><a href="../pages/faqs.php">FAQ's</a></li>
 
                 </ul>
-            </div>
-            <div class="col">
+            </section>
+            <section class="col">
                 <h3>Send us Doubts<div class="underline"><span></span></div></h3>
                 <form action="../actions/send_doubts.php">
                     <i class='fas fa-envelope' alt="d"></i>
                     <textarea type="email" placeholder="email" required name="text"></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
                 </form>
-            </div>
-        </div>
-        <div class="row">
+            </section>
+        </section>
+        <section class="row">
             <p class="copyRight">All CopyRights rights reserved by &#169; Feup </p>
-        </div>
+        </section>
 
 
     </footer>
@@ -52,11 +52,11 @@
 
 <?php function drawNavBar(Session $session) { ?>
 
-    <div class="navbar">
+    <section class="navbar">
 
         <input type="checkbox" id="hamburger" >
 
-        <div class="items">
+        <aside class="items">
 
         <ul class="navbar-top">
             <label class="hamburger" for="hamburger" content="\2630"></label>
@@ -86,8 +86,8 @@
             </li>
             
         </ul>
-        </div>
-    </div>
+        </aside>
+    </section>
     <main>
 
 

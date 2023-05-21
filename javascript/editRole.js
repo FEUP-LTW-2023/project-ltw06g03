@@ -4,10 +4,8 @@ const rolebutton = document.querySelectorAll('.edit-role');
 if(rolebutton) {
   for (let i = 0; i < rolebutton.length; i++) {
     rolebutton[i].addEventListener('click', function (event) {
-        if(event.target.matches('i')) {
-            const up = event.target.closest('button').id.split('-')[2];
-            roleDropdown(up);
-        }
+      const up = event.target.closest('button').id.split('-')[2];
+      roleDropdown(up);
     });
   }
 }

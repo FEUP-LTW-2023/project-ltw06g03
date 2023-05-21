@@ -3,12 +3,9 @@ if (userDepartments) {
     const departmentsapi = await fetch("../api/api_departments.php");
     const departmentsList = await departmentsapi.json();
     for(let i = 0; i < userDepartments.length; i++) {
-
         userDepartments[i].addEventListener('click', function (event) {
-            if(event.target.matches('i')) {
-                const up = event.target.closest('button').id.split('-')[2];
-                departmentDropdown(up, departmentsList);
-            }
+            const up = event.target.closest('button').id.split('-')[2];
+            departmentDropdown(up, departmentsList);
         });
     }
 }
@@ -46,13 +43,13 @@ export async function departmentDropdown(up, departmentsList) {
 
                     const Departments = await fetch(`../api/api_user_departments.php?UP=${up}`);
                     const currentDepartments = await Departments.json();
-                    const newdiv = document.createElement('div');
-                    newdiv.classList.add('departments');
+                    const newsection = document.createElement('section');
+                    newsection.classList.add('departments');
                     if (currentDepartments.length === 0) {
                         const noDepartmentsElement = document.createElement('h4');
                         noDepartmentsElement.classList.add('no-department');
                         noDepartmentsElement.textContent = 'User is not assigned to any department';
-                        newdiv.appendChild(noDepartmentsElement);
+                        newsection.appendChild(noDepartmentsElement);
                         
                     }
                     else {
@@ -64,9 +61,9 @@ export async function departmentDropdown(up, departmentsList) {
                             newDepartmentElement.textContent = department;
                             departmentsdiv.appendChild(newDepartmentElement);
                         }
-                        newdiv.appendChild(departmentsdiv);
+                        newsection.appendChild(departmentsdiv);
                     }
-                    dropdown.replaceWith(newdiv);
+                    dropdown.replaceWith(newsection);
                     const editButton = document.querySelector('#edit-departments-' + up + ' i');
                     editButton.addEventListener('click', function (event) {
                         if(event.target.matches('i')) {

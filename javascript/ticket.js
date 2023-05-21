@@ -1,14 +1,15 @@
-import {user,allStatus,allDepartments} from "./api.js";
+import {getDepartments, getSession, getStatus} from "./api.js";
 
 let expanded=null;
 let expandedTicket=null;
 const body= document.querySelector("main");
-export let ticketSection=document.createElement('div');
+export let ticketSection=document.createElement('section');
 ticketSection.className="ticketSection";
-
+const user=await getSession();
+const allStatus= await getStatus();
+const allDepartments= await getDepartments();
 let href_;
 let loading=false;
-
 let role=user['role'];
 
 export async function drawTickets(href) {
@@ -47,11 +48,11 @@ export async function drawTickets(href) {
 }
 function drawTicket(ticket) {
 
-    let ticketContainer = document.createElement("div");
+    let ticketContainer = document.createElement("section");
     ticketContainer.className = "ticketContainer";
     ticketContainer.appendChild(userInfo(ticket['client']));
 
-    let subject= document.createElement("div");
+    let subject= document.createElement("section");
     subject.className="subject";
     let p=document.createElement('p');
     p.innerText=ticket['title'];
@@ -60,14 +61,14 @@ function drawTicket(ticket) {
 
     let imgs = assignImgs(ticket['assigns']);
 
-    let dep = document.createElement("div");
+    let dep = document.createElement("section");
     dep.className = "department";
     p = document.createElement('p');
     p.innerText = ticket['department'];
     dep.appendChild(p);
     let status;
 
-    status = document.createElement("div");
+    status = document.createElement("section");
     status.className = "status";
     p = document.createElement('p');
     p.innerText = ticket['status'];
@@ -98,7 +99,7 @@ function userInfo(user){
 async function expand(ticket) {
     body.style.overflow = 'hidden';
     if (expanded !== null) closeSection();
-    const expand = document.createElement('div');
+    const expand = document.createElement('section');
     expand.className = "expandedTicket";
     expand.appendChild(drawExpandedHeader(ticket));
     expand.appendChild(await drawExpandedExtraInf(ticket));
@@ -123,16 +124,16 @@ function drawExpandedHeader(ticket){
     return header;
 }
 async function drawExpandedExtraInf(ticket) {
-    const extraInf = document.createElement('div');
+    const extraInf = document.createElement('section');
     extraInf.className = "extra-inf";
-    const department = document.createElement('div');
+    const department = document.createElement('section');
     department.className = "department";
     let h5 = document.createElement('h5');
     h5.innerText = "Departments";
     department.appendChild(h5);
     h5 = document.createElement('h5');
     h5.innerText = "Status";
-    const status = document.createElement('div');
+    const status = document.createElement('section');
     status.className='status'
     status.appendChild(h5);
     if (role !== 'Admin' && role !== 'Staff') {
@@ -193,7 +194,7 @@ async function drawExpandedExtraInf(ticket) {
     return extraInf;
 }
 function drawExpandedAbout(ticket){
-    const about=document.createElement('div');
+    const about=document.createElement('section');
     about.className="about";
     const userInfo_=userInfo(ticket['client']);
     const problem=document.createElement('p');
@@ -205,7 +206,7 @@ function drawExpandedAbout(ticket){
 }
 async function drawMessages(ticket) {
     let messages = ticket['messages'];
-    const messagesSection = document.createElement('div');
+    const messagesSection = document.createElement('section');
     messagesSection.className = 'messages';
     let message_index = 0, event_index = 0;
     let response = await fetch('../api/api_events.php?id=' + ticket['id']);
@@ -230,7 +231,7 @@ async function drawMessages(ticket) {
 
 
 function drawMessage(message){
-    const messageContainer= document.createElement('div');
+    const messageContainer= document.createElement('article');
     messageContainer.className='message';
     const userInf_=userInfo(message['client']);
     const p=document.createElement('p');
@@ -242,7 +243,7 @@ function drawMessage(message){
     return messageContainer;
 }
 function drawEvent(event){
-    const eventContainer= document.createElement('div');
+    const eventContainer= document.createElement('article');
     eventContainer.className='event';
     const userInf_=userInfo(event['user']);
     const p=document.createElement('p');
@@ -285,7 +286,7 @@ async function assigns(ticket) {
     }else {
         mess=assignImgs(ticket['assigns']);
     }
-
+    console.log(role);
     if(role==='Admin' || role ==='Staff') {
 
         const assignTable = await drawAssignTable(ticket);
@@ -373,14 +374,25 @@ function drawAssignTableElement(user_,ticket_,checked){
             let res=await response.json();
             response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Assigned '+user['name']);
             let event_res=await response.json();
-            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
+            if(res[0]==='' && event_res[0]===''){
+                if(ticket['status']!=='CLOSED' && ticket['status']!=='ASSIGNED') {
+                    let response = await fetch('../actions/update_ticket.php?status=ASSIGNED&department=' + ticket['department'] + '&id=' + ticket['id']);
+                }
+                await drawTickets(href_);
+            }
 
         } else {
             let response = await fetch('../actions/discharge.php?up='+user['up']+'&id='+ticket['id']);
             let res=await response.json();
             response = await fetch('../actions/add_event.php?id='+ticket['id']+'&description=Discharged '+user['name']);
             let event_res=await response.json();
-            if(res[0]==='' && event_res[0]==='') await drawTickets(href_);
+            if(res[0]==='' && event_res[0]===''){
+                if(ticket['assigns'].length<=1 && ticket['status']!=='CLOSED'){
+                    let response = await fetch('../actions/update_ticket.php?status=PENDING&department=' + ticket['department'] + '&id=' + ticket['id']);
+
+                }
+                await drawTickets(href_);
+            }
         }
     });
     let user=userInfo(user_);

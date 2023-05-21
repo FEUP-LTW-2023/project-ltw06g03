@@ -14,19 +14,25 @@ try {
     $pass = $_GET['pass'];
     $user = User::getUser($db, $up);
 
-    if ($user->up === -1) echo json_encode(["Account does not exist"]);
-    elseif ($user->pass == $pass) {
-        $session->setUserUp($user->up);
-        $session->setUsername($user->name);
-        $session->setEmail($user->email);
-        $session->setRole($user->role);
-        $session->setUserImg($user->img);
-        $session->setDepartments($user->departments);
-        echo json_encode('');
 
-    } else  {
-        echo json_encode(['Password is incorrect']);
+    if (!$user) echo json_encode(["Account does not exist"]);
+    else {
+        $user=User::getUserWithPass($db,$up,$pass);
+       if($user){
+            $session->setUserUp($user->up);
+            $session->setUsername($user->name);
+            $session->setEmail($user->email);
+            $session->setRole($user->role);
+            $session->setUserImg($user->img);
+            $session->setDepartments($user->departments);
+           $session->setDateOfRegister($user->date);
+            echo json_encode('');
+       }else  {
+            echo json_encode(['Password is incorrect']);
+        }
+
     }
+
 
 }catch (Exception $exception){
     echo json_encode([$exception]);
