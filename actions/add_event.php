@@ -19,7 +19,7 @@ $up = $session->getUp();
 
 $text = encode_string($_GET['description']);
 
-$stmt = $dbh->prepare('INSERT INTO EVENT (DESCRIPTION, CLIENT_ID,TICKET_ID) VALUES (?, ?,?)');
+$stmt = $db->prepare('INSERT INTO EVENT (DESCRIPTION, CLIENT_ID,TICKET_ID) VALUES (?, ?,?)');
 $stmt->execute(array($text,$up,$id));
 echo json_encode(['']);
 ?>

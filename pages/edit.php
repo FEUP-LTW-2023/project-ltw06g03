@@ -10,7 +10,6 @@ require_once('../templates/body.php');
 //set Session
 $session = new Session();
 
-$session->setDateOfRegister("2020-20-02");
 
 if (!$session->isLoggedIn()) {
     header('Location: home.php');

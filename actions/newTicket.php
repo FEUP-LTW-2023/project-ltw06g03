@@ -24,7 +24,7 @@ try {
     $dbh = getDatabaseConnection();
     $stmt = $dbh->prepare('INSERT INTO TICKET (TITLE, PROBLEM,CLIENT_ID,DEPARTMENT) VALUES (:title, :problem,:up,:dep)');
     $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':problem', $tproblem);
+    $stmt->bindParam(':problem', $problem);
     $stmt->bindParam(':up', $up);
     $stmt->bindParam(':dep',$department);
     $stmt->execute();
