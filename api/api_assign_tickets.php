@@ -11,7 +11,7 @@ require_once(__DIR__ . '/../database/filters.php');
 
 $db = getDatabaseConnection();
 
-$up = encode_string($_GET['up']);
+$up = encode_int($_GET['up']);
 
 $search='';
 if(isset($_GET['search']))$search=encode_string($_GET['search']);
