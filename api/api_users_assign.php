@@ -7,12 +7,13 @@ if(!$session->isLoggedIn()) {
 }
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/user.class.php');
+require_once(__DIR__ . '/../database/filters.php');
 
 
 $db = getDatabaseConnection();
-$id=intval($_GET['id']);
+$id=encode_int($_GET['id']);
 $search='';
-if(isset($_GET['search'])) $search=$_GET['search'];
+if(isset($_GET['search'])) $search=encode_string($_GET['search']);
 $users = User::getUsersAssign($db, $id,$search);
 echo json_encode($users);
 ?>

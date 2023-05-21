@@ -7,10 +7,9 @@ if(!$session->isStaff()) {
 }
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/doubt.class.php');
-
+require_once(__DIR__ . '/../database/filters.php');
 
 $db = getDatabaseConnection();
-
 
 $doubts = Doubt::getDoubts($db);
 

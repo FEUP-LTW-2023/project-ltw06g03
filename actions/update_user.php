@@ -7,18 +7,26 @@ if(!$session->isLoggedIn()) {
 }
 
 require_once(__DIR__ . '/../database/connection.php');
-
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/connection.php');
+require_once(__DIR__ . '/../database/filters.php');
+
 $db=getDatabaseConnection();
 try {
     $responseMessage='';
 
     $user= User::getUser($db,$session->getUp());
-    $user->name=$_POST['name'];
-    $user->email=$_POST['email'];
+
+    $name = encode_string($_POST['name']);
+
+    $email = encode_string($_POST['email']);
+
+    $pass = encode_string($_POST['pass']);
+
+    $user->name=$name;
+    $user->email=$email;
     $targetPath='/docs/images/default_pfp.png';
-    if($_POST['pass']!=='')$user->pass=password_hash ($_POST['pass'] , PASSWORD_DEFAULT, ['cost' => 13]);
+    if($pass!=='')$user->pass=password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_FILES["img"]["size"] > 0) {
             $uploadOk = 1;
@@ -59,8 +67,8 @@ try {
         }
     }
     $user->save($db);
-    $session->setUsername($_POST['name']);
-    $session->setEmail($_POST['email']);
+    $session->setUsername($name);
+    $session->setEmail($email);
     echo json_encode([$responseMessage]);
 } catch (Exception $exception) {
     echo json_encode([$exception]);

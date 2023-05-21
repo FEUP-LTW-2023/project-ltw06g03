@@ -7,6 +7,7 @@ if(!$session->isLoggedIn()) {
 }
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/department.class.php');
+require_once(__DIR__ . '/../database/filters.php');
 
 $db = getDatabaseConnection();
 $departments = Department::getAllDepartments($db);

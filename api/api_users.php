@@ -7,11 +7,11 @@ if(!$session->isStaff()) {
 }
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/user.class.php');
-
+require_once(__DIR__ . '/../database/filters.php');
 
 $db = getDatabaseConnection();
 
-$up = intval($_GET['up']);
+$up = encode_int($_GET['up']);
 
 if($up) {
     $users = User::searchUser($db, $up);
@@ -19,7 +19,7 @@ if($up) {
 }
 
 else {
-    $name = $_GET['up'];
+    $name = encode_string($_GET['up']);
     $users = User::searchUser($db, $name);
     echo json_encode($users);
 }

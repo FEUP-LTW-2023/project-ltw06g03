@@ -5,23 +5,18 @@ $session = new Session();
 
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/user.class.php');
+require_once(__DIR__ . '/../database/filters.php');
+
 
 $db = getDatabaseConnection();
 
 try {
 
-    $up = $_GET['up'];
-    $pass = $_GET['pass'];
+    $up = encode_int($_GET['up']);
 
-    $up = stripslashes($up);
-    $up = htmlspecialchars($up);
-    $up = intval($up);
-
-    $pass = stripslashes($pass);
-    $pass = htmlspecialchars($pass);
+    $pass = encode_string($_GET['pass']);
 
     $user = User::getUser($db, $up);
-
 
     if (!$user) echo json_encode(["Account does not exist"]);
     else {

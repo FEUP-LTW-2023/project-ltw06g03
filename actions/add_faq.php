@@ -12,10 +12,13 @@ require_once(__DIR__ . '/../database/connection.php');
 $db=getDatabaseConnection();
 
 require_once(__DIR__ . '/../database/faq.class.php');
+require_once(__DIR__ . '/../database/filters.php');
 
 
-$title=$_GET['title'];
-$text=$_GET['text'];
+$title = encode_string($_GET['title']);
+
+$text = encode_string($_GET['text']);
+
 $department= new FAQ($title,$text);
 $department->new($db);
 header('Location: /pages/faqs_create.php');

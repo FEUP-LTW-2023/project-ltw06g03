@@ -12,11 +12,10 @@ require_once(__DIR__ . '/../database/connection.php');
 $db=getDatabaseConnection();
 
 require_once(__DIR__ . '/../database/department.class.php');
+require_once(__DIR__ . '/../database/filters.php');
 
+$name = encode_string($_GET['name']);
 
-$name=$_GET['name'];
-$name = stripslashes($name);
-$name = htmlspecialchars($name);
 $department= new Department($name);
 $department->new($db);
 header('Location: /pages/users.php');

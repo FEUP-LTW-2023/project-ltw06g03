@@ -8,13 +8,15 @@
     }
     require_once(__DIR__ . '/../database/connection.php');
     require_once(__DIR__ . '/../database/status.class.php');
+    require_once(__DIR__ . '/../database/filters.php');
+
 
     $db=getDatabaseConnection();
 
 try {
-    $name=$_GET['name'];
-    $name = stripslashes($name);
-    $name = htmlspecialchars($name);
+    
+    $name = encode_string($_GET['name']);
+    
     $status= new Status($name);
     $status->new($db);
 }catch (Exception $exception){

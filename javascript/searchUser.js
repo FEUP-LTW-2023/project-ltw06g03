@@ -1,5 +1,5 @@
 import {roleDropdown} from './editRole.js';
-import {departmentDropdown} from './editDepartment.js';2
+import {departmentDropdown} from './editDepartment.js';
 
 const searchUser = document.querySelector("#searchuser")
 

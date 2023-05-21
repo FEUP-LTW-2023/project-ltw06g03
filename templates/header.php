@@ -82,11 +82,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/users_page_styles.css">
-    <link rel="stylesheet" href="../css/users_page_responsive_styles.css">
     <link rel="stylesheet" href="../css/responsive_style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/searchUser.js" defer></script>
+    <script src="../javascript/searchUser.js" defer type="module"></script>
     <script src="../javascript/editRole.js" defer type="module"></script>
     <script src="../javascript/editDepartment.js" defer type="module"></script>
 </head>

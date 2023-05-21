@@ -9,16 +9,19 @@ if(!$session->isAdmin()) {
 
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/user.class.php');
+require_once(__DIR__ . '/../database/filters.php');
+
 
 
 $db = getDatabaseConnection();
 
 try {
 
-    $up = intval($_GET['UP']);
-    $user= User::getUser($db,$up);
-    $role = $_GET['role'];
+    $up = encode_int($_GET['UP']);
 
+    $user= User::getUser($db,$up);
+
+    $role = encode_string($_GET['role']);
 
     if ($user->role === $role) {
         echo json_encode(["Role is the same"]);
