@@ -63,11 +63,11 @@ class Ticket {
             if(is_numeric($search))$up=intval($search);
             else $up=-1;
             if($status==='') {
-                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY CREATED_AT DESC LIMIT 100 ');
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY TICKET.CREATED_AT DESC LIMIT 100 ');
                 $stmt->execute(array($up . '%', '%' . $search . '%', '%' . $search . '%',$department ));
             }
             else{
-                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE STATUS== ? AND (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY CREATED_AT DESC LIMIT 100 ');
+                $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM TICKET JOIN PERSON ON (CLIENT_ID==UP)  WHERE STATUS== ? AND (UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) and DEPARTMENT LIKE ? ORDER BY TICKET.CREATED_AT DESC LIMIT 100 ');
                 $stmt->execute(array($status,$up . '%', '%' . $search . '%', '%' . $search . '%',$department));
             }
         $tickets = array();
@@ -117,11 +117,11 @@ class Ticket {
         if(is_numeric($search))$up_=intval($search);
         else $up_=-1;
         if($status==='') {
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY CREATED_AT DESC LIMIT 100 ');
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY TICKET.CREATED_AT DESC LIMIT 100 ');
             $stmt->execute(array($up,$up_ . '%', '%' . $search . '%', '%' . $search . '%',$department));
         }
         else{
-            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND STATUS== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY CREATED_AT DESC LIMIT 100 ');
+            $stmt = $db->prepare('SELECT ID, TITLE,CLIENT_ID,STATUS,DEPARTMENT,PROBLEM FROM (ASSIGN JOIN TICKET ON (TICKET_ID==ID)) JOIN PERSON ON (CLIENT_ID==PERSON.UP)  WHERE ASSIGN.UP== ? AND STATUS== ? AND (PERSON.UP LIKE ? OR NAME LIKE ? OR TITLE LIKE ?) AND DEPARTMENT LIKE ? ORDER BY TICKET.CREATED_AT DESC LIMIT 100 ');
             $stmt->execute(array($up,$status,$up_ . '%', '%' . $search . '%', '%' . $search . '%',$department));
         }
         $tickets = array();

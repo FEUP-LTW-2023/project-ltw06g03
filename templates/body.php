@@ -1,6 +1,7 @@
 <?php
 function drawHomeBody(){
     require_once(__DIR__ . '/../utils/session.php');
+    require_once(__DIR__ . '/../templates/faqs.php');
     $session = new Session();
     ?>
 
@@ -17,13 +18,13 @@ function drawHomeBody(){
 
     </header>
     <div class="indicator">
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
-        <a href="#FAQ"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
+        <a href="#about"><i class='fas fa-angle-down'></i></a>
     </div>
 
 </div>
-    <section class="FAQ" id="FAQ">
+    <section class="about" id="about">
         <h1>Frequently Asked Questions</h1>
         <article>
             <div class="Text">
@@ -79,7 +80,10 @@ function drawHomeBody(){
     </section>
 
 
-<?php }
+
+<?php
+
+}
 
 
 function drawLogin() {?>
@@ -279,7 +283,7 @@ function drawUsersBody($session){
         </div>
     <?php if($session->isAdmin()) {?>
     <div class="add-buttons">
-        <button><a href="../pages/addDepartmentOrStatus.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
+        <button><a href="../pages/addFields.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
     </div>
     <?php }?>
 
@@ -318,24 +322,23 @@ function drawEditBody(){
 
 
 function drawAddBody() {
-    $session = new Session();
     ?>
     <div class="add-page">
-    <div class="add-department">
-        <form action="../actions/add_department.php?name=">
+
+        <form action="../actions/add_department.php?name=" class="add-department">
             <label for="name">Department Name:</label>
             <input type="text" name="name" id="name">
+            <p class="errorMessage"></p>
             <button type="submit"><i class="fas fa-plus"></i> Add Department </button>
         </form>
-    </div>
 
-    <div class="add-status">
-        <form action="">
+
+        <form action="../actions/add_status.php" class="add-status">
             <label for="status-name">Status Name:</label>
-            <input type="text" name="status-name" id="status-name">
+            <input type="text" name="name" id="status-name">
+            <p class="errorMessage"></p>
             <button type="submit"><i class="fas fa-plus"></i> Add Status </button>
         </form>
-    </div>
     </div>
 
 <?php } ?>

@@ -23,17 +23,18 @@
             <div class="col">
                 <h3>Links<div class="underline"><span></span></div></h3>
                 <ul>
-                    <li><a>Home</a></li>
-                    <li><a>Feup Official</a></li>
-                    <li><a>Source code</a></li>
-                    <li><a>About us</a></li>
+                    <li><a href="../pages/home.php">Home</a></li>
+                    <li><a href="https://sigarra.up.pt/feup/pt/web_page.inicial">Feup Official</a></li>
+                    <li><a href="https://github.com/FEUP-LTW-2023/project-ltw06g03">Source code</a></li>
+                    <li><a href="../pages/faqs.php">FAQ's</a></li>
+
                 </ul>
             </div>
             <div class="col">
-                <h3>Send us Feedback<div class="underline"><span></span></div></h3>
-                <form >
+                <h3>Send us Doubts<div class="underline"><span></span></div></h3>
+                <form action="../actions/send_doubts.php">
                     <i class='fas fa-envelope' alt="d"></i>
-                    <textarea type="email" placeholder="email" required></textarea>
+                    <textarea type="email" placeholder="email" required name="text"></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
                 </form>
             </div>
@@ -59,13 +60,14 @@
 
         <ul class="navbar-top">
             <label class="hamburger" for="hamburger" content="\2630"></label>
-            <li><a href="../pages/home.php"><i class="fa fa-home"></i><span>Home<span</a></li>
+            <li><a href="../pages/home.php"><i class="fa fa-home"></i><span>Home</span></a></li>
 
             <?php if($session->isLoggedIn()) {?>
                 <li><a href="tickets.php"><i class="fa fa-ticket" ></i><span>Tickets</span></a></li>
 
                 <?php if($session->isStaff()) {?>
                     <li><a href="users.php"><i class="fas fa-users"></i><span>Users</span></a></li>
+                    <li><a href="faqs_create.php"><i class="fa fa-question-circle" aria-hidden="true"></i><span>FAQs</span></a></li>
 
                 <?php } ?>
             

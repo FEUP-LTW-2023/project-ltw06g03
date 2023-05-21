@@ -2,6 +2,7 @@ h2, h3, h4 {
     padding: 0;
     margin: 0;
     font-weight: normal;
+    font-size: 1.1rem;
 }
 
 main footer {
@@ -25,6 +26,7 @@ main{
     background-color: #FFFFFFFA; 
     border-radius: 1em; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
 }
 
 .table{
@@ -41,12 +43,17 @@ tr td{
 
 .users-body tr:last-child > *{
     border: none;
+
 }
 
 #searchuser {
     width: 90%;
     height: 1.5rem;
+    font-size: 1rem;
     margin: 0 auto 1em auto;
+    border-radius:1rem ;
+    border: 1px solid #AAAAAA;
+    max-width: 50rem;
 }
 
 .staff-page {
@@ -80,6 +87,8 @@ table {
     width: 3em;
     margin: 0 0.2rem;
     padding: 0.2rem;
+    background: #3d3737FD;
+    color: white;
 }
 
 .departments div{
@@ -87,6 +96,7 @@ table {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 
 td a {
@@ -101,8 +111,12 @@ thead {
 
 button{
     margin: 0 0.2rem;
-    padding: 0.2rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: #3d3737FD;
+    color: white;
 }
+
 
 .add-buttons {
     padding: 0.5em;
@@ -110,6 +124,7 @@ button{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 
 .add-buttons button {

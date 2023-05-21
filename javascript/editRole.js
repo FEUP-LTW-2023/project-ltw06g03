@@ -4,8 +4,10 @@ const rolebutton = document.querySelectorAll('.edit-role');
 if(rolebutton) {
   for (let i = 0; i < rolebutton.length; i++) {
     rolebutton[i].addEventListener('click', function (event) {
-        const up = event.target.id.split('-')[2];
-        roleDropdown(up);
+        if(event.target.matches('i')) {
+            const up = event.target.closest('button').id.split('-')[2];
+            roleDropdown(up);
+        }
     });
   }
 }
@@ -53,7 +55,7 @@ function roleDropdown(up) {
         newRoleElement.classList.add('user-role');
         newRoleElement.textContent = role;
         dropdown.replaceWith(newRoleElement);
-        changeButtons(up, role);
+        await changeButtons(up, role);
       }
     }
   });
@@ -70,7 +72,7 @@ async function changeButtons(up, role)  {
   buttons.innerHTML += '<button><a href="../pages/profile.php?up='+ up +'"><i class="fas fa-search"></i> </a></button>'
 
 
-  if(role != "Student") {
+  if(role !== "Student") {
     const departmentButton = document.createElement('button');
     departmentButton.id = 'edit-departments-' + up;
     departmentButton.className = 'edit-departments';
@@ -86,7 +88,7 @@ async function changeButtons(up, role)  {
 
   const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
   const session = await sessionResponse.json();
-  if (session[0] == 'Admin') {
+  if (session[0] === 'Admin') {
     const roleButton = document.createElement('button');
     roleButton.id = 'edit-role-' + up;
     roleButton.className = 'edit-role';

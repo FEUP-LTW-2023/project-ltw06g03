@@ -1,26 +1,22 @@
+import {user,allStatus,allDepartments} from "./api.js";
+
 let expanded=null;
 let expandedTicket=null;
 const body= document.querySelector("main");
 export let ticketSection=document.createElement('div');
 ticketSection.className="ticketSection";
-let response = await fetch('../api/api_session.php');
-let user = await response.json();
+
 let href_;
 let loading=false;
-let count=0;
+
 let role=user['role'];
-response = await fetch('../api/api_status.php');
-const allStatus= await response.json();
-response = await fetch('../api/api_departments.php');
-const allDepartments= await response.json();
+
 export async function drawTickets(href) {
     href_ = href;
     if(loading)return;
     loading=true;
     const response = await fetch(href);
     let tickets = await response.json();
-    count++;
-
     ticketSection.innerHTML = '';
     ticketSection.className = 'ticketSection';
     if (tickets.length === 0) {
@@ -141,7 +137,7 @@ async function drawExpandedExtraInf(ticket) {
     status.appendChild(h5);
     if (role !== 'Admin' && role !== 'Staff') {
         let p = document.createElement('p');
-        p.innerHTML = ticket['department'];
+        p.textContent = ticket['department'];
         department.appendChild(p);
         p = document.createElement('p');
         p.innerText = ticket['status'];
@@ -239,7 +235,8 @@ function drawMessage(message){
     const userInf_=userInfo(message['client']);
     const p=document.createElement('p');
     p.className="text";
-    p.innerHTML=message['text'];
+    p.style.whiteSpace="pre;";
+    p.textContent=message['text'];
     messageContainer.appendChild(userInf_);
     messageContainer.appendChild(p);
     return messageContainer;
@@ -250,7 +247,7 @@ function drawEvent(event){
     const userInf_=userInfo(event['user']);
     const p=document.createElement('p');
     p.className="text";
-    p.innerHTML=event['description'];
+    p.textContent=event['description'];
     eventContainer.appendChild(userInf_);
     eventContainer.appendChild(p);
     return eventContainer;
@@ -390,6 +387,7 @@ function drawAssignTableElement(user_,ticket_,checked){
     li.appendChild(checkBox);
     label.appendChild(user);
     li.appendChild(label);
+
     return li;
 }
 function closeSection(){
@@ -412,7 +410,6 @@ function assignImgs(assignUsers){
 
 }
 async function sendMessage(text) {
-    text= text.replace(/\r?\n/g, '<br />');
     const response = await fetch('../actions/sendMessage.php?text='+text+'&id='+expandedTicket['id']);
     let res = await response.json();
     if(res!==''){

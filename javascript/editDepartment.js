@@ -1,12 +1,15 @@
-const userDepartments = document.querySelectorAll(".edit-departments")
-
+const userDepartments = document.querySelectorAll(".edit-departments ")
+console.log(userDepartments);
 if (userDepartments) {
     const departmentsapi = await fetch("../api/api_departments.php");
     const departmentsList = await departmentsapi.json();
     for(let i = 0; i < userDepartments.length; i++) {
+
         userDepartments[i].addEventListener('click', function (event) {
-            const up = event.target.id.split('-')[2];
-            departmentDropdown(up, departmentsList);
+            if(event.target.matches('i')) {
+                const up = event.target.closest('button').id.split('-')[2];
+                departmentDropdown(up, departmentsList);
+            }
         });
     }
 }
@@ -65,9 +68,12 @@ export function departmentDropdown(up, departmentsList) {
                         newdiv.appendChild(departmentsdiv);
                     }
                     dropdown.replaceWith(newdiv);
-                    const editButton = document.querySelector('#edit-departments-' + up + '');
-                    editButton.addEventListener('click', function () {
-                        departmentDropdown(up, departmentsList);
+                    const editButton = document.querySelector('#edit-departments-' + up + ' i');
+                    console.log(editButton);
+                    editButton.addEventListener('click', function (event) {
+                        if(event.target.matches('i')) {
+                            departmentDropdown(up, departmentsList);
+                        }
                     });
                 }
             }
