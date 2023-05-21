@@ -71,7 +71,6 @@ async function changeButtons(up, role)  {
   buttons.innerHTML = ''
   buttons.innerHTML += '<button><a href="../pages/profile.php?up='+ up +'"><i class="fas fa-search"></i> </a></button>'
 
-
   if(role !== "Student") {
     const departmentButton = document.createElement('button');
     departmentButton.id = 'edit-departments-' + up;
@@ -86,17 +85,26 @@ async function changeButtons(up, role)  {
 
 }
 
-  const sessionResponse = (await fetch('../api/api_sessionRole.php')); 
+  let ownRole = false;  
+  const sessionResponse = (await fetch('../api/api_session.php')); 
   const session = await sessionResponse.json();
-  if (session[0] === 'Admin') {
+  console.log(session)
+  console.log(session.role)
+  if (session.role === 'Admin') {
     const roleButton = document.createElement('button');
     roleButton.id = 'edit-role-' + up;
     roleButton.className = 'edit-role';
     roleButton.innerHTML = '<i class="fas fa-user-tag"></i>';
+    ownRole = true;
     roleButton.addEventListener('click', function (event) {
       roleDropdown(up);
     });
     buttons.appendChild(roleButton);
+
+    if (ownRole) {
+      window.location.reload();
+    }
+
 
 }
 
