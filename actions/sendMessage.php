@@ -3,7 +3,7 @@
 
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if(!$session->isLoggedIn() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/){
+if(!$session->isLoggedIn() ){
     header('Location: /pages/home.php');
     exit();
 }

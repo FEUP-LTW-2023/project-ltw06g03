@@ -34,7 +34,7 @@
                 <h3>Send us Doubts<div class="underline"><span></span></div></h3>
                 <form action="../actions/send_doubts.php">
                     <i class='fas fa-envelope' alt="d"></i>
-                    <textarea type="email" placeholder="email" required name="text"></textarea>
+                    <textarea type="email" placeholder="Doubt" required name="text"></textarea>
                     <button type="submit"><i class='fas fa-arrow-right'></i></button>
                 </form>
             </section>
