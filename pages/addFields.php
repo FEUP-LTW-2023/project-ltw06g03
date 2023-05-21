@@ -3,7 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     require_once(__DIR__ . '/../templates/header.php');
-    require_once(__DIR__ . '/../templates/body.php');
+    require_once(__DIR__ . '/../templates/add_body.php');
     $session = new Session();
     require_once(__DIR__ . '/../templates/common.php');
     if (!$session->isStaff()) {

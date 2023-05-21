@@ -9,6 +9,7 @@ if(!$session->isLoggedIn()) {
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/filters.php');
 
+require_once(__DIR__ . '/../database/ticket.class.php');
 try {
     
     $title = encode_string($_GET['title']);
@@ -20,12 +21,7 @@ try {
     $department = encode_string($_GET['department']);
 
     $dbh = getDatabaseConnection();
-    $stmt = $dbh->prepare('INSERT INTO TICKET (TITLE, PROBLEM,CLIENT_ID,DEPARTMENT) VALUES (:title, :problem,:up,:dep)');
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':problem', $problem);
-    $stmt->bindParam(':up', $up);
-    $stmt->bindParam(':dep',$department);
-    $stmt->execute();
+    Ticket::new($dbh,$title,$text,$up,$dep);
     echo json_encode(['']);
 } catch (Exception $exception) {
     echo json_encode($exception);

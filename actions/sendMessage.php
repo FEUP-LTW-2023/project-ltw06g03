@@ -3,7 +3,7 @@
 
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if(!$session->isLoggedIn() || $_SESSION['csrf'] !== $_POST['csrf']){
+if(!$session->isLoggedIn() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/){
     header('Location: /pages/home.php');
     exit();
 }
@@ -11,6 +11,7 @@ if(!$session->isLoggedIn() || $_SESSION['csrf'] !== $_POST['csrf']){
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/filters.php');
 
+require_once(__DIR__ . '/../database/message.class.php');
 try{
 
     $text = encode_string($_GET['text']);
@@ -20,12 +21,8 @@ try{
     $up=$session->getUp();
 
     $dbh = getDatabaseConnection();
-    $stmt = $dbh->prepare('INSERT INTO TICKET_MESSAGE (TEXT, TICKET_ID,PERSON_ID) VALUES (:text, :id,:up)');
 
-    $stmt->bindParam(':text', $text);
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':up', $up);
-    $stmt->execute();
+    Message::new($dbh,$text,$id,$up);
     echo json_encode(['']);
 }catch ( Exception $exception){
     echo json_encode([$exception]);

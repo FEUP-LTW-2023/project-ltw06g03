@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if(!$session->isLoggedIn() || $_SESSION['csrf'] !== $_POST['csrf']) {
+if(!$session->isLoggedIn() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/) {
     header('Location: /pages/home.php');
     exit();
 }
@@ -19,14 +19,14 @@ try {
 
     $name = encode_string($_POST['name']);
 
-    $email = encode_string($_POST['email']);
+    $email = $_POST['email'];
 
-    $pass = encode_string($_POST['pass']);
+    $pass = isset($_POST['pass']) ? ($_POST['pass']) : null;
 
     $user->name=$name;
     $user->email=$email;
     $targetPath='/docs/images/default_pfp.png';
-    if($pass!=='')$user->pass=password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]);
+    if($pass)$user->updatePass($db,password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]));
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_FILES["img"]["size"] > 0) {
             $uploadOk = 1;

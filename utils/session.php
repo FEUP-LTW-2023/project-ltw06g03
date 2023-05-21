@@ -4,9 +4,9 @@ class Session {
 
     public function __construct() {
         session_start();
-        session_set_cookie_params(0, '/', 'www.fe.up.pt', true, true);
         if (!isset($_SESSION['csrf'])) {
             $_SESSION['csrf'] = generate_random_token();
+            session_set_cookie_params(0, '/', 'www.fe.up.pt', true, true);
         }
     }
 

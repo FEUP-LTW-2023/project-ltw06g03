@@ -9,17 +9,15 @@ class User {
     public string $email;
     public string $role;
     public string $img;
-    public string $pass;
     public array $departments;
     public string $date;
 
-    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img,array $departments,string $date)
+    public function __construct(int $up, string $name,string $email,string $role,string $img,array $departments,string $date)
     {
         $this->up = $up;
         $this->name = $name;
         $this->email = $email;
         $this->role=$role;
-        $this->pass=$pass;
         $this->img=$img;
         $this->departments=$departments;
         $this->date=$date;
@@ -44,7 +42,6 @@ class User {
             $user['NAME'],
             $user['EMAIL'],
             $user['ROLE'],
-            '',
             $img,
             $departments,
             $user['CREATED_AT']
@@ -69,11 +66,19 @@ class User {
             $user['NAME'],
             $user['EMAIL'],
             $user['ROLE'],
-            '',
+
             $img,
             $departments,
             $user['CREATED_AT']
         );
+    }
+    function updatePass($db,$pass){
+        $stmt = $db->prepare('
+
+        UPDATE PERSON SET  PASSWORD= ?
+        WHERE UP = ?
+      ');
+        $stmt->execute(array($pass, $this->up));
     }
 
     function delete(PDO $db) {
@@ -87,10 +92,10 @@ class User {
     function save(PDO $db) {
         $stmt = $db->prepare('
 
-        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?, PASSWORD= ?,IMG=?
+        UPDATE PERSON SET NAME = ?, EMAIL = ?, ROLE= ?,IMG=?
         WHERE UP = ?
       ');
-        $stmt->execute(array($this->name, $this->email, $this->role, $this->pass, $this->img,$this->up));
+        $stmt->execute(array($this->name, $this->email, $this->role, $this->img,$this->up));
     }
 
 
@@ -113,7 +118,7 @@ class User {
                 $user['NAME'],
                 $user['EMAIL'],
                 $user['ROLE'],
-                '',
+
                 $img,
                 $departments,
                 $user['CREATED_AT']
@@ -139,7 +144,7 @@ class User {
                 $user['NAME'],
                 $user['EMAIL'],
                 $user['ROLE'],
-                '',
+
                 $img,
                 $departments,
                 $user['CREATED_AT']
@@ -166,7 +171,7 @@ class User {
                 $user['NAME'],
                 $user['EMAIL'],
                 $user['ROLE'],
-                '',
+
                 $img,
                 $departments,
                 $user['CREATED_AT']
@@ -203,7 +208,7 @@ class User {
                 $user['NAME'],
                 $user['EMAIL'],
                 $user['ROLE'],
-                '',
+
                 $img,
                 $departments,
                 $user['CREATED_AT']
@@ -212,10 +217,10 @@ class User {
 
         return $ret;
     }
-    function new($db)
+    function new($db,string $pass)
     {
         $stmt = $db->prepare('INSERT INTO PERSON (UP, EMAIL,NAME,PASSWORD) VALUES (?, ?,?,?)');
-        $stmt->execute(array($this->up, $this->email, $this->name, $this->pass));
+        $stmt->execute(array($this->up, $this->email, $this->name, $pass));
     }
 
 }

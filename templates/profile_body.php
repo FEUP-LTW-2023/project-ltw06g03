@@ -1,13 +1,12 @@
 <?php
-
-function drawUserBody($session) {
+function drawProfileBody($session) {
 
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
     require_once ("../database/filters.php");
 
-    $up=encode_int($_GET['up']);
-
+    if(isset($_GET['up']))$up=encode_int($_GET['up']);
+    else $up=$session->getUp();
 
 
     $user= User::getUser(getDatabaseConnection(),$up);
@@ -20,9 +19,9 @@ function drawUserBody($session) {
     $userImg = $user->img;
 
     ?>
-    <div class="user-page">
+    <section class="user-page">
 
-        <div class="user">
+        <section class="user">
             <div class="user-icon-info">
                 <?php
                 if ($userImg != null) {
@@ -32,7 +31,7 @@ function drawUserBody($session) {
                     <i class="fas fa-user"></i>
                 <?php } ?>
 
-                <h2> <?= $username ?> </h2>
+                <h2> <?=$username ?> </h2>
                 <h3> up<?= $up ?> </h3>
                 <h4> <?= $userType ?> </h4>
             </div>
@@ -60,8 +59,7 @@ function drawUserBody($session) {
                     <a href="../pages/edit.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
                 </div>
             <?php }?>
-        </div>
-    </div>
+        </section>
+    </section>
 <?php } ?>
-
 

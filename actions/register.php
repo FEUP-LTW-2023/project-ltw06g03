@@ -14,8 +14,8 @@ $email = encode_string($_POST['email']);
 
 $pass = encode_string($_POST['pass']);
 
-$user=new User($up, $name, $email,'',password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]),'',[],'');
-$user->new($dbh);
+$user=new User($up, $name, $email,'','',[],'');
+$user->new($dbh,password_hash ($pass , PASSWORD_DEFAULT, ['cost' => 13]));
 header('Location: /pages/home.php');
 ?>
 

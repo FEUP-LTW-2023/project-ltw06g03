@@ -5,7 +5,7 @@
     require_once(__DIR__ . '/../templates/common.php');
     require_once(__DIR__ . '/../database/connection.php');
     require_once(__DIR__ . '/../database/user.class.php');
-    require_once(__DIR__ . '/../templates/body.php');
+    require_once(__DIR__ . '/../templates/users_body.php');
     $session = new Session();
 
     if (!$session->isLoggedIn() || $session->isStudent()) {

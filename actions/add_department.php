@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
 session_start();
 
-if(!$session->isStaff() || $_SESSION['csrf'] !== $_POST['csrf']){
+if(!$session->isStaff() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/){
     header('Location: /');
     exit();
 }
