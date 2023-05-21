@@ -20,7 +20,7 @@ async function validateRegisterInputs(event) {
         let user = await response.json();
 
         user=user[0];
-        if (user['up'] !== -1) throw "Account already created with " + up.value;
+        if (user) throw "Account already created with " + up.value;
         registerForm.submit();
     }
     catch (e){

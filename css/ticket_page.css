@@ -50,9 +50,11 @@
     margin-top: 1rem;
 
 }
-.searchbar input{
+.searchbar input[type=text]{
     font-size: 1rem;
     width: 100%;
+    border: none;
+
 }
 
 .selected{

@@ -110,7 +110,7 @@ function drawLogin() {?>
 function drawRegister() {?>
 
 <div class="loginRegisterForm" name="RegisterForm" >
-    <form class="registerForm" method="post" action="../database/register.php">
+    <form class="registerForm" method="post" action="../actions/register.php">
         <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
         <h3>Register</h3>
         <label >
