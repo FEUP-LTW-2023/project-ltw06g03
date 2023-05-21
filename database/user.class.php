@@ -11,8 +11,9 @@ class User {
     public string $img;
     public string $pass;
     public array $departments;
+    public string $date;
 
-    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img,array $departments)
+    public function __construct(int $up, string $name,string $email,string $role,string $pass,string $img,array $departments,string $date)
     {
         $this->up = $up;
         $this->name = $name;
@@ -21,10 +22,11 @@ class User {
         $this->pass=$pass;
         $this->img=$img;
         $this->departments=$departments;
+        $this->date=$date;
     }
     
     static function getUser(PDO $db, int $id) : ?USER {
-        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,IMG FROM PERSON WHERE UP = ?');
+        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,IMG,CREATED_AT FROM PERSON WHERE UP = ?');
         $stmt->execute(array($id));
 
         $user = $stmt->fetch();
@@ -44,11 +46,12 @@ class User {
             $user['ROLE'],
             '',
             $img,
-            $departments
+            $departments,
+            $user['CREATED_AT']
         );
     }
     static function getUserWithPass(PDO $db, int $id,string $pass) : ?USER {
-        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,IMG,PASSWORD FROM PERSON WHERE UP = ?');
+        $stmt = $db->prepare('SELECT UP, NAME,EMAIl,ROLE,IMG,PASSWORD,CREATED_AT FROM PERSON WHERE UP = ?');
         $stmt->execute(array($id));
 
         $user = $stmt->fetch();
@@ -68,7 +71,8 @@ class User {
             $user['ROLE'],
             '',
             $img,
-            $departments
+            $departments,
+            $user['CREATED_AT']
         );
     }
 
@@ -95,7 +99,7 @@ class User {
     {
         $up=-1;
         if(is_numeric($search))$up=$search;
-        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,IMG FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ? AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,IMG,CREATED_AT FROM PERSON JOIN ASSIGN ON PERSON.UP==ASSIGN.UP WHERE TICKET_ID = ? AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
         $stmt->execute(array($id,$up . '%', '%' . $search . '%' ));
         $users = array();
         while ($user = $stmt->fetch()) {
@@ -111,7 +115,8 @@ class User {
                 $user['ROLE'],
                 '',
                 $img,
-                $departments
+                $departments,
+                $user['CREATED_AT']
             );
         }
         return $users;
@@ -120,7 +125,7 @@ class User {
     {
         $up=-1;
         if(is_numeric($search))$up=$search;
-        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,IMG FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)AND ( ROLE=? or ROLE=?) AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
+        $stmt = $db->prepare('SELECT PERSON.UP, NAME,EMAIl,ROLE,IMG,CREATED_AT FROM PERSON  WHERE UP NOT IN (select PERSON.UP FROM PERSON JOIN ASSIGN ON ASSIGN.UP==PERSON.UP WHERE TICKET_ID= ?)AND ( ROLE=? or ROLE=?) AND(PERSON.UP LIKE ? OR NAME LIKE ? )');
         $stmt->execute(array($id,'Admin','Staff',$up .'%','%'. $search .'%'));
         $users = array();
         while ($user = $stmt->fetch()) {
@@ -136,14 +141,15 @@ class User {
                 $user['ROLE'],
                 '',
                 $img,
-                $departments
+                $departments,
+                $user['CREATED_AT']
             );
         }
         return $users;
     }
 
     static function getUsers(PDO $db) : array {
-        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, IMG FROM PERSON');
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, IMG,CREATED_AT FROM PERSON');
         $stmt->execute();
 
         $ret = array();
@@ -162,7 +168,8 @@ class User {
                 $user['ROLE'],
                 '',
                 $img,
-                $departments
+                $departments,
+                $user['CREATED_AT']
             );
         }
 
@@ -171,7 +178,7 @@ class User {
 
 
     static function searchUser(PDO $db, string $nameOrUP) : array {
-        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, IMG FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
+        $stmt = $db->prepare('SELECT UP, NAME, EMAIL, ROLE, IMG,CREATED_AT FROM PERSON WHERE NAME LIKE ? OR UP LIKE ?');
 
 
 
@@ -198,11 +205,17 @@ class User {
                 $user['ROLE'],
                 '',
                 $img,
-                $departments
+                $departments,
+                $user['CREATED_AT']
             );
         }
 
         return $ret;
+    }
+    function new($db)
+    {
+        $stmt = $db->prepare('INSERT INTO PERSON (UP, EMAIL,NAME,PASSWORD) VALUES (?, ?,?,?)');
+        $stmt->execute(array($this->up, $this->email, $this->name, $this->pass));
     }
 
 }

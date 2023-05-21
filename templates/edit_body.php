@@ -6,7 +6,7 @@ function drawEditBody(){
    $session = new Session();
    ?>
 
-   <div class="edit-page" >
+   <section class="edit-page" >
       <form action="" method="post" enctype="multipart/form-data">
          <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
          <label for="image_input"> <img src="<?=$session->getUserImg()?>"></label>
@@ -24,6 +24,6 @@ function drawEditBody(){
          <p class="errorMessage"></p>
          <button type="submit" >Save</button>
       </form>
-   </div>
+   </section>
 
 <?php }?>

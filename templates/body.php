@@ -5,12 +5,12 @@ function drawHomeBody(){
     $session = new Session();
     ?>
 
-<div class="homePageHeader">
+<section class="homePageHeader">
     <?php if(!$session->isLoggedIn()){?>
-        <div class="loginRegister">
+        <section class="loginRegister">
             <a  href="../pages/register.php">Register</a>
             <a href="../pages/login.php">Login</a>
-        </div>
+        </section>
     <?php }?>
     <header>
         <h1>Feup Trouble Ticket's</h1>
@@ -23,7 +23,7 @@ function drawHomeBody(){
         <a href="#about"><i class='fas fa-angle-down'></i></a>
     </div>
 
-</div>
+</section>
     <section class="about" id="about">
         <h1>Frequently Asked Questions</h1>
         <article>
@@ -88,7 +88,7 @@ function drawHomeBody(){
 
 function drawLogin() {?>
 
-<div class="loginRegisterForm" name="LoginForm" >
+<section class="loginRegisterForm" name="LoginForm" >
     <form class="loginForm"  >
         <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
         <h3>Login</h3>
@@ -104,12 +104,12 @@ function drawLogin() {?>
 
         <button>Login</button>
     </form>
-</div>
+</section>
 <?php } 
 
 function drawRegister() {?>
 
-<div class="loginRegisterForm" name="RegisterForm" >
+<section class="loginRegisterForm" name="RegisterForm" >
     <form class="registerForm" method="post" action="../actions/register.php">
         <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
         <h3>Register</h3>
@@ -134,7 +134,7 @@ function drawRegister() {?>
         <a href="../pages/login.php">Already have an account?</a>
         <button name="Register" type="submit">Register</button>
     </form>
-</div>
+</section>
 
 
 <?php } 
@@ -142,7 +142,7 @@ function drawRegister() {?>
 
 
 function drawProfileBody($session) {
-    require_once('../templates/tickets.php');
+
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
 
@@ -160,9 +160,9 @@ function drawProfileBody($session) {
     $userImg = $user->img;
 
     ?>
-    <div class="user-page">
+    <section class="user-page">
 
-    <div class="user">
+    <section class="user">
         <div class="user-icon-info">
             <?php 
             if ($userImg != null) {
@@ -200,8 +200,8 @@ function drawProfileBody($session) {
             <a href="../pages/edit.php?up=<?= $up ?>"> Edit Info <i class="fas fa-edit"></i></a>
         </div>
         <?php }?>
-    </div>
-    </div>
+    </section>
+    </section>
 <?php }
 
 function drawUsersBody($session){ 
@@ -212,11 +212,11 @@ function drawUsersBody($session){
 
     ?>
 
-    <div class="staff-page">
-        <div class="users-body">
+    <section class="staff-page">
+        <section class="users-body">
             <input id="searchuser" type="text" placeholder="Search for an user">
 
-            <div class="table">
+            <section class="table">
                 <table>
 
                     <thead>
@@ -278,16 +278,16 @@ function drawUsersBody($session){
                     </tbody>
 
             </table>
-            </div>
+            </section>
 
-        </div>
+        </se>
     <?php if($session->isAdmin()) {?>
     <div class="add-buttons">
         <button><a href="../pages/addFields.php"><i class="fas fa-plus"></i>  Add Department or Status </a></button>
     </div>
     <?php }?>
 
-</div>
+</section>
 
         
 
@@ -297,7 +297,7 @@ function drawEditBody(){
    $session = new Session();
    ?>
 
-   <div class="edit-page" >
+   <section class="edit-page" >
       <form action="" method="post" enctype="multipart/form-data">
          <a href="../pages/home.php"><i class="fa fa-home"></i> Go to Home</a>
          <label for="image_input"> <img src="<?=$session->getUserImg()?>"></label>
@@ -316,14 +316,14 @@ function drawEditBody(){
          <button type="submit" >Save</button>
 
       </form>
-   </div>
+   </section>
 
 <?php } 
 
 
 function drawAddBody() {
     ?>
-    <div class="add-page">
+    <section class="add-page">
 
         <form action="../actions/add_department.php?name=" class="add-department">
             <label for="name">Department Name:</label>
@@ -339,6 +339,6 @@ function drawAddBody() {
             <p class="errorMessage"></p>
             <button type="submit"><i class="fas fa-plus"></i> Add Status </button>
         </form>
-    </div>
+    </section>
 
 <?php } ?>

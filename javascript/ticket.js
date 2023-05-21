@@ -1,11 +1,13 @@
-import {user,allStatus,allDepartments} from "./api.js";
+import {getDepartments, getSession, getStatus} from "./api.js";
 
 let expanded=null;
 let expandedTicket=null;
 const body= document.querySelector("main");
 export let ticketSection=document.createElement('div');
 ticketSection.className="ticketSection";
-
+const user=getSession();
+const allStatus=getStatus();
+const allDepartments=getDepartments();
 let href_;
 let loading=false;
 

@@ -25,6 +25,7 @@ try {
             $session->setRole($user->role);
             $session->setUserImg($user->img);
             $session->setDepartments($user->departments);
+           $session->setDateOfRegister($user->date);
             echo json_encode('');
        }else  {
             echo json_encode(['Password is incorrect']);
