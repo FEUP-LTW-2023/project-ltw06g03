@@ -150,6 +150,18 @@ class Ticket {
 
         $stmt->execute(array($this->status, $this->department, $this->id));
     }
+    static  function assign(PDO $dbh,int $id,int $up){
+        $stmt = $dbh->prepare('INSERT INTO ASSIGN (UP, TICKET_ID) VALUES (?, ?)');
+        $stmt->execute(array($up,$id));
+    }
+    static  function discharged(PDO $dbh,int $id,int $up){
+        $stmt = $dbh->prepare('DELETE FROM ASSIGN WHERE UP==? AND TICKET_ID==?');
+        $stmt->execute(array($up,$id));
+    }
+    static  function new(PDO $dbh,string $title,string $problem, int $up, string $department){
+        $stmt = $dbh->prepare('INSERT INTO TICKET (TITLE, PROBLEM,CLIENT_ID,DEPARTMENT) VALUES (?, ?,?,?)');
+        $stmt->execute(array($title,$problem,$up, $department));
+    }
 
 
 }

@@ -5,10 +5,10 @@ $session = new Session();
 if(!$session->isStaff()){
     header('Location: /');
 }
+require_once(__DIR__ . '/../database/ticket.class.php');
 $up=intval($_GET['up']);
 $id=intval($_GET['id']);
 $dbh = getDatabaseConnection();
-$stmt = $dbh->prepare('DELETE FROM ASSIGN WHERE UP==? AND TICKET_ID==?');
-$stmt->execute(array($up,$id));
+Ticket::discharged($dbh,$id,$up);
 echo json_encode([''])
 ?>

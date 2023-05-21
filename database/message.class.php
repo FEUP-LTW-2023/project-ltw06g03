@@ -36,6 +36,10 @@ class Message {
 
         return $messages;
     }
+    static  function new(PDO $dbh,string $text,int $id, int $up){
+        $stmt = $dbh->prepare('INSERT INTO TICKET_MESSAGE (TEXT, TICKET_ID,PERSON_ID) VALUES (?, ?,?)');
+        $stmt->execute(array($text,$id,$up));
+    }
 
 }
 ?>

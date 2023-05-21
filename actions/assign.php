@@ -5,10 +5,10 @@ $session = new Session();
 if(!$session->isStaff()){
     header('Location: /');
 }
+require_once(__DIR__ . '/../database/ticket.class.php');
 $up=intval($_GET['up']);
 $id=intval($_GET['id']);
 $dbh = getDatabaseConnection();
-$stmt = $dbh->prepare('INSERT INTO ASSIGN (UP, TICKET_ID) VALUES (?, ?)');
-$stmt->execute(array($up,$id));
+Ticket::assign($dbh,$id,$up);
 echo json_encode([''])
 ?>

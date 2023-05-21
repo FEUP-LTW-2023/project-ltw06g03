@@ -38,5 +38,9 @@ class Event
 
         return $events;
     }
+    static function new(PDO $db, string $text, int $up, int $id){
+        $stmt = $db->prepare('INSERT INTO EVENT (DESCRIPTION, CLIENT_ID,TICKET_ID) VALUES (?, ?,?)');
+        $stmt->execute(array($text,$up,$id));
+    }
 }
 ?>
