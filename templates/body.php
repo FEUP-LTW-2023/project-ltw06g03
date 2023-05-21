@@ -145,8 +145,9 @@ function drawProfileBody($session) {
 
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
+    require_once ("../database/filters.php");
 
-    if(isset($_GET['up']))$up=intval($_GET['up']);
+    if(isset($_GET['up']))$up=encode_int($_GET['up']);
     else $up=$session->getUp();
 
 

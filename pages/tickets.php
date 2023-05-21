@@ -8,8 +8,6 @@ require_once('../templates/ticket_body.php');
 
 $session = new Session();
 
-$session->setDateOfRegister("2020-20-02");
-
 if (!$session->isLoggedIn()) {
     header('Location: home.php');
 } else {

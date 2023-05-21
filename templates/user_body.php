@@ -4,8 +4,9 @@ function drawUserBody($session) {
 
     require_once ("../database/user.class.php");
     require_once ("../database/connection.php");
+    require_once ("../database/filters.php");
 
-    $up=intval($_GET['up']);
+    $up=encode_int($_GET['up']);
 
 
 
