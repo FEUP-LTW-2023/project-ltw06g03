@@ -1,13 +1,14 @@
 <?php
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if(!$session->isStaff() /*|| $_SESSION['csrf'] !== $_POST['csrf']*/){
+if(!$session->isStaff() ){
     header('Location: /');
     exit();
 }
 
 require_once(__DIR__ . '/../database/connection.php');
 require_once(__DIR__ . '/../database/event.class.php');
+require_once(__DIR__ . '/../database/filters.php');
 
 $db = getDatabaseConnection();
 
