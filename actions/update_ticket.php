@@ -2,12 +2,22 @@
 
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if(!$session->isStaff()) header('Location: /pages/home.php');
+if(!$session->isStaff() ) {
+    header('Location: /pages/home.php');
+    exit();
+}
+
 require_once(__DIR__ . '/../database/ticket.class.php');
 require_once(__DIR__ . '/../database/connection.php');
-$status=$_GET['status'];
-$department=$_GET['department'];
-$id=$_GET['id'];
+require_once(__DIR__ . '/../database/filters.php');
+
+
+$status = encode_string($_GET['status']);
+
+$department = encode_string($_GET['department']);
+
+$id = encode_int($_GET['id']);
+
 $dbh = getDatabaseConnection();
 try {
     $ticket= Ticket::getTicket($dbh,$id);

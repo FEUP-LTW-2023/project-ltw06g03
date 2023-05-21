@@ -13,11 +13,7 @@ export async function getDepartments(){
     return  await response.json();
 }
 
-
-
-
 export function isHtml(testString){
-    console.log("aqui");
     const htmlRegex = /<([a-z][a-z0-9]*)\b[^>]*>/i;
     return htmlRegex.test(testString);
 }

@@ -61,7 +61,7 @@ function drawHomePageHeader(){
     ?>
 
     <link rel="stylesheet" href="../css/users_page_styles.css">
-    <script src="../javascript/searchUser.js" defer></script>
+    <script src="../javascript/searchUser.js" defer type="module"></script>
     <script src="../javascript/editRole.js" defer type="module"></script>
     <script src="../javascript/editDepartment.js" defer type="module"></script>
 
@@ -110,7 +110,6 @@ function drawHomePageHeader(){
     ?>
 
     <link rel="stylesheet" href="../css/faq.css">
-    <script src="../javascript/addFields.js" defer type="module"></script>
 
 
 <?php

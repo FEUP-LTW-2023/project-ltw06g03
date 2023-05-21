@@ -65,7 +65,7 @@ async function validateInputs() {
     else if (text.value === '') error.innerHTML = 'Description can not be empty';
     else if(department.value==='') error.innerHTML='Chose a department';
     else {
-        const response = await fetch('../actions/newTicket.php?title='+title.value+'&text='+text.value+'&department='+department.value);
+        const response = await fetch('../actions/newTicket.php?title='+title.value+'&problem='+text.value+'&department='+department.value);
         if (response.ok) {
             let res = await response.json();
             if (res[0] === '') {
@@ -78,7 +78,7 @@ async function validateInputs() {
             }
         }
         else {
-            error.innerHTML="ERR";
+            error.innerHTML="Error";
         }
     }
 }

@@ -6,7 +6,9 @@
     require_once(__DIR__ . '/../templates/add_body.php');
     $session = new Session();
     require_once(__DIR__ . '/../templates/common.php');
-
+    if (!$session->isStaff()) {
+    header('Location: home.php');
+    }
     drawAddPageHeader();
     drawNavBar($session);
     drawAddBody();
